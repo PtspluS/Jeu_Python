@@ -2,8 +2,10 @@ from terrain import Decor
 
 
 class Door(Decor):
-    isdestructible = False
-    isblock = True
-    iswalkable = False
-    isclose=True
-    
+    is_destructible = False
+    is_block = True
+    is_walkable = False
+    is_close=True
+
+    def __init__(self):
+        super().__init__()
