@@ -2,6 +2,9 @@
 
 class Personnage:
 
+    max_hp = 100
+    max_speed = 1
+
     def __init__(self, img, nom, desc, vie=100, PO=50, posX=0, posY=0, bag=[], lvl = 1):
         self.img = img
         self.name = nom
@@ -14,4 +17,4 @@ class Personnage:
         self.lvl = lvl
 
     def heal(self, val):
-        self.hp = self.hp + abs(val)
+        self.hp = self.hp + abs(val) % self.max_hp
