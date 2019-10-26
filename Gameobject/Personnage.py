@@ -9,15 +9,19 @@ class Personnage:
         self.desc = desc
         self.hp = vie
         self.money = PO
-        self.X = posX
-        self.Y = posY
+        self.x = posX
+        self.y = posY
         self.bag = bag
         self.lvl = lvl
 
     def heal(self, val):
         self.hp = self.hp + abs(val) % self.max_hp
 
-    def move(self, window, map, posmap, x, y):
-        if map[x][y].iswakable and posmap[x][y] == 0:
-            window.blit(map[self.x][self.y].image,self.x,self.y)
-            window.blit(self.img,x, y)
+    def move(self, window, map, map_pos, x, y):
+        if map[x][y].is_walkable and map_pos[x][y] == 0:
+            window.blit(map[self.x][self.y].image,(self.x*64,self.y*64))
+            map_pos[self.x][self.y] = 0
+            self.x = x
+            self.y = y
+            (map_pos[self.x][self.y]) = self
+            window.blit(self.img,(self.x*64, self.y*64))

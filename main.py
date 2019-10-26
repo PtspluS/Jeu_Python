@@ -28,7 +28,14 @@ for i in range(0, map_x):
 
 first_room = Room(tab_map)
 first_room.generate(window)
-map_pos=10*[10*[0]]
+map_pos=10*[0]
+for i in range(0,10):
+    map_pos[i]=(10*[0])
+
+
+
 bob_sprite = pygame.image.load('sprite/Zombie_villager.png')
 bob=Personnage.Personnage(bob_sprite, "bob", "he is bob")
-game(window, tab_map)
+character_tab=[]
+character_tab.append(bob)
+game(window, tab_map, map_pos, character_tab)
