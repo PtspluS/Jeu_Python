@@ -1,5 +1,5 @@
 import pygame
-
+from pygame.locals import *
 
 class Room:
 
@@ -11,9 +11,5 @@ class Room:
     def generate(self, window):
         for i in range(0, len(self.tab_map)):
             for j in range(0, len(self.tab_map[i])):
-                window.blit(self.tab_map[i][j].image, (self.tab_map[i][j].x*16, self.tab_map[i][j].y*16))
-
-
+                window.blit(self.tab_map[i][j].image, (self.tab_map[i][j].x*64, self.tab_map[i][j].y*64))
         pygame.display.flip()
-        while 1:
-            t = 0

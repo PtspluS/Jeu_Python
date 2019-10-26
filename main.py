@@ -1,6 +1,8 @@
 import pygame
 from room import Room
 from terrain.ground import Ground
+from Game import game
+from Gameobject import Personnage
 import copy
 from pygame.locals import *
 
@@ -26,3 +28,7 @@ for i in range(0, map_x):
 
 first_room = Room(tab_map)
 first_room.generate(window)
+map_pos=10*[10*[0]]
+bob_sprite = pygame.image.load('sprite/Zombie_villager.png')
+bob=Personnage.Personnage(bob_sprite, "bob", "he is bob")
+game(window, tab_map)
