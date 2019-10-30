@@ -1,4 +1,4 @@
-
+import math
 
 class Personnage:
 
@@ -17,4 +17,12 @@ class Personnage:
         self.lvl = lvl
 
     def heal(self, val):
-        self.hp = self.hp + abs(val) % self.max_hp
+        self.hp = (self.hp + abs(val)) % self.max_hp
+
+    def isoutofrange(self, X, Y, rangeX, rangeY):
+        range = math.sqrt(rangeX + rangeY)
+
+        if self.X + range <= X and self.Y + range <= Y :
+            return False
+        else :
+            return True
