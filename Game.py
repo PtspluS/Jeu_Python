@@ -1,9 +1,15 @@
 import math
-
+from room import room
 import pygame
 from Gameobject import Personnage
 from pygame.locals import *
 import math
+
+
+width = 1500
+height = 700
+
+
 
 
 def isinrange(x, y, max_x, max_y):
@@ -66,7 +72,8 @@ def examine(window, map, map_pos,x,y):
 
 
 
-def game(window, tab_map, map_pos, character_tab):
+def game(window, my_room, character_tab):
+
     turn = 0
     bob = character_tab[0]
     window.blit(bob.img, (0, 0))
@@ -79,18 +86,18 @@ def game(window, tab_map, map_pos, character_tab):
                 continuer = 0
             if event.type == KEYDOWN:
                 if event.key == K_s or event.key == K_DOWN:
-                    bob.move(window, tab_map, map_pos, bob.x, bob.y+1)
+                    bob.move(window, my_room.tab_map, my_room.map_pos, bob.x, bob.y+1)
                 if event.key == K_w or event.key == K_UP:
-                    bob.move(window,tab_map, map_pos, bob.x, bob.y - 1)
+                    bob.move(window,my_room.tab_map, my_room.map_pos, bob.x, bob.y - 1)
                 if event.key == K_a or event.key == K_LEFT:
-                    bob.move(window,tab_map, map_pos, bob.x-1, bob.y )
+                    bob.move(window,my_room.tab_map, my_room.map_pos, bob.x-1, bob.y )
                 if event.key == K_d or event.key == K_RIGHT:
-                    bob.move(window,tab_map, map_pos, bob.x+1, bob.y)
+                    bob.move(window,my_room.tab_map, my_room.map_pos, bob.x+1, bob.y)
                 if event.key == K_q:
-                    bob.attack(window,tab_map, map_pos)
+                    bob.attack(window,my_room.tab_map, my_room.map_pos)
                 if event.key == K_e:
-                    examine(window, tab_map, map_pos,bob.x,bob.y)
+                    examine(window, my_room.tab_map, my_room.map_pos,bob.x,bob.y)
                 if event.key == K_i:
-                    print("i")
+                    bob.inventory.use_inventory(window,my_room)
                 if event.key == K_r:
                     print("r")

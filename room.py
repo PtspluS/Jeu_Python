@@ -1,15 +1,25 @@
 import pygame
 from pygame.locals import *
 
-class Room:
+class room:
 
-    def __init__(self, tab_map):
+    def __init__(self, tab_map,character_tab):
         self.tab_map = tab_map
-        tab_pos = len(tab_map) * [len(tab_map)*[None]]
+        self.character_tab = character_tab
+        self.map_pos = 10 * [0]
+        for i in range(0, 10):
+            self.map_pos[i] = (10 * [0])
+        for j in character_tab:
+            self.map_pos[j.x][j.y] = j
+            print(j)
+
 
 
     def generate(self, window):
         for i in range(0, len(self.tab_map)):
             for j in range(0, len(self.tab_map[i])):
                 window.blit(self.tab_map[i][j].image, (self.tab_map[i][j].x*32, self.tab_map[i][j].y*32))
+
+                if(self.map_pos[i][j]!=0):
+                    window.blit(self.map_pos[i][j].img, (self.map_pos[i][j].x * 32, self.map_pos[i][j].y * 32))
         pygame.display.flip()

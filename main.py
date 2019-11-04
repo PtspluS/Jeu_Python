@@ -1,8 +1,9 @@
 import pygame
-from room import Room
+from room import room
 from terrain.ground import Ground
 from Game import game
 from Gameobject import Personnage
+from Gameobject import inventory
 import copy
 from pygame.locals import *
 
@@ -30,21 +31,18 @@ for i in range(0, map_x):
     tab_map.append(malist)
 
 
-first_room = Room(tab_map)
-first_room.generate(window)
 
 #creation de personnages
-map_pos=10*[0]
-for i in range(0,10):
-    map_pos[i] = (10*[0])
+my_inventory=inventory.inventory()
 bob_sprite = pygame.image.load('sprite/Zombie_villager.png')
-bob=Personnage.Personnage(bob_sprite, "bob", "he is bob")
+bob=Personnage.Personnage(bob_sprite, "bob", "he is bob",my_inventory)
 billy_sprite = pygame.image.load('sprite/miner.png')
-billy=Personnage.Personnage(billy_sprite, "billy", "he is bob",100,0,9,9)
-
+billy=Personnage.Personnage(billy_sprite, "billy", "he is bob",my_inventory,100,0,9,9)
 character_tab=[]
 character_tab.append(bob)
 character_tab.append(billy)
-map_pos[0][0]=bob
-map_pos[9][9]=billy
-game(window, tab_map, map_pos, character_tab)
+first_room = room(tab_map,character_tab)
+first_room.generate(window)
+
+
+game(window, first_room, character_tab)

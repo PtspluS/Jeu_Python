@@ -1,5 +1,6 @@
 import pygame
 import Game
+from Gameobject import inventory
 from pygame.locals import *
 
 class Personnage:
@@ -7,7 +8,7 @@ class Personnage:
     max_hp = 100
     max_speed = 1
 
-    def __init__(self, img, nom, desc, vie=100, PO=50, posX=0, posY=0, bag=[], lvl = 1):
+    def __init__(self, img, nom, desc, inventory, vie=100, PO=50, posX=0, posY=0, lvl = 1):
         self.img = img
         self.name = nom
         self.desc = desc
@@ -15,20 +16,22 @@ class Personnage:
         self.money = PO
         self.x = posX
         self.y = posY
-        self.bag = bag
+        self.inventory = inventory
         self.lvl = lvl
 
     def heal(self, val):
         self.hp = self.hp + abs(val) % self.max_hp
 
     def move(self, window, map, map_pos, x, y):
-        if map[x][y].is_walkable and map_pos[x][y] == 0:
-            window.blit(map[self.x][self.y].image,(self.x*32,self.y*32))
-            map_pos[self.x][self.y] = 0
-            self.x = x
-            self.y = y
-            (map_pos[self.x][self.y]) = self
-            window.blit(self.img,(self.x*32, self.y*32))
+        if Game.isinrange(x , y , 10, 10):
+            if map[x][y].is_walkable and map_pos[x][y] == 0:
+                window.blit(map[self.x][self.y].image, (self.x * 32, self.y * 32))
+                map_pos[self.x][self.y] = 0
+                self.x = x
+                self.y = y
+                (map_pos[self.x][self.y]) = self
+                window.blit(self.img, (self.x * 32, self.y * 32))
+
 
     def anim_cursor(self, window,map,map_pos,cursor,red_cursor,dir_x,dir_y):
         if Game.isinrange(cursor.x + dir_x, cursor.y + dir_y, 10, 10):
