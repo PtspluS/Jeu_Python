@@ -46,7 +46,7 @@ class inventory:
                                                                                                   "empty", "empty"], [
                               "empty", self.ring[0], self.ring[1], "empty"]  # tableau d'equipement
 
-    def anim_cursor(self, window, cursor_x, cursor_y, dir_x, dir_y, isequip):#animation du curseur d'inventaire
+    def anim_cursor(self, window, cursor_x, cursor_y, dir_x, dir_y, isequip):  # animation du curseur d'inventaire
         """
 
         :param window: la fenetre
@@ -57,43 +57,47 @@ class inventory:
         :param isequip: est on dans l'equipement ou le stuff
         :return: cursor
         """
-        if isequip:#si on est dans l'equipement
+        if isequip:  # si on est dans l'equipement
 
-            if 0 <= cursor_x + dir_x < 4 and 0 <= cursor_y + dir_y < 4:#est on en dehors de l'inventaire
-                if self.equipement[cursor_x + dir_x][cursor_y + dir_y] != "empty":# est on dans l'equipement valide
-                    window.blit(self.inventory_tile, (230 + cursor_x * 70, 30 + cursor_y * 70))#affiche l'ancienne position du curseur
-                    if type(self.equipement[cursor_x][cursor_y]) == Item:#si un item est equipé
-                        window.blit(self.equipement[cursor_x][cursor_y].image,#on affiche l'item
+            if 0 <= cursor_x + dir_x < 4 and 0 <= cursor_y + dir_y < 4:  # est on en dehors de l'inventaire
+                if self.equipement[cursor_x + dir_x][cursor_y + dir_y] != "empty":  # est on dans l'equipement valide
+                    window.blit(self.inventory_tile,
+                                (230 + cursor_x * 70, 30 + cursor_y * 70))  # affiche l'ancienne position du curseur
+                    if type(self.equipement[cursor_x][cursor_y]) == Item:  # si un item est equipé
+                        window.blit(self.equipement[cursor_x][cursor_y].image,  # on affiche l'item
                                     (230 + cursor_x * 70 + 16, 30 + 16 + cursor_y * 70))
                     else:
 
-                        window.blit(self.equipement[cursor_x][cursor_y],#sinon on affiche le logo
+                        window.blit(self.equipement[cursor_x][cursor_y],  # sinon on affiche le logo
                                     (230 + cursor_x * 70 + 16, 30 + 16 + cursor_y * 70))
 
-                    cursor_x = cursor_x + dir_x#on change le curseur
+                    cursor_x = cursor_x + dir_x  # on change le curseur
                     cursor_y = cursor_y + dir_y
-                    window.blit(self.inventory_press_tile, (230 + cursor_x * 70, 30 + cursor_y * 70))#affiche la case appuyer
-                    if type(self.equipement[cursor_x][cursor_y]) == Item:#si un item est equipé
-                        window.blit(self.equipement[cursor_x][cursor_y].image,#on affiche l'item
+                    window.blit(self.inventory_press_tile,
+                                (230 + cursor_x * 70, 30 + cursor_y * 70))  # affiche la case appuyer
+                    if type(self.equipement[cursor_x][cursor_y]) == Item:  # si un item est equipé
+                        window.blit(self.equipement[cursor_x][cursor_y].image,  # on affiche l'item
                                     (230 + cursor_x * 70 + 16, 30 + 16 + cursor_y * 70))
                     else:
-                        window.blit(self.equipement[cursor_x][cursor_y],#sinon on affiche le logo
+                        window.blit(self.equipement[cursor_x][cursor_y],  # sinon on affiche le logo
                                     (230 + cursor_x * 70 + 16, 30 + 16 + cursor_y * 70))
                     return cursor_x, cursor_y
             return cursor_x, cursor_y
 
-
-
-        else:#si on est dans le stuff
-            if 0 <= cursor_x + dir_x < 10 and 0 <= cursor_y + dir_y < 5:# on verifie que on est dans le stuff
-                window.blit(self.inventory_tile, (650 + cursor_x * 64, 10 + cursor_y * 64))#on affiche l'ancienne case
-                if self.stuff[cursor_x][cursor_y] != 0:#si il y a un item
-                    window.bilt(self.stuff[cursor_x][cursor_y].image, (650 + cursor_x * 64, 10 + cursor_y * 64))#on affiche l'item
-                cursor_x = cursor_x + dir_x#on change le curseur
+        else:  # si on est dans le stuff
+            if 0 <= cursor_x + dir_x < 10 and 0 <= cursor_y + dir_y < 5:  # on verifie que on est dans le stuff
+                window.blit(self.inventory_tile,
+                            (650 + cursor_x * 64, 10 + cursor_y * 64))  # on affiche l'ancienne case
+                if self.stuff[cursor_x][cursor_y] != 0:  # si il y a un item
+                    window.bilt(self.stuff[cursor_x][cursor_y].image,
+                                (650 + cursor_x * 64, 10 + cursor_y * 64))  # on affiche l'item
+                cursor_x = cursor_x + dir_x  # on change le curseur
                 cursor_y = cursor_y + dir_y
-                window.blit(self.inventory_press_tile, (650 + cursor_x * 64, 10 + cursor_y * 64))#on affiche la case appuyer
-                if self.stuff[cursor_x][cursor_y] != 0:#si il y a un item
-                    window.bilt(self.stuff[cursor_x][cursor_y].image, (650 + cursor_x * 64, 10 + cursor_y * 64))#on affiche l'item
+                window.blit(self.inventory_press_tile,
+                            (650 + cursor_x * 64, 10 + cursor_y * 64))  # on affiche la case appuyer
+                if self.stuff[cursor_x][cursor_y] != 0:  # si il y a un item
+                    window.bilt(self.stuff[cursor_x][cursor_y].image,
+                                (650 + cursor_x * 64, 10 + cursor_y * 64))  # on affiche l'item
 
                 return cursor_x, cursor_y
             else:
@@ -112,7 +116,8 @@ class inventory:
         window.blit(self.inventory_fond, (width / 2 - (inventory_width / 2), 0))
         for i in range(0, 10):
             for j in range(0, 5):
-                window.blit(self.inventory_tile, (inventory_width / 2 + i * 64, 10 + j * 64))#affichage de l'inventaire
+                window.blit(self.inventory_tile,
+                            (inventory_width / 2 + i * 64, 10 + j * 64))  # affichage de l'inventaire
         window.blit(self.inventory_press_tile, (650, 10))
         window.blit(self.inventory_tile, (300, 30))
         window.blit(self.inventory_helmet, (300 + 16, 30 + 16))
@@ -134,13 +139,13 @@ class inventory:
         cursor_y = 0
         isequip = False
         continuer = 1
-        while continuer:#boucle de gestion de l'inventaire
+        while continuer:  # boucle de gestion de l'inventaire
             for event in pygame.event.get():
                 pygame.display.flip()
                 if event.type == QUIT:
                     continuer = 0
                 if event.type == KEYDOWN:
-                    if event.key == K_s or event.key == K_DOWN:#on detecte le entré clavier
+                    if event.key == K_s or event.key == K_DOWN:  # on detecte le entré clavier
                         cursor_x, cursor_y = self.anim_cursor(window, cursor_x, cursor_y, 0, 1, isequip)
                     if event.key == K_w or event.key == K_UP:
                         cursor_x, cursor_y = self.anim_cursor(window, cursor_x, cursor_y, 0, -1, isequip)
@@ -154,7 +159,7 @@ class inventory:
                         print()
                     if event.key == K_TAB:
                         if isequip:
-                            isequip = False#on passe de l'inventaire au stuff
+                            isequip = False  # on passe de l'inventaire au stuff
                             window.blit(self.inventory_tile, (230 + cursor_x * 70, 30 + cursor_y * 70))
                             if type(self.equipement[cursor_x][cursor_y]) == Item:
                                 window.blit(self.equipement[cursor_x][cursor_y].image,
@@ -166,7 +171,7 @@ class inventory:
                             cursor_y = 0
                             window.blit(self.inventory_press_tile, (650 + cursor_x * 64, 10 + cursor_y * 64))
                         else:
-                            isequip = True#on passe du stuff a l'inventaire
+                            isequip = True  # on passe du stuff a l'inventaire
                             window.blit(self.inventory_tile, (650 + cursor_x * 64, 10 + cursor_y * 64))
                             cursor_x = 1
                             cursor_y = 1
@@ -179,5 +184,5 @@ class inventory:
                                             (230 + cursor_x * 70 + 16, 30 + 16 + cursor_y * 70))
 
                     if event.key == K_ESCAPE:
-                        room.generate(window)# on reessine la map
+                        room.generate(window)  # on reessine la map
                         continuer = 0
