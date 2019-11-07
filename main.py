@@ -34,15 +34,17 @@ for i in range(0, map_x):
 
 #creation de personnages
 my_inventory=inventory.inventory()
-bob_sprite = pygame.image.load('sprite/Zombie_villager.png')
+bob_sprite = pygame.image.load('sprite/Zombie_Bowman.png')
 bob=Personnage.Personnage(bob_sprite, "bob", "he is bob",my_inventory)
 billy_sprite = pygame.image.load('sprite/miner.png')
 billy=Personnage.Personnage(billy_sprite, "billy", "he is bob",my_inventory,100,0,9,9)
+#character_tab est le tableau contenant tput les personnages de la salle
 character_tab=[]
 character_tab.append(bob)
 character_tab.append(billy)
+#creation de la salle
 first_room = room(tab_map,character_tab)
 first_room.generate(window)
 
-
+#ancement de la salle
 game(window, first_room, character_tab)
