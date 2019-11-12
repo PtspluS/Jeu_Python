@@ -62,23 +62,38 @@ class inventory:
                                                                                                   "empty", "empty"], [
                               "empty", self.ring[0], self.ring[1], "empty"]  # tableau d'equipement
 
+    def throw(self, window, cursor_x, cursor_y, isequip):
+        if isequip:
+            self.equipement[cursor_x][cursor_x] = self.empty_equipement[cursor_x][
+                        cursor_y]
+            window.blit(self.inventory_press_tile,
+                        (self.start_equipement_x + cursor_x * 70,
+                         self.start_equipement_y + cursor_y * 70))
+            window.blit(self.equipement[cursor_x][cursor_y],  # on affiche le logo
+                        (self.start_equipement_x + cursor_x * 70 + 16,
+                         self.start_equipement_y + 16 + cursor_y * 70))
+        else:
+            self.stuff[cursor_x][cursor_x] = 0
+            window.blit(self.inventory_press_tile,
+                        (self.start_stuff_x + cursor_x * 64,
+                         self.start_stuff_y + cursor_y * 64))
+
     def pick(self, item):
         """
 
         :param item: l'itemramassé
         :return:
         """
-        for slot in self.stuff:
-            for i in range(0, len(slot)):  # si il reste de la place
-                if slot[i] == 0:
-                    slot[i] = item
-                    return True
-            return False
+        for i in range(0, len(self.stuff)):
+            for j in range(0, len(self.stuff[i])):  # si il reste de la place
+                if self.stuff[i][j] == 0:
+                    self.stuff[i][j] = item
+                    return i, j
+            return False, False
 
     # fonction qui permet d'equipé ou desequipé un object
     def equipe(self, window, cursor_x, cursor_y, isequip):
         """
-
         :param cursor_x: pos x u curseur
         :param cursor_y: pos y du curseur
         :param isequip: si on est dans l'equipement
@@ -86,9 +101,19 @@ class inventory:
         """
         if isequip:  # si on est dans l'equipement
             if isinstance(self.equipement[cursor_x][cursor_y], Item.Item):
-                if self.pick(self.equipement[cursor_x][cursor_y]):  # si il reste de la place dans le stuff
+                i, j = self.pick(self.equipement[cursor_x][cursor_y])
+                if i:   # si il reste de la place dans le stuff
                     self.equipement[cursor_x][cursor_y] = self.empty_equipement[cursor_x][
                         cursor_y]  # on deplace l'object
+                    window.blit(self.inventory_press_tile,
+                                (self.start_equipement_x + cursor_x * 70,
+                                 self.start_equipement_y + cursor_y * 70))
+                    window.blit(self.equipement[cursor_x][cursor_y],  # sinon on affiche le logo
+                                (self.start_equipement_x + cursor_x * 70 + 16,
+                                 self.start_equipement_y + 16 + cursor_y * 70))
+                    window.bilt(self.stuff[i][j].image,
+                                (self.start_stuff_x + i * 64,
+                                 self.start_stuff_y + j * 64))
                     print("item remove")
                 else:
                     print("your stuff is full")
@@ -355,7 +380,7 @@ class inventory:
                     if event.key == K_r:
                         print("use")
                     if event.key == K_t:
-                        print("lancer")
+                        self.throw(window, cursor_x, cursor_y, isequip)
                     if event.key == K_TAB:
                         if isequip:
                             isequip = False  # on passe de l'inventaire au stuff
