@@ -1,7 +1,7 @@
-from Game import Armure
+from Gameobject import Armure
 
 
-class Pied(Armure):
+class Pied(Armure.Armure):
 
     def __init__(self):
         pass

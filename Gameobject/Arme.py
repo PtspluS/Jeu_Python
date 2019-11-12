@@ -1,7 +1,7 @@
-from Game import Item
+from Gameobject import Item
 
 
-class Arme(Item):
+class Arme(Item.Item):
 
     def __init__(self):
         pass
