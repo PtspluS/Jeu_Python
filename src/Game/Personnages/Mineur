@@ -1,7 +1,7 @@
-from Game.Personnages import Civil
+from Game.Personnages import Normal
 
 
-class Mineur(Civil.Civil):
+class Mineur(Normal.Normal):
 
     def __init__(self):
         pass

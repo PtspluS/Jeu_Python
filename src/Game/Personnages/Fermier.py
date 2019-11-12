@@ -1,7 +1,7 @@
-from Game.Personnages import Civil
+from Game.Personnages import Normal
 
 
-class Fermier(Civil.Civil):
+class Fermier(Normal.Normal):
 
     def __init__(self):
         pass
