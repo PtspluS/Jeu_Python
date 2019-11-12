@@ -22,6 +22,11 @@ list_name_rich = [
     "Jed Schmidt"
 ]
 
+img_farmer = ""
+img_miner = ""
+img_villager = ""
+img_bourgeois = ""
+
 '''
 function which generate a random civil : Fermier or Mineur or Villageois or Bourgeois
 '''
@@ -78,7 +83,7 @@ def generate_fermier(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 
         PO = random.randint()*PO_max+PO_min
 
     # on return un objet fermier avec les attributs aleatoires
-    return Fermier()
+    return Fermier(img_farmer, name, vie = vie, PO = PO, bag = stuff, attaque = attaque, lvl = niveau, PA = PA, courage = 1)
 
 '''
 function which generate a miner
