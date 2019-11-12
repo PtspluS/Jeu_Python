@@ -69,14 +69,14 @@ class inventory:
         :return:
         """
         for slot in self.stuff:
-            for i in range(0,len(slot)):# si il reste de la place
+            for i in range(0, len(slot)):  # si il reste de la place
                 if slot[i] == 0:
                     slot[i] = item
                     return True
             return False
 
     # fonction qui permet d'equipé ou desequipé un object
-    def equipe(self, cursor_x, cursor_y, isequip):
+    def equipe(self, window, cursor_x, cursor_y, isequip):
         """
 
         :param cursor_x: pos x u curseur
@@ -85,7 +85,7 @@ class inventory:
         :return:
         """
         if isequip:  # si on est dans l'equipement
-            if isinstance(self.equipement[cursor_x][cursor_y],Item.Item):
+            if isinstance(self.equipement[cursor_x][cursor_y], Item.Item):
                 if self.pick(self.equipement[cursor_x][cursor_y]):  # si il reste de la place dans le stuff
                     self.equipement[cursor_x][cursor_y] = self.empty_equipement[cursor_x][
                         cursor_y]  # on deplace l'object
@@ -94,57 +94,127 @@ class inventory:
                     print("your stuff is full")
 
         else:  # si on est pas dans l'equipement
+            window.blit(self.inventory_press_tile,
+                        (self.start_stuff_x + cursor_x * 64,
+                         self.start_stuff_y + cursor_y * 64))
             if isinstance(self.stuff[cursor_x][cursor_y], Tete.Tete):  # on verfifie quel type,d'item est selectionné
+                window.blit(self.inventory_tile,
+                            (self.start_equipement_x + 1 * 70,
+                             self.start_equipement_y + 0 * 70))
                 if self.equipement[1][0] == self.inventory_helmet:  # si il n'y a rien on equipe
                     self.equipement[1][0] = self.stuff[cursor_x][cursor_y]
+                    self.stuff[cursor_x][cursor_y] = 0
                 else:  # si il y a quelque choses on echange
                     tmp = self.stuff[cursor_x][cursor_y]
                     self.stuff[cursor_x][cursor_y] = self.equipement[1][0]
                     self.equipement[1][0] = tmp
+                window.blit(self.equipement[1][0].image,  # on affiche l'item
+                            (self.start_equipement_x + 1 * 70 + 16,
+                             self.start_equipement_y + 16 + 0 * 70))
 
             if isinstance(self.stuff[cursor_x][cursor_y], Corps.Corps):
+                window.blit(self.inventory_tile,
+                            (self.start_equipement_x + 1 * 70,
+                             self.start_equipement_y + 1 * 70))
                 if self.equipement[1][1] == self.inventory_chest:
                     self.equipement[1][1] = self.stuff[cursor_x][cursor_y]
                 else:
                     tmp = self.stuff[cursor_x][cursor_y]
                     self.stuff[cursor_x][cursor_y] = self.equipement[1][1]
                     self.equipement[1][1] = tmp
+                window.blit(self.equipement[1][1].image,  # on affiche l'item
+                            (self.start_equipement_x + 1 * 70 + 16,
+                             self.start_equipement_y + 16 + 0 * 70))
 
             if isinstance(self.stuff[cursor_x][cursor_y], Jambes.Jambe):
+                window.blit(self.inventory_tile,
+                            (self.start_equipement_x + 1 * 70,
+                             self.start_equipement_y + 2 * 70))
                 if self.equipement[1][2] == self.inventory_pants:
                     self.equipement[1][2] = self.stuff[cursor_x][cursor_y]
                 else:
                     tmp = self.stuff[cursor_x][cursor_y]
                     self.stuff[cursor_x][cursor_y] = self.equipement[1][2]
                     self.equipement[1][2] = tmp
+                window.blit(self.equipement[1][2].image,  # on affiche l'item
+                            (self.start_equipement_x + 1 * 70 + 16,
+                             self.start_equipement_y + 16 + 2 * 70))
 
             if isinstance(self.stuff[cursor_x][cursor_y], Pied.Pied):
+                window.blit(self.inventory_tile,
+                            (self.start_equipement_x + 1 * 70,
+                             self.start_equipement_y + 3 * 70))
                 if self.equipement[1][3] == self.inventory_shoes:
                     self.equipement[1][3] = self.stuff[cursor_x][cursor_y]
                 else:
                     tmp = self.stuff[cursor_x][cursor_y]
                     self.stuff[cursor_x][cursor_y] = self.equipement[1][3]
                     self.equipement[1][3] = tmp
+                window.blit(self.equipement[1][3].image,  # on affiche l'item
+                            (self.start_equipement_x + 1 * 70 + 16,
+                             self.start_equipement_y + 16 + 2 * 70))
 
             if isinstance(self.stuff[cursor_x][cursor_y], Bijou.Bijou):
+
                 if self.equipement[3][1] == self.inventory_ring:
                     self.equipement[3][1] = self.stuff[cursor_x][cursor_y]
+                    window.blit(self.inventory_tile,
+                                (self.start_equipement_x + 3 * 70,
+                                 self.start_equipement_y + 1 * 70))
+                    window.blit(self.equipement[3][1].image,  # on affiche l'item
+                                (self.start_equipement_x + 3 * 70 + 16,
+                                 self.start_equipement_y + 16 + 1 * 70))
                 elif self.equipement[3][2] == self.inventory_ring:
                     self.equipement[3][2] = self.stuff[cursor_x][cursor_y]
+                    window.blit(self.inventory_tile,
+                                (self.start_equipement_x + 3 * 70,
+                                 self.start_equipement_y + 2 * 70))
+                    window.blit(self.equipement[3][2].image,  # on affiche l'item
+                                (self.start_equipement_x + 3 * 70 + 16,
+                                 self.start_equipement_y + 16 + 2 * 70))
                 else:
                     tmp = self.stuff[cursor_x][cursor_y]
                     self.stuff[cursor_x][cursor_y] = self.equipement[3][1]
+                    window.blit(self.inventory_tile,
+                                (self.start_equipement_x + 3 * 70,
+                                 self.start_equipement_y + 1 * 70))
                     self.equipement[3][1] = tmp
+                    window.blit(self.equipement[3][1].image,  # on affiche l'item
+                                (self.start_equipement_x + 3 * 70 + 16,
+                                 self.start_equipement_y + 16 + 1 * 70))
 
             if isinstance(self.stuff[cursor_x][cursor_y], Arme.Arme):
+
                 if self.equipement[0][1] == self.inventory_sword:
                     self.equipement[0][1] = self.stuff[cursor_x][cursor_y]
+                    window.blit(self.inventory_tile,
+                                (self.start_equipement_x + 0 * 70,
+                                 self.start_equipement_y + 1 * 70))
+                    window.blit(self.equipement[0][1].image,  # on affiche l'item
+                                (self.start_equipement_x + 0 * 70 + 16,
+                                 self.start_equipement_y + 16 + 1 * 70))
                 elif self.equipement[2][1] == self.inventory_sword:
                     self.equipement[2][1] = self.stuff[cursor_x][cursor_y]
+                    window.blit(self.inventory_tile,
+                                (self.start_equipement_x + 2 * 70,
+                                 self.start_equipement_y + 1 * 70))
+                    window.blit(self.equipement[2][1].image,  # on affiche l'item
+                                (self.start_equipement_x + 2 * 70 + 16,
+                                 self.start_equipement_y + 16 + 1 * 70))
                 else:
+                    window.blit(self.inventory_tile,
+                                (self.start_equipement_x + 0 * 70,
+                                 self.start_equipement_y + 1 * 70))
                     tmp = self.stuff[cursor_x][cursor_y]
                     self.stuff[cursor_x][cursor_y] = self.equipement[0][1]
                     self.equipement[0][1] = tmp
+                    window.blit(self.equipement[0][1].image,  # on affiche l'item
+                                (self.start_equipement_x + 0 * 70 + 16,
+                                 self.start_equipement_y + 16 + 1 * 70))
+            if self.stuff[cursor_x][cursor_y] != 0:  # si il y a un item
+                window.bilt(self.stuff[cursor_x][cursor_y].image,
+                            (self.start_stuff_x + cursor_x * 64,
+                             self.start_stuff_y + cursor_y * 64))
 
     def anim_cursor(self, window, cursor_x, cursor_y, dir_x, dir_y, isequip):  # animation du curseur d'inventaire
         """
@@ -281,7 +351,7 @@ class inventory:
                     if event.key == K_d or event.key == K_RIGHT:
                         cursor_x, cursor_y = self.anim_cursor(window, cursor_x, cursor_y, 1, 0, isequip)
                     if event.key == K_e:
-                        self.equipe(cursor_x,cursor_y,isequip)
+                        self.equipe(window, cursor_x, cursor_y, isequip)
                     if event.key == K_r:
                         print("use")
                     if event.key == K_t:
