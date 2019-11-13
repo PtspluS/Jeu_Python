@@ -1,7 +1,7 @@
 from Game.Personnages import Fermier, Mineur, Villageois, Bourgeois
 import random
 
-
+# partie poor pour les fermiers et mineurs
 list_name_poor = [
     "Billy le borgne",
     "Michel sans bretelles",
@@ -21,6 +21,23 @@ list_name_poor = [
     "Albert",
     "Dan"
 ]
+descriptions_poor = [
+    "Aime le vin, les femmes et l'eau plate (c'est un type d'alcool dans ce pays).",
+    "Son père est partie chercher du pain depuis ses 8 ans, il garde espoir de le retrouver.",
+    "A trouvé une pépite dans un champs de blé, dommage qu'elle était en chocolat.",
+    "Avant il travaillait à la poste mais avec sa petite taille on le prenait pour un nain posteur.",
+    "Il n'est pas gros, il est joviale et épanoui.",
+    "Chez lui c'est lui qui commande, après sa femme bien entendu.",
+    "Ne boit jamais d'eau.",
+    "Ne boit jamais de vin.",
+    "Ne boit pas tout court, mais comment il fait d'ailleurs ?",
+    "Il a travaillé dans des mines de trucs brillants, il se souvient plus de quoi.",
+    "Sa plus grande peur ? Que le ciel lui tombe sur la tête."
+
+]
+
+
+# partie rich, pour les villageois et les bourgeois
 list_name_rich = [
     "Emil Daniel",
     "Cyprian Nowak",
@@ -38,6 +55,18 @@ list_name_rich = [
     "Mo Rose",
     "Martin Abraham"
 ]
+descriptions_rich = [
+    "De tous ces voyages il n'a ramené que une chose, la syphilis.",
+    "Il voulait être médecin, mais ici c'est pas comme ça que ça marche.",
+    "Ne lui parlait pas de son frère, vraiment.",
+    "Il sait qui a volé l'orange du marchand.",
+    "Son pote Karl ne lui parle que d'un monde égalitaire.",
+    "NULL pointer exception ... Non je rigole, il y a juste rien à dire sur lui.",
+    "On en parle de ses 3 femmes ?",
+    "L'infinie ne lui suffit plus, il vise au delà.",
+    "C'est le mari de Curry"
+
+]
 
 img_farmer = ""
 img_miner = ""
@@ -45,7 +74,7 @@ img_villager = ""
 img_bourgeois = ""
 
 '''
-function which generate a random civil : Fermier or Mineur.py or Villageois or Bourgeois
+function which generate a random civil : Fermier or Mineur or Villageois or Bourgeois
 '''
 def generate_civil(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 0, type='civ'):
     #si jamais le mec donne n'imps on crée un perso rng
@@ -89,7 +118,7 @@ def generate_fermier(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 
 
     name = random.choice(list_name_poor)
     courage = random.randint(courage_min, courage_max)
-    # on genere ds valeurs aleatoire pour les attributs du pnj
+    desc = random.choice(descriptions_poor)
     # on genere ds valeurs aleatoire pour les attributs du pnj
     if (attaque <= 0):
         attaque = random.randint(1, att_max)
@@ -105,7 +134,7 @@ def generate_fermier(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 
         PO = random.randint(PO_min, PO_max)
 
     # on return un objet fermier avec les attributs aleatoires
-    return Fermier.Fermier(img_farmer, name, vie = vie, PO = PO, bag = stuff, attaque = attaque, lvl = niveau, PA = PA, courage = courage)
+    return Fermier.Fermier(img_farmer, name, vie = vie, PO = PO, bag = stuff, attaque = attaque, lvl = niveau, PA = PA, courage = courage, desc= desc)
 
 '''
 function which generate a miner
@@ -128,6 +157,7 @@ def generate_mineur(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 0
 
     name = random.choice(list_name_poor)
     courage = random.randint(courage_min, courage_max)
+    desc = random.choice(descriptions_poor)
     # on genere ds valeurs aleatoire pour les attributs du pnj
     if (attaque <= 0):
         attaque = random.randint(1, att_max)
@@ -143,7 +173,7 @@ def generate_mineur(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 0
         PO = random.randint(PO_min, PO_max)
 
     # on renvoit un obj mineur
-    return Mineur.Mineur(img_miner, name, vie = vie, PO = PO, bag = stuff, attaque = attaque, lvl = niveau, PA = PA)
+    return Mineur.Mineur(img_miner, name, vie = vie, PO = PO, bag = stuff, attaque = attaque, lvl = niveau, PA = PA, desc= desc)
 
 
 '''
@@ -167,6 +197,7 @@ def generate_villageois(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO
 
     name = random.choice(list_name_rich)
     courage = random.randint(courage_min, courage_max)
+    desc = random.choice(descriptions_rich)
     # on genere ds valeurs aleatoire pour les attributs du pnj
     if (attaque <= 0):
         attaque = random.randint(1, att_max)
@@ -182,7 +213,7 @@ def generate_villageois(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO
         PO = random.randint(PO_min, PO_max)
 
     # on renvoit un obj villageois
-    return Villageois.Villageois(img_villager, name, vie = vie, PO = PO, bag = stuff, attaque = attaque, lvl = niveau, PA = PA)
+    return Villageois.Villageois(img_villager, name, vie = vie, PO = PO, bag = stuff, attaque = attaque, lvl = niveau, PA = PA, desc= desc)
 
 
 '''
@@ -206,6 +237,7 @@ def generate_bourgeois(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO 
 
     name = random.choice(list_name_rich)
     courage = random.randint(courage_min, courage_max)
+    desc = random.choice(descriptions_rich)
     # on genere ds valeurs aleatoire pour les attributs du pnj
     if (attaque <= 0):
         attaque = random.randint(1, att_max)
@@ -221,4 +253,4 @@ def generate_bourgeois(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO 
         PO = random.randint(PO_min, PO_max)
 
     # on renvoit un objet bourgeois
-    return Bourgeois.Bourgeois(img_bourgeois, name, vie = vie, PO = PO, bag = stuff, attaque = attaque, lvl = niveau, PA = PA)
+    return Bourgeois.Bourgeois(img_bourgeois, name, vie = vie, PO = PO, bag = stuff, attaque = attaque, lvl = niveau, PA = PA, desc = desc)

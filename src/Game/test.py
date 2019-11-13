@@ -6,7 +6,7 @@ c = generate_civil(type='villageois')
 d = generate_civil(type='bourgeois')
 
 
-print(a.name)
-print(b.name)
-print(c.name)
-print(d.name)
+print(a.name, ' ', a.desc)
+print(b.name, ' ', b.desc)
+print(c.name, " ", c.desc)
+print(d.name, ' ', d.desc)
