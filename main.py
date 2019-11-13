@@ -4,6 +4,8 @@ from terrain.ground import Ground
 from Game import game
 from Gameobject import Personnage
 from Gameobject import inventory
+from Gameobject import Arme
+from Gameobject import Tete
 import copy
 from pygame.locals import *
 
@@ -36,6 +38,12 @@ bob_sprite = pygame.image.load('sprite/Zombie_Bowman.png')
 bob = Personnage.Personnage(bob_sprite, "bob", "he is bob", my_inventory)
 billy_sprite = pygame.image.load('sprite/miner.png')
 billy = Personnage.Personnage(billy_sprite, "billy", "he is bob", my_inventory, 100, 0, 9, 9)
+imgcasque = pygame.image.load('sprite/wall.png')
+helmet=Tete.Tete("casque",imgcasque, 1, 10)
+imgepee = pygame.image.load('sprite/ble.png')
+sword=Arme.Arme("epee",imgepee, 1, 10)
+bob.inventory.stuff[0][1] = helmet
+bob.inventory.stuff[0][0] = sword
 # character_tab est le tableau contenant tput les personnages de la salle
 character_tab = []
 character_tab.append(bob)
