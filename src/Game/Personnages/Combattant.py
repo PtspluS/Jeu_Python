@@ -4,7 +4,7 @@ from Game.Personnages import PNJ, Cadavre
 class Combattant(PNJ.PNJ):
 
     def __init__(self, img, nom, desc, vie=100, PO=50, posX=0, posY=0, bag=[], item =[], attaque = 0,lvl=1):
-        super(Combattant, self).__init__(img, nom, desc, vie, PO, posX, posY, bag, lvl, attaquable=True)
+        super(Combattant, self).__init__(img, nom = nom, desc = desc, vie= vie, PO= PO, posX= posX, posY = posY, bag = bag, lvl=lvl, attaquable=True)
         self.attaque = attaque
         self.item = item
 
@@ -13,4 +13,4 @@ class Combattant(PNJ.PNJ):
 
     def die(self):
         img_cadavre = ""
-        return Cadavre(img_cadavre, self.name, self.desc, self.lvl, self.money, self.X, self.Y, self.bag, self.item)
+        return Cadavre.Cadavre(img_cadavre, nom = self.name, desc = self.desc, lvl = self.lvl, PO= self.money, posX= self.X, posY=self.Y, bag= self.bag,item= self.item)

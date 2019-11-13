@@ -5,7 +5,7 @@ class Personnage:
     max_hp = 100
     max_speed = 1
 
-    def __init__(self, img, nom, desc, vie=100, PO=50, PA = 0, posX=0, posY=0, bag=[], lvl = 1):
+    def __init__(self, img, nom, desc, vie=100, PO=50, posX=0, posY=0, bag=[], lvl = 1):
         self.img = img
         self.name = nom
         self.desc = desc
@@ -15,7 +15,7 @@ class Personnage:
         self.Y = posY
         self.bag = bag
         self.lvl = lvl
-        self.PA = PA
+        self.max_hp = vie
 
     def isoutofrange(self, X, Y, rangeX, rangeY):
         range = math.sqrt(rangeX + rangeY)
