@@ -7,9 +7,9 @@ class room:
     def __init__(self, tab_map, character_tab):
         self.tab_map = tab_map
         self.character_tab = character_tab
-        self.map_pos = 10 * [0]
-        for i in range(0, 10):
-            self.map_pos[i] = (10 * [0])
+        self.map_pos = len(tab_map) * [0]
+        for i in range(0, len(self.map_pos)):
+            self.map_pos[i] = (len(tab_map[0]) * [0])
         for j in character_tab:
             self.map_pos[j.x][j.y] = j
             print(j)

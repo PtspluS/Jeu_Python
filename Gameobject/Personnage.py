@@ -33,7 +33,7 @@ class Personnage:
         :return:
         """
 
-        if Game.isinrange(x, y, 10, 10):  # si la case est dans le tableau
+        if Game.isinrange(x, y, 17, 11):  # si la case est dans le tableau
             if tab_map[x][y].is_walkable and map_pos[x][y] == 0:  # la case est walkable il n y a peronnes sur la carte
                 window.blit(tab_map[self.x][self.y].image, (self.x * 64, self.y * 64))  # dessine la
                 map_pos[self.x][self.y] = 0
@@ -54,7 +54,7 @@ class Personnage:
         :param dir_y: direction y
         :return:
         """
-        if Game.isinrange(cursor.x + dir_x, cursor.y + dir_y, 10, 10):  # deplacement et affichage du curseur
+        if Game.isinrange(cursor.x + dir_x, cursor.y + dir_y, 17, 11):  # deplacement et affichage du curseur
             window.blit(cursor.image, (cursor.x * 64, cursor.y * 64))
             if map_pos[cursor.x][cursor.y] != 0:
                 window.blit(map_pos[cursor.x][cursor.y].img, (cursor.x * 64, cursor.y * 64))
@@ -110,3 +110,5 @@ class Personnage:
                         if map_pos[cursor.x][cursor.y] != 0:
                             map_pos[cursor.x][cursor.y].hp = map_pos[cursor.x][cursor.y].hp - 10
                             print(map_pos[cursor.x][cursor.y].hp)
+
+

@@ -24,10 +24,10 @@ class inventory:
         :param left_hand: une arme main droite
         :param right_hand: une arme main gauche
         """
-        self.start_stuff_x = 650
-        self.start_stuff_y = 10
-        self.start_equipement_x = 230
-        self.start_equipement_y = 30
+        self.start_stuff_x = 300
+        self.start_stuff_y = 300
+        self.start_equipement_x = 70
+        self.start_equipement_y = 70
         self.space_equipement = 70
         self.ring = 2 * [0]  # tableau des bijoux
         self.stuff = []
@@ -36,7 +36,7 @@ class inventory:
             for j in range(0, 5):
                 malist.append(0)
             self.stuff.append(malist)
-        self.inventory_fond = pygame.image.load('sprite/inventory_fond.png')
+        self.inventory_fond = pygame.image.load('sprite/fond_inventaire.png')
         self.inventory_tile = pygame.image.load('sprite/inventory_tiles.png')
         self.inventory_press_tile = pygame.image.load('sprite/inventory_press_tiles.png')
         self.inventory_helmet = pygame.image.load('sprite/inventory_helmet.png')
@@ -242,7 +242,7 @@ class inventory:
         inventory_width = 1300
         inventory_height = 500
 
-        window.blit(self.inventory_fond, (width / 2 - (inventory_width / 2), 0))
+        window.blit(self.inventory_fond, (0, 0))
         for i in range(0, 10):
             for j in range(0, 5):
                 self.blit_stuff(window, i, j, False)

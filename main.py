@@ -13,7 +13,8 @@ from pygame.locals import *
 
 pygame.init()
 width = 1500
-height = 700
+height = 704
+
 window = pygame.display.set_mode((width, height))
 
 # chargement des images
@@ -23,8 +24,9 @@ ble = pygame.image.load('sprite/ble.png')
 wall = pygame.image.load('sprite/Wall.png')
 
 # creation de la map
-map_x = 10
-map_y = 10
+map_x = 17
+map_y = 11
+
 tab_map = []
 for i in range(0, map_x):
     malist = []

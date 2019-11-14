@@ -4,7 +4,7 @@ import pygame
 from Gameobject import Personnage
 from pygame.locals import *
 import math
-
+import UI
 # variable de l'ecran
 width = 1500
 height = 700
@@ -106,6 +106,7 @@ def game(window, my_room, character_tab):
     """
     turn = 0  # gestion des tours
     bob = character_tab[0]
+    ui=UI.UI(window)
     window.blit(bob.img, (0, 0))
     window.blit(character_tab[1].img, (character_tab[1].x * 64, character_tab[1].y * 64))  # affichage des personnage
     continuer = 1
@@ -135,3 +136,6 @@ def game(window, my_room, character_tab):
                     print("e")
                 if event.key == K_f:  # pich up
                     print("f")
+
+
+
