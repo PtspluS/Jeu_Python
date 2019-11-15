@@ -1,0 +1,7 @@
+from Game_Object.Objets import Arme
+
+
+class CAC(Arme.Arme):
+
+    def __init__(self):
+        pass
