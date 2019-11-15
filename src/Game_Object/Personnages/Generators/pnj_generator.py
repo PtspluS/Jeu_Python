@@ -79,7 +79,7 @@ function which generate a random civil : Fermier or Mineur or Villageois or Bour
 def generate_civil(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 0, type='civ'):
     #si jamais le mec donne n'imps on crée un perso rng
     if(type != 'fermier' and type != 'mineur' and type != 'villageois' and type != 'bourgeois'):
-        tab_type = ['fermier', 'mineur', 'villageois', 'bourgepois']
+        tab_type = ['fermier', 'mineur', 'villageois', 'bourgeois']
         type = random.choice(tab_type)
 
     if type == 'fermier':
