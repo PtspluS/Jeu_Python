@@ -23,7 +23,7 @@ list_name_poor = [
 ]
 descriptions_poor = [
     "Aime le vin, les femmes et l'eau plate (c'est un type d'alcool dans ce pays).",
-    "Son père est partie chercher du pain depuis ses 8 ans, il garde espoir de le retrouver.",
+    "Son père est partie chercher du pain depuis ses 18 ans, il garde espoir de le retrouver.",
     "A trouvé une pépite dans un champs de blé, dommage qu'elle était en chocolat.",
     "Avant il travaillait à la poste mais avec sa petite taille on le prenait pour un nain posteur.",
     "Il n'est pas gros, il est joviale et épanoui.",
