@@ -1,4 +1,6 @@
 import pygame
+
+import Global
 from room import room
 from terrain.ground import Ground
 from Game import game
@@ -8,14 +10,15 @@ from Gameobject import Arme
 from Gameobject import Tete
 import copy
 from pygame.locals import *
+import UI
 
 # Fonction pour tester
 
-pygame.init()
+
 width = 1500
 height = 704
 
-window = pygame.display.set_mode((width, height))
+window = Global.window
 
 # chargement des images
 grass1 = pygame.image.load('sprite/Grass1.png')
@@ -37,7 +40,7 @@ for i in range(0, map_x):
 # creation de personnages
 my_inventory = inventory.inventory()
 bob_sprite = pygame.image.load('sprite/Zombie_Bowman.png')
-bob = Personnage.Personnage(bob_sprite, "bob", "he is bob", my_inventory)
+bob = Personnage.Personnage(bob_sprite, "bob", "i m bob i have 20hp 10 armor 10 atk i m level 2 and shield are weaker in overwatch blbaalblablblablablllaalblbalabllbalablbalbalbalbalbalalbalball", my_inventory)
 billy_sprite = pygame.image.load('sprite/miner.png')
 billy = Personnage.Personnage(billy_sprite, "billy", "he is bob", my_inventory, 100, 0, 9, 9)
 imgcasque = pygame.image.load('sprite/wall.png')
@@ -52,7 +55,7 @@ character_tab.append(bob)
 character_tab.append(billy)
 # creation de la salle
 first_room = room(tab_map, character_tab)
-first_room.generate(window)
+first_room.generate()
 
 # ancement de la salle
-game(window, first_room, character_tab)
+game( first_room, character_tab)

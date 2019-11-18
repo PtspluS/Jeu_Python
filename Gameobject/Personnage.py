@@ -1,5 +1,6 @@
 import pygame
 import Game
+import Global
 from Gameobject import inventory
 from pygame.locals import *
 
@@ -8,7 +9,7 @@ class Personnage:
     max_hp = 100
     max_speed = 1
 
-    def __init__(self, img, nom, desc, my_inventory, vie=100, PO=50, posX=0, posY=0, lvl=1):
+    def __init__(self, img, nom, desc, my_inventory, vie=100, PO=5000, posX=0, posY=0, lvl=1,PA=6):
         self.img = img
         self.name = nom
         self.desc = desc
@@ -18,11 +19,12 @@ class Personnage:
         self.y = posY
         self.inventory = my_inventory
         self.lvl = lvl
+        self.PA=PA
 
     def heal(self, val):
         self.hp = self.hp + abs(val) % self.max_hp
 
-    def move(self, window, tab_map, map_pos, x, y):
+    def move(self, tab_map, map_pos, x, y):
         """
 
         :param window: la fenetre
@@ -32,7 +34,7 @@ class Personnage:
         :param y: case y ou on veut se deplacer
         :return:
         """
-
+        window = Global.window
         if Game.isinrange(x, y, 17, 11):  # si la case est dans le tableau
             if tab_map[x][y].is_walkable and map_pos[x][y] == 0:  # la case est walkable il n y a peronnes sur la carte
                 window.blit(tab_map[self.x][self.y].image, (self.x * 64, self.y * 64))  # dessine la
@@ -42,7 +44,7 @@ class Personnage:
                 (map_pos[self.x][self.y]) = self
                 window.blit(self.img, (self.x * 64, self.y * 64))
 
-    def anim_cursor(self, window, tab_map, map_pos, cursor, red_cursor, dir_x, dir_y):
+    def anim_cursor(self, tab_map, map_pos, cursor, red_cursor, dir_x, dir_y):
         """
 
         :param window: fenetre
@@ -54,6 +56,8 @@ class Personnage:
         :param dir_y: direction y
         :return:
         """
+
+        window = Global.window
         if Game.isinrange(cursor.x + dir_x, cursor.y + dir_y, 17, 11):  # deplacement et affichage du curseur
             window.blit(cursor.image, (cursor.x * 64, cursor.y * 64))
             if map_pos[cursor.x][cursor.y] != 0:
@@ -64,7 +68,7 @@ class Personnage:
         else:
             return cursor
 
-    def attack(self, window, tab_map, map_pos):  # fonction d'attaque
+    def attack(self, tab_map, map_pos):  # fonction d'attaque
         """
 
         :param window: fenetre
@@ -72,6 +76,7 @@ class Personnage:
         :param map_pos: la position des joueur sur la carte
         :return:
         """
+        window = Global.window
         red_cursor = pygame.image.load('sprite/cursor.png')
         red_cursor.set_alpha(100)
 

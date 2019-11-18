@@ -1,4 +1,5 @@
 import pygame
+import Global
 from pygame.locals import *
 
 
@@ -14,12 +15,13 @@ class room:
             self.map_pos[j.x][j.y] = j
             print(j)
 
-    def generate(self, window):  # fonction qui dessinala map
+    def generate(self):  # fonction qui dessinala map
         """
 
         :param window: la feneter
         :return:
         """
+        window=Global.window
         for i in range(0, len(self.tab_map)):
             for j in range(0, len(self.tab_map[i])):
                 window.blit(self.tab_map[i][j].image, (self.tab_map[i][j].x * 64, self.tab_map[i][j].y * 64))
