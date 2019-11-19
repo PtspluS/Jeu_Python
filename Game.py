@@ -114,6 +114,7 @@ def game(my_room, character_tab):
     Global.ui.print_coin(bob)
     Global.ui.print_life(bob)
     Global.ui.print_PA(bob)
+    Global.ui.init_ui_game()
     window.blit(bob.img, (0, 0))
     window.blit(character_tab[1].img, (character_tab[1].x * 64, character_tab[1].y * 64))  # affichage des personnage
     continuer = 1
@@ -137,8 +138,10 @@ def game(my_room, character_tab):
                     examine( my_room.tab_map, my_room.map_pos, bob.x, bob.y)
                 if event.key == K_i:  # lance inventaire
                     bob.inventory.use_inventory()
-                    room.generate(window)
-                if event.key == K_r:  # lance le menu de sort
+                    Global.ui.init_ui_game()
+                    my_room.generate()
+                if event.key == K_r:  # l
+                    # ance le menu de sort
                     print("r")
                 if event.key == K_e:  # lance interact
                     print("e")

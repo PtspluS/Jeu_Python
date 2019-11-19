@@ -246,6 +246,7 @@ class inventory:
         :return:
         """
         window = Global.window
+        Global.ui.init_ui_inventory()
         inventory_width = 1300
         inventory_height = 500
 
@@ -329,5 +330,6 @@ class inventory:
                             self.blit_equipement( cursor_x, cursor_y, True)
 
                     if event.key == K_ESCAPE:
+
                          # on reessine la map
                         continuer = 0

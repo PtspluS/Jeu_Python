@@ -15,6 +15,10 @@ class UI:
         self.interact_button = pygame.image.load('sprite/Interact_button.png')
         self.inventory_button = pygame.image.load('sprite/Inventory_button.png')
         self.spell_button = pygame.image.load('sprite/spell_button.png')
+        self.equipe_button = pygame.image.load('sprite/Equipe_button.png')
+        self.switch_button = pygame.image.load('sprite/Switch_button.png')
+        self.use_button = pygame.image.load('sprite/Use_button.png')
+        self.throw_button = pygame.image.load('sprite/Throw_button.png')
         self.life_bar = pygame.image.load('sprite/Life_bar.png')
         self.life_bar_full = pygame.image.load('sprite/Life_bar_full.png')
         self.xp_bar_full = pygame.image.load('sprite/XP_bar_full.png')
@@ -23,14 +27,23 @@ class UI:
         self.stat_tile = pygame.image.load('sprite/stat_tile.png')
         self.print_text = pygame.image.load('sprite/print_board.png')
         self.police = pygame.font.Font("8bit.ttf",20)
+        self.window.blit(self.fond_ui, (1088, 0))
 
     def init_ui_game(self):
-        self.window.blit(self.fond_ui, (1088, 0))
+
         self.window.blit(self.attack_button, (1170, 100))
         self.window.blit(self.examine_button, (1270, 100))
         self.window.blit(self.interact_button, (1370, 100))
         self.window.blit(self.inventory_button, (1170, 200))
         self.window.blit(self.spell_button, (1270, 200))
+
+    def init_ui_inventory(self):
+
+        self.window.blit(self.equipe_button, (1170, 100))
+        self.window.blit(self.use_button, (1270, 100))
+        self.window.blit(self.throw_button, (1370, 100))
+        self.window.blit(self.switch_button, (1170, 200))
+
 
 
 
