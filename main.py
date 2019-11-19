@@ -21,10 +21,10 @@ height = 704
 window = Global.window
 
 # chargement des images
-grass1 = pygame.image.load('sprite/Grass1.png')
-grass2 = pygame.image.load('sprite/Grass2.png')
-ble = pygame.image.load('sprite/ble.png')
-wall = pygame.image.load('sprite/Wall.png')
+grass1 = Global.grass1
+grass2 = Global.grass2
+ble = Global.ble
+wall = Global.wall
 
 # creation de la map
 map_x = 17

@@ -62,8 +62,7 @@ def examine( tab_map, map_pos, x, y):
     :return: nothing
     """
     window=Global.window
-    yellow_cursor = pygame.image.load('sprite/yellow_cursor.png')  # curseur d'examination
-    yellow_cursor.set_alpha(100)
+    yellow_cursor = Global.yellow_cursor
     continuer = 1
     cursor = tab_map[x][y]
     window.blit(yellow_cursor, (cursor.x * 64, cursor.y * 64))

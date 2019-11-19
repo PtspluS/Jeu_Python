@@ -77,8 +77,7 @@ class Personnage:
         :return:
         """
         window = Global.window
-        red_cursor = pygame.image.load('sprite/cursor.png')
-        red_cursor.set_alpha(100)
+        red_cursor = Global.red_cursor
 
         continuer = 1
         cursor = tab_map[self.x][self.y]
@@ -96,16 +95,16 @@ class Personnage:
                         if map_pos[cursor.x][cursor.y] != 0:
                             window.blit(map_pos[cursor.x][cursor.y].img, (cursor.x * 64, cursor.y * 64))
                     if event.key == K_s or event.key == K_DOWN:  # deplacement du curseur
-                        cursor = self.anim_cursor(window, tab_map, map_pos, cursor, red_cursor, 0, 1)
+                        cursor = self.anim_cursor(tab_map, map_pos, cursor, red_cursor, 0, 1)
 
                     if event.key == K_w or event.key == K_UP:
-                        cursor = self.anim_cursor(window, tab_map, map_pos, cursor, red_cursor, 0, -1)
+                        cursor = self.anim_cursor(tab_map, map_pos, cursor, red_cursor, 0, -1)
 
                     if event.key == K_a or event.key == K_LEFT:
-                        cursor = self.anim_cursor(window, tab_map, map_pos, cursor, red_cursor, -1, 0)
+                        cursor = self.anim_cursor(tab_map, map_pos, cursor, red_cursor, -1, 0)
 
                     if event.key == K_d or event.key == K_RIGHT:
-                        cursor = self.anim_cursor(window, tab_map, map_pos, cursor, red_cursor, 1, 0)
+                        cursor = self.anim_cursor(tab_map, map_pos, cursor, red_cursor, 1, 0)
 
                     if event.key == K_RETURN:
                         window.blit(cursor.image, (cursor.x * 64, cursor.y * 64))

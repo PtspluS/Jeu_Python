@@ -37,15 +37,15 @@ class inventory:
             for j in range(0, 5):
                 malist.append(0)
             self.stuff.append(malist)
-        self.inventory_fond = pygame.image.load('sprite/fond_inventaire.png')
-        self.inventory_tile = pygame.image.load('sprite/inventory_tiles.png')
-        self.inventory_press_tile = pygame.image.load('sprite/inventory_press_tiles.png')
-        self.inventory_helmet = pygame.image.load('sprite/inventory_helmet.png')
-        self.inventory_sword = pygame.image.load('sprite/inventory_sword.png')
-        self.inventory_chest = pygame.image.load('sprite/inventory_chest.png')
-        self.inventory_pants = pygame.image.load('sprite/inventory_pants.png')
-        self.inventory_shoes = pygame.image.load('sprite/inventory_shoes.png')
-        self.inventory_ring = pygame.image.load('sprite/inventory_ring.png')
+        self.inventory_fond = Global.inventory_fond
+        self.inventory_tile = Global.inventory_tile
+        self.inventory_press_tile = Global.inventory_press_tile
+        self.inventory_helmet = Global.inventory_helmet
+        self.inventory_sword = Global.inventory_sword
+        self.inventory_chest = Global.inventory_chest
+        self.inventory_pants = Global.inventory_pants
+        self.inventory_shoes = Global.inventory_shoes
+        self.inventory_ring = Global.inventory_ring
         helmet = self.inventory_helmet
         left_hand = self.inventory_sword
         right_hand = self.inventory_sword
