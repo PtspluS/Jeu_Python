@@ -1,4 +1,4 @@
-from Gameobject import Armure
+from src.Game_Object.Objets import Armure
 
 
 class Jambe(Armure.Armure):

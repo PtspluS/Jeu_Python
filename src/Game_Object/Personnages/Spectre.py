@@ -1,4 +1,4 @@
-from Game_Object.Personnages import Player
+from src.Game_Object.Personnages import Player
 
 
 class Spectre(Player.Player):

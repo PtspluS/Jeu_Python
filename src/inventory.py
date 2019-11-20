@@ -1,12 +1,12 @@
 import pygame
-from Gameobject import Tete
-from Gameobject import Arme
-from Gameobject import Bijou
-from Gameobject import Corps
-from Gameobject import Jambes
-from Gameobject import Pied
-from Gameobject import Item
-import Global
+from src.Game_Object.Objets import Tete
+from src.Game_Object.Objets import Arme
+from src.Game_Object.Objets import Bijou
+from src.Game_Object.Objets import Corps
+from src.Game_Object.Objets import Jambes
+from src.Game_Object.Objets import Pied
+from src.Game_Object.Objets import Item
+from src import Global
 from pygame.locals import *
 
 width = 1500
@@ -100,7 +100,7 @@ class inventory:
     def pick(self, item):
         """
 
-        :param item: l'itemramassé
+        :param item: l'item ramassé
         :return:
         """
         for i in range(0, len(self.stuff)):
@@ -257,39 +257,84 @@ class inventory:
         window.blit(self.inventory_press_tile, (self.start_stuff_x, self.start_stuff_y))
         self.blit_stuff( 0, 0, True)
         window.blit(self.inventory_tile, (self.start_equipement_x + self.space_equipement, self.start_equipement_y))
-        window.blit(self.equipement[1][0],
-                    (self.start_equipement_x + self.space_equipement + 16, self.start_equipement_y + 16))
+        if isinstance(self.equipement[1][0], Item.Item):
+            window.blit(self.equipement[1][0].image,
+                        (self.start_equipement_x + self.space_equipement + 16, self.start_equipement_y + 16))
+        else:
+            window.blit(self.equipement[1][0],
+                        (self.start_equipement_x + self.space_equipement + 16, self.start_equipement_y + 16))
+
         window.blit(self.inventory_tile,
                     (self.start_equipement_x + self.space_equipement, self.start_equipement_y + self.space_equipement))
-        window.blit(self.equipement[1][1], (
-            self.start_equipement_x + self.space_equipement + 16, self.start_equipement_y + self.space_equipement + 16))
+        if isinstance(self.equipement[1][1], Item.Item):
+            window.blit(self.equipement[1][1].img, (
+                self.start_equipement_x + self.space_equipement + 16,
+                self.start_equipement_y + self.space_equipement + 16))
+        else:
+            window.blit(self.equipement[1][1], (
+                self.start_equipement_x + self.space_equipement + 16,
+                self.start_equipement_y + self.space_equipement + 16))
+
         window.blit(self.inventory_tile, (
             self.start_equipement_x + self.space_equipement, self.start_equipement_y + 2 * self.space_equipement))
-        window.blit(self.equipement[1][2], (
-            self.start_equipement_x + self.space_equipement + 16,
-            self.start_equipement_y + 2 * self.space_equipement + 16))
-        window.blit(self.inventory_tile, (
-            self.start_equipement_x + self.space_equipement, self.start_equipement_y + 3 * self.space_equipement))
-        window.blit(self.equipement[1][3], (
-            self.start_equipement_x + self.space_equipement + 16,
-            self.start_equipement_y + 3 * self.space_equipement + 16))
+        if isinstance(self.equipement[1][2], Item.Item):
+            window.blit(self.equipement[1][2].image, (
+                self.start_equipement_x + self.space_equipement + 16,
+                self.start_equipement_y + 2 * self.space_equipement + 16))
+        else:
+            window.blit(self.equipement[1][2], (
+                self.start_equipement_x + self.space_equipement + 16,
+                self.start_equipement_y + 2 * self.space_equipement + 16))
+            window.blit(self.inventory_tile, (
+                self.start_equipement_x + self.space_equipement, self.start_equipement_y + 3 * self.space_equipement))
+        if isinstance(self.equipement[1][3], Item.Item):
+            window.blit(self.equipement[1][3].image, (
+                self.start_equipement_x + self.space_equipement + 16,
+                self.start_equipement_y + 3 * self.space_equipement + 16))
+        else:
+            window.blit(self.equipement[1][3], (
+                self.start_equipement_x + self.space_equipement + 16,
+                self.start_equipement_y + 3 * self.space_equipement + 16))
+
         window.blit(self.inventory_tile, (self.start_equipement_x, self.start_equipement_y + self.space_equipement))
-        window.blit(self.equipement[0][1],
-                    (self.start_equipement_x + 16, self.start_equipement_y + self.space_equipement + 16))
+        if isinstance(self.equipement[0][1], Item.Item):
+            window.blit(self.equipement[0][1].image,
+                        (self.start_equipement_x + 16, self.start_equipement_y + self.space_equipement + 16))
+        else:
+            window.blit(self.equipement[0][1],
+                        (self.start_equipement_x + 16, self.start_equipement_y + self.space_equipement + 16))
+
         window.blit(self.inventory_tile, (
             self.start_equipement_x + 2 * self.space_equipement, self.start_equipement_y + self.space_equipement))
-        window.blit(self.equipement[2][1], (
-            self.start_equipement_x + 2 * self.space_equipement + 16,
-            self.start_equipement_y + self.space_equipement + 16))
+        if isinstance(self.equipement[2][1], Item.Item):
+            window.blit(self.equipement[2][1].image, (
+                self.start_equipement_x + 2 * self.space_equipement + 16,
+                self.start_equipement_y + self.space_equipement + 16))
+        else:
+            window.blit(self.equipement[2][1], (
+                self.start_equipement_x + 2 * self.space_equipement + 16,
+                self.start_equipement_y + self.space_equipement + 16))
+
         window.blit(self.inventory_tile, (
             self.start_equipement_x + 3 * self.space_equipement, self.start_equipement_y + self.space_equipement))
-        window.blit(self.equipement[3][1], (
-            self.start_equipement_x + 3 * self.space_equipement + 16,
-            self.start_equipement_y + self.space_equipement + 16))
+        if isinstance(self.equipement[3][1], Item.Item):
+            window.blit(self.equipement[3][1].image, (
+                self.start_equipement_x + 3 * self.space_equipement + 16,
+                self.start_equipement_y + self.space_equipement + 16))
+        else :
+            window.blit(self.equipement[3][1], (
+                self.start_equipement_x + 3 * self.space_equipement + 16,
+                self.start_equipement_y + self.space_equipement + 16))
+
         window.blit(self.inventory_tile, (
             self.start_equipement_x + 3 * self.space_equipement, self.start_equipement_y + 2 * self.space_equipement))
-        window.blit(self.equipement[3][2], (self.start_equipement_x + 3 * self.space_equipement + 16,
-                                            self.start_equipement_y + 2 * self.space_equipement + 16))
+        if isinstance(self.equipement[3][2], Item.Item):
+            window.blit(self.equipement[3][2].image, (self.start_equipement_x + 3 * self.space_equipement + 16,
+                                                self.start_equipement_y + 2 * self.space_equipement + 16))
+        else:
+            window.blit(self.equipement[3][2], (self.start_equipement_x + 3 * self.space_equipement + 16,
+                                                self.start_equipement_y + 2 * self.space_equipement + 16))
+
         cursor_x = 0
         cursor_y = 0
         isequip = False

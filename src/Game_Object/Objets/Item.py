@@ -1,4 +1,4 @@
-from Gameobject import Objet
+from src.Game_Object.Objets import Objet
 
 
 class Item(Objet.Objet):

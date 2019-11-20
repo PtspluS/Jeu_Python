@@ -1,16 +1,15 @@
 import pygame
 
-import Global
-from room import room
-from terrain.ground import Ground
-from Game import game
-from Gameobject import Personnage
-from Gameobject import inventory
-from Gameobject import Arme
-from Gameobject import Tete
-import copy
-from pygame.locals import *
-import UI
+from src import Global
+from src.Game_Object.Map.terrain.Porte import Porte
+from src.Game import game
+from src import inventory
+from src.Game_Object.Personnages.Zombi import Zombi
+from src.Game_Object.Objets import Arme
+from src.Game_Object.Objets import Sword
+from src.Game_Object.Objets import Bow
+from src.Game_Object.Objets import Tete
+from src.Game_Object.Map.Generator.game_generator import generate_room, generate_level
 
 # Fonction pour tester
 
@@ -30,32 +29,27 @@ wall = Global.wall
 map_x = 17
 map_y = 11
 
-tab_map = []
-for i in range(0, map_x):
-    malist = []
-    for j in range(0, map_y):
-        malist.append(Ground(i, j, grass1))
-    tab_map.append(malist)
+
 
 # creation de personnages
 my_inventory = inventory.inventory()
-bob_sprite = pygame.image.load('sprite/Zombie_Bowman.png')
-bob = Personnage.Personnage(bob_sprite, "bob", "i m bob i have 20hp 10 armor 10 atk i m level 2 and shield are weaker in overwatch blbaalblablblablablllaalblbalabllbalablbalbalbalbalbalalbalball", my_inventory)
-billy_sprite = pygame.image.load('sprite/miner.png')
-billy = Personnage.Personnage(billy_sprite, "billy", "he is bob", my_inventory, 100, 0, 9, 9)
+
+
 imgcasque = pygame.image.load('sprite/wall.png')
 helmet=Tete.Tete("casque",imgcasque, 1, 10)
 imgepee = pygame.image.load('sprite/ble.png')
-sword=Arme.Arme("epee",imgepee, 1, 10)
-bob.inventory.stuff[0][1] = helmet
-bob.inventory.stuff[0][0] = sword
+sword=Sword.Sword("epee",imgepee, 100, 10)
+bow=Bow.Bow("bow",imgepee, 100, 10)
+my_inventory.pick(sword)
+my_inventory.pick(bow)
 # character_tab est le tableau contenant tput les personnages de la salle
-character_tab = []
-character_tab.append(bob)
-character_tab.append(billy)
 # creation de la salle
-first_room = room(tab_map, character_tab)
-first_room.generate()
+#Porte=Porte(0,0,0)
+#first_room = generate_room(0,0,0,"champs",pos_portes=[Porte,0,0,0])
 
-# ancement de la salle
-game( first_room, character_tab)
+
+# lancement de la salle
+
+my_player = Zombi(Global.zombie_bowman,"Maitre Gimp",stuff = my_inventory,posX=1,posY=1)
+l = generate_level(nb_room=3)
+game(l,my_player)

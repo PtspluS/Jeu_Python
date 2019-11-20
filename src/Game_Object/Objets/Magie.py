@@ -1,4 +1,4 @@
-from Game_Object.Objets import Arme
+from src.Game_Object.Objets import Arme
 
 
 class Magie(Arme.Arme):
