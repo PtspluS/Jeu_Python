@@ -87,7 +87,7 @@ def examine( tab_map, map_pos, x, y):
                         Global.ui.write(map_pos[cursor.x][cursor.y].desc)
 
 
-def game(my_room, character_tab):
+def game(my_room):
     """
 
     :param window: fenetre
@@ -95,6 +95,7 @@ def game(my_room, character_tab):
     :param character_tab: le tableau des personnages de la salles
     :return:
     """
+    character_tab=my_room.char_tab
     window = Global.window
     turn = 0  # gestion des tours
     bob = character_tab[0]
@@ -103,8 +104,7 @@ def game(my_room, character_tab):
     Global.ui.print_life(bob)
     Global.ui.print_PA(bob)
     Global.ui.init_ui_game()
-    window.blit(bob.img, (0, 0))
-    window.blit(character_tab[1].img, (character_tab[1].x * 64, character_tab[1].y * 64))  # affichage des personnage
+    my_room.print()
     continuer = 1
     while continuer:  # boucle du jeu
         for event in pygame.event.get():
@@ -127,7 +127,7 @@ def game(my_room, character_tab):
                 if event.key == K_i:  # lance inventaire
                     bob.inventory.use_inventory()
                     Global.ui.init_ui_game()
-                    my_room.generate()
+                    my_room.print()
                 if event.key == K_r:  # l
                     # ance le menu de sort
                     print("r")

@@ -36,24 +36,18 @@ map_y = 11
 
 # creation de personnages
 my_inventory = inventory.inventory()
-bob_sprite = pygame.image.load('sprite/Zombie_Bowman.png')
-bob = Personnage.Personnage(bob_sprite, "bob", "i m bob i have 20hp 10 armor 10 atk i m level 2 and shield are weaker in overwatch blbaalblablblablablllaalblbalabllbalablbalbalbalbalbalalbalball", my_inventory)
-billy_sprite = pygame.image.load('sprite/miner.png')
-billy = Personnage.Personnage(billy_sprite, "billy", "he is bob", my_inventory, 100, 0, 9, 9)
+
+
 imgcasque = pygame.image.load('sprite/wall.png')
 helmet=Tete.Tete("casque",imgcasque, 1, 10)
 imgepee = pygame.image.load('sprite/ble.png')
 sword=Arme.Arme("epee",imgepee, 1, 10)
-bob.inventory.stuff[0][1] = helmet
-bob.inventory.stuff[0][0] = sword
+
 # character_tab est le tableau contenant tput les personnages de la salle
-character_tab = []
-character_tab.append(bob)
-character_tab.append(billy)
 # creation de la salle
 Porte=Porte(0,0,0)
 first_room = generate_room(0,0,0,"champs",pos_portes=[Porte,0,0,0])
 
 
 # ancement de la salle
-game( first_room, character_tab)
+game( first_room)
