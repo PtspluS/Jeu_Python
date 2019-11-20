@@ -1,11 +1,25 @@
 import pygame
-import UI
+from src import UI
+
+def isinrange(x, y, max_x, max_y):
+    """
+    :param x: position x visée
+    :param y: position y visée
+    :param max_x: taille du tableau x
+    :param max_y: taille du tableau y
+    :return: si on est dans le tableau ou pas
+    """
+    if x >= max_x or x < 0 or y >= max_y or y < 0:
+        return False
+    else:
+        return True
+
 
 pygame.init()
 width = 1500
 height = 704
 window = pygame.display.set_mode((width, height))
-ui=UI.UI()
+
 
 grass1 = pygame.image.load('sprite/Grass1.png')
 grass2 = pygame.image.load('sprite/Grass2.png')
@@ -24,7 +38,7 @@ red_cursor = pygame.image.load('sprite/cursor.png')
 red_cursor.set_alpha(100)
 yellow_cursor = pygame.image.load('sprite/yellow_cursor.png')  # curseur d'examination
 yellow_cursor.set_alpha(100)
-fond_ui = pygame.image.load('sprite/fond_ui.png')
+fond_ui = pygame.image.load('sprite/Fond_ui.png')
 attack_button = pygame.image.load('sprite/Attack_button.png')
 examine_button = pygame.image.load('sprite/Examine_button.png')
 interact_button = pygame.image.load('sprite/Interact_button.png')
@@ -41,4 +55,5 @@ coin = pygame.image.load('sprite/coin.png')
 PA= pygame.image.load('sprite/PA.png')
 stat_tile = pygame.image.load('sprite/stat_tile.png')
 print_text = pygame.image.load('sprite/print_board.png')
-police = pygame.font.Font("8bit.ttf",20)
+police = pygame.font.Font(None,20)
+ui=UI.UI()

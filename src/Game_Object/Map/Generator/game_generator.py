@@ -131,6 +131,7 @@ def generate_room(id, id_next, id_previous, type, nb_char = -1, pos_portes = [1,
 
     room = Room(id, brute_map = brute_map, map_pos= map_pos, char_tab= pnj, doors = doors, type=type)
 
+
     return room
 
 

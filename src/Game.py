@@ -1,29 +1,18 @@
 import math
-from room import room
+from src.Game_Object.Map.Generator.game_generator import generate_room
 import pygame
-from Gameobject import Personnage
+from src.Game_Object.Personnages import Personnage
 from pygame.locals import *
 import math
-import Global
-import UI
+from src import Global
+
 # variable de l'ecran
 width = 1500
 height = 700
 
 
 # verifie si la case visé est ans le tableau
-def isinrange(x, y, max_x, max_y):
-    """
-    :param x: position x visée
-    :param y: position y visée
-    :param max_x: taille du tableau x
-    :param max_y: taille du tableau y
-    :return: si on est dans le tableau ou pas
-    """
-    if x >= max_x or x < 0 or y >= max_y or y < 0:
-        return False
-    else:
-        return True
+
 
 
 # gere l'animation du curseur
@@ -39,7 +28,7 @@ def anim_cursor(tab_map, map_pos, cursor, red_cursor, dir_x, dir_y):
     :return:la position du curseur
     """
     window=Global.window
-    if isinrange(cursor.x + dir_x, cursor.y + dir_y, 10, 10):  # si on est dans le tableau
+    if Global.isinrange(cursor.x + dir_x, cursor.y + dir_y, 10, 10):  # si on est dans le tableau
         window.blit(cursor.image, (cursor.x * 64, cursor.y * 64))  # on affiche l'ancienne position du curseur
         if map_pos[cursor.x][cursor.y] != 0:  # si il y a un personnage on l'affice
             window.blit(map_pos[cursor.x][cursor.y].img, (cursor.x * 64, cursor.y * 64))

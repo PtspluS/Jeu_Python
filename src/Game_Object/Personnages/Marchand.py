@@ -1,4 +1,4 @@
-from Game_Object.Personnages import PNJ
+from src.Game_Object.Personnages import PNJ
 
 
 class Marchand(PNJ.PNJ):

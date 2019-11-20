@@ -1,4 +1,4 @@
-from Game_Object.Objets import Armure
+from src.Game_Object.Objets  import Armure
 
 
 class Main(Armure.Armure):
