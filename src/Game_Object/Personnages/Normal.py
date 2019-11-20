@@ -1,4 +1,4 @@
-from Game_Object.Personnages import Combattant
+from src.Game_Object.Personnages import Combattant
 
 
 class Normal(Combattant.Combattant):

@@ -1,4 +1,4 @@
-from Game_Object.Personnages import Personnage
+from src.Game_Object.Personnages import Personnage
 
 
 class PNJ(Personnage.Personnage):

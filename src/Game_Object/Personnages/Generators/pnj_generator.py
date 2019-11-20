@@ -1,4 +1,4 @@
-from Game_Object.Personnages import Fermier, Mineur, Villageois, Bourgeois
+from src.Game_Object.Personnages import Fermier, Mineur, Villageois, Bourgeois
 import random
 
 # partie poor pour les fermiers et mineurs

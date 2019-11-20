@@ -1,5 +1,5 @@
 from math import floor
-import Global
+from src import Global
 import pygame
 from pygame.locals import *
 

@@ -135,8 +135,6 @@ def generate_room(id, id_next, id_previous, type, nb_char = -1, pos_portes = [1,
 
 
 def generate_level(type = 1, nb_room = 5):
-    # chance de faire pop un marchand dans une salle
-    ratio_pop_marchand = 0.5
 
     brute_map = np.zeros((10,10), dtype='int64')
 
@@ -155,58 +153,11 @@ def generate_level(type = 1, nb_room = 5):
     # pos_portes = [droite, gauche, haut, bas]
     # si on est dans la premiere partie
     if type == 1:
-        type_room = ['champs', 'mines', 'faubourg', 'porte']
-        # on renvoit une map trié dans l'odre inverse des salles de max -> salle de depart
-        srt_map = sort_map(brute_map)
-        id_porte = 0
-        for i in range(len(srt_map)):
-            room = srt_map[i]
-            id = brute_map[room[0]][room[1]]
-            id_previous = -1
-            id_next = -1
-            tab = [0,0,0,0]
-            if i != len(srt_map):
-                id_next = brute_map[srt_map[i+1][0]][srt_map[i+1][1]]
-                next_room = srt_map[i + 1]
-
-                # on vient voir on est situe next_room par rapport a room
-                # pos_portes = [droite, gauche, haut, bas]
-                if room[0] < next_room[0]:
-                    tab[0] = Porte(id_porte, id, id_next)
-                    id_porte += 1
-                elif room[0] > next_room[0]:
-                    tab[1] = Porte(id_porte, id, id_next)
-                    id_porte += 1
-                elif room[1] > next_room[1]:
-                    tab[3] = Porte(id_porte, id, id_next)
-                    id_porte += 1
-                elif room[1] < next_room[1]:
-                    tab[2] = Porte(id_porte, id, id_next)
-                    id_porte += 1
-            if i != 0 :
-                id_previous = brute_map[srt_map[i-1][0]][srt_map[i-1][1]]
-                previous_room = srt_map[i-1]
-
-                # on vient voir ou se situe previous_room par rapport a room
-                # pos_portes = [droite, gauche, haut, bas]
-                if room[0] < previous_room[0]:
-                    tab[0] = Porte(id_porte, id, id_previous)
-                    id_porte += 1
-                elif room[0] > previous_room[0]:
-                    tab[1] = Porte(id_porte, id, id_previous)
-                    id_porte += 1
-                elif room[1] > previous_room[1]:
-                    tab[3] = Porte(id_porte, id, id_previous)
-                    id_porte += 1
-                elif room[1] < previous_room[1]:
-                    tab[2] = Porte(id_porte, id, id_previous)
-                    id_porte += 1
-
-
+        generate_fields(brute_map)
 
     # si on est dans la seconde partie
     elif type == 2:
-        pass
+        generate_town(brute_map)
     # si on est dans la derniere partie
     elif type == 3:
         pass
@@ -216,12 +167,75 @@ def sort_map(map):
     i = (-a).argsort(axis=None, kind='mergesort')
     j = np.unravel_index(i, a.shape)
     # sort = np.vstack(j).T
-    sort = [[x, y] for x, y in zip(j[0], j[1])]
+    #sort = [[x, y] for x, y in zip(j[0], j[1])]
+    sort = []
+    for x,y in zip(j[0], j[1]):
+        if map[x][j] != 0:
+            sort.append([x,y])
     return sort
 
 
+def generate_fields(brute_map):
+    # chance de faire pop un marchand dans une salle
+    ratio_pop_marchand = 0.5
+
+    type_room = ['champs', 'mines', 'faubourg', 'porte']
+
+    # on renvoit une map trié dans l'odre inverse des salles de max -> salle de depart
+    srt_map = sort_map(brute_map)
+    id_porte = 1
+
+    for i in range(len(srt_map)):
+        room = srt_map[i]
+        id = brute_map[room[0]][room[1]]
+        id_previous = -1
+        id_next = -1
+        tab = [0, 0, 0, 0]
+        if i != len(srt_map):
+            id_next = brute_map[srt_map[i + 1][0]][srt_map[i + 1][1]]
+            next_room = srt_map[i + 1]
+
+            # on vient voir on est situe next_room par rapport a room
+            # pos_portes = [droite, gauche, haut, bas]
+            if room[0] < next_room[0]:
+                tab[0] = Porte(id_porte, id, id_next)
+                id_porte += 1
+            elif room[0] > next_room[0]:
+                tab[1] = Porte(id_porte, id, id_next)
+                id_porte += 1
+            elif room[1] > next_room[1]:
+                tab[3] = Porte(id_porte, id, id_next)
+                id_porte += 1
+            elif room[1] < next_room[1]:
+                tab[2] = Porte(id_porte, id, id_next)
+                id_porte += 1
+        if i != 0:
+            id_previous = brute_map[srt_map[i - 1][0]][srt_map[i - 1][1]]
+            previous_room = srt_map[i - 1]
+
+            # on vient voir ou se situe previous_room par rapport a room
+            # pos_portes = [droite, gauche, haut, bas]
+            if room[0] < previous_room[0]:
+                tab[0] = Porte(id_porte, id, id_previous)
+                id_porte += 1
+            elif room[0] > previous_room[0]:
+                tab[1] = Porte(id_porte, id, id_previous)
+                id_porte += 1
+            elif room[1] > previous_room[1]:
+                tab[3] = Porte(id_porte, id, id_previous)
+                id_porte += 1
+            elif room[1] < previous_room[1]:
+                tab[2] = Porte(id_porte, id, id_previous)
+                id_porte += 1
 
 
+
+
+
+def generate_town(brute_map):
+    # chance de faire pop un marchand dans une salle
+    ratio_pop_marchand = 0.5
+    pass
 
 
 

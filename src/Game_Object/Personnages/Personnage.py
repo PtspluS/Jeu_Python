@@ -1,7 +1,7 @@
 import pygame
-import Game
-import Global
-from Gameobject import inventory
+import src.Game as Game
+import src.Global as Global
+from src import inventory
 from pygame.locals import *
 
 

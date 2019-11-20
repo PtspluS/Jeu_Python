@@ -1,4 +1,4 @@
-from Game_Object.Personnages import PNJ, Cadavre
+from src.Game_Object.Personnages import PNJ, Cadavre
 
 
 class Combattant(PNJ.PNJ):
