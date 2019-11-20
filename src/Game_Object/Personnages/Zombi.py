@@ -1,5 +1,5 @@
-from Game_Object.Personnages import Player
-from Game_Object.Personnages import Cadavre
+from src.Game_Object.Personnages import Player
+from src.Game_Object.Personnages import Cadavre
 import random
 
 

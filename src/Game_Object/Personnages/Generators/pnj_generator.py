@@ -1,5 +1,6 @@
 from src.Game_Object.Personnages import Fermier, Mineur, Villageois, Bourgeois
 import random
+from src import inventory
 
 # partie poor pour les fermiers et mineurs
 list_name_poor = [
@@ -76,7 +77,7 @@ img_bourgeois = ""
 '''
 function which generate a random civil : Fermier or Mineur or Villageois or Bourgeois
 '''
-def generate_civil(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 0, type='civ'):
+def generate_civil(attaque = 0, vie = 0, niveau = 0, stuff = inventory.inventory(), PA = 0, PO = 0, type='civ'):
     #si jamais le mec donne n'imps on crée un perso rng
     if(type != 'fermier' and type != 'mineur' and type != 'villageois' and type != 'bourgeois'):
         tab_type = ['fermier', 'mineur', 'villageois', 'bourgeois']
@@ -126,15 +127,14 @@ def generate_fermier(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 
         vie = random.randint(vie_min, vie_max)
     if niveau <= 0:
         niveau = random.randint(lvl_min, lvl_max)
-    if len(stuff) == 0:
-        pass
+
     if PA == 0:
         PA = random.choice(PA_list)
     if PO == 0:
         PO = random.randint(PO_min, PO_max)
 
     # on return un objet fermier avec les attributs aleatoires
-    return Fermier.Fermier(img_farmer, name, vie = vie, PO = PO, bag = stuff, attaque = attaque, lvl = niveau, PA = PA, courage = courage, desc= desc)
+    return Fermier.Fermier(img_farmer, name, vie = vie, PO = PO, inventory = stuff, attaque = attaque, lvl = niveau, PA = PA, courage = courage, desc= desc)
 
 '''
 function which generate a miner
@@ -165,15 +165,14 @@ def generate_mineur(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 0
         vie = random.randint(vie_min, vie_max)
     if niveau <= 0:
         niveau = random.randint(lvl_min, lvl_max)
-    if len(stuff) == 0:
-        pass
+
     if PA == 0:
         PA = random.choice(PA_list)
     if PO == 0:
         PO = random.randint(PO_min, PO_max)
 
     # on renvoit un obj mineur
-    return Mineur.Mineur(img_miner, name, vie = vie, PO = PO, bag = stuff, attaque = attaque, lvl = niveau, PA = PA, desc= desc)
+    return Mineur.Mineur(img_miner, name, vie = vie, PO = PO, inventory = stuff, attaque = attaque, lvl = niveau, PA = PA, desc= desc)
 
 
 '''
@@ -205,15 +204,14 @@ def generate_villageois(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO
         vie = random.randint(vie_min, vie_max)
     if niveau <= 0:
         niveau = random.randint(lvl_min, lvl_max)
-    if len(stuff) == 0:
-        pass
+
     if PA == 0:
         PA = random.choice(PA_list)
     if PO == 0:
         PO = random.randint(PO_min, PO_max)
 
     # on renvoit un obj villageois
-    return Villageois.Villageois(img_villager, name, vie = vie, PO = PO, bag = stuff, attaque = attaque, lvl = niveau, PA = PA, desc= desc)
+    return Villageois.Villageois(img_villager, name,inventory=stuff, vie = vie, PO = PO, attaque = attaque, lvl = niveau, PA = PA, desc= desc)
 
 
 '''
@@ -245,12 +243,11 @@ def generate_bourgeois(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO 
         vie = random.randint(vie_min, vie_max)
     if niveau <= 0:
         niveau = random.randint(lvl_min, lvl_max)
-    if len(stuff) == 0:
-        pass
+
     if PA == 0:
         PA = random.choice(PA_list)
     if PO == 0:
         PO = random.randint(PO_min, PO_max)
 
     # on renvoit un objet bourgeois
-    return Bourgeois.Bourgeois(img_bourgeois, name, vie = vie, PO = PO, bag = stuff, attaque = attaque, lvl = niveau, PA = PA, desc = desc)
+    return Bourgeois.Bourgeois(img_bourgeois, name, vie = vie, PO = PO, inventory = stuff, attaque = attaque, lvl = niveau, PA = PA, desc = desc)

@@ -1,12 +1,12 @@
 import pygame
-from Gameobject import Tete
-from Gameobject import Arme
-from Gameobject import Bijou
-from Gameobject import Corps
-from Gameobject import Jambes
-from Gameobject import Pied
-from Gameobject import Item
-import Global
+from src.Game_Object.Objets import Tete
+from src.Game_Object.Objets import Arme
+from src.Game_Object.Objets import Bijou
+from src.Game_Object.Objets import Corps
+from src.Game_Object.Objets import Jambes
+from src.Game_Object.Objets import Pied
+from src.Game_Object.Objets import Item
+from src import Global
 from pygame.locals import *
 
 width = 1500

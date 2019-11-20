@@ -1,16 +1,18 @@
 import pygame
 
-import Global
-from room import room
-from terrain.ground import Ground
-from Game import game
-from Gameobject import Personnage
-from Gameobject import inventory
-from Gameobject import Arme
-from Gameobject import Tete
+from src import Global
+from src.Game_Object.Map.Room import Room
+from src.Game_Object.Map.Porte import Porte
+from src.Game_Object.terrain.ground import Ground
+from src.Game import game
+from src.Game_Object.Personnages import Personnage
+from src import inventory
+from src.Game_Object.Objets import Arme
+from src.Game_Object.Objets import Tete
+from src.Game_Object.Map.Generator.game_generator import generate_room
 import copy
 from pygame.locals import *
-import UI
+
 
 # Fonction pour tester
 
@@ -30,12 +32,7 @@ wall = Global.wall
 map_x = 17
 map_y = 11
 
-tab_map = []
-for i in range(0, map_x):
-    malist = []
-    for j in range(0, map_y):
-        malist.append(Ground(i, j, grass1))
-    tab_map.append(malist)
+
 
 # creation de personnages
 my_inventory = inventory.inventory()
@@ -54,8 +51,9 @@ character_tab = []
 character_tab.append(bob)
 character_tab.append(billy)
 # creation de la salle
-first_room = room(tab_map, character_tab)
-first_room.generate()
+Porte=Porte(0,0,0)
+first_room = generate_room(0,0,0,"champs",pos_portes=[Porte,0,0,0])
+
 
 # ancement de la salle
 game( first_room, character_tab)

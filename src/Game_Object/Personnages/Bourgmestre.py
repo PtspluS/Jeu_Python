@@ -1,4 +1,4 @@
-from Game_Object.Personnages import Boss
+from src.Game_Object.Personnages import Boss
 
 
 class Brougmestre(Boss.Boss):

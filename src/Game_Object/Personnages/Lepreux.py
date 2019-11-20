@@ -1,4 +1,4 @@
-from Game_Object.Personnages import Marchand
+from src.Game_Object.Personnages import Marchand
 
 
 class Lepreux(Marchand.Marchand):

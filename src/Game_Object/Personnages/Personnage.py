@@ -1,7 +1,7 @@
 import pygame
-import src.Game as Game
-import src.Global as Global
-from src import inventory
+
+from src import Global
+
 from pygame.locals import *
 
 
@@ -9,7 +9,7 @@ class Personnage:
     max_hp = 100
     max_speed = 1
 
-    def __init__(self, img, nom, desc, my_inventory, vie=100, PO=5000, posX=0, posY=0, lvl=1,PA=6):
+    def __init__(self, img, nom, desc, inventory, vie=100, PO=5000, posX=0, posY=0, lvl=1,PA=6):
         self.img = img
         self.name = nom
         self.desc = desc
@@ -17,7 +17,7 @@ class Personnage:
         self.money = PO
         self.x = posX
         self.y = posY
-        self.inventory = my_inventory
+        self.inventory = inventory
         self.lvl = lvl
         self.PA=PA
 
@@ -35,7 +35,7 @@ class Personnage:
         :return:
         """
         window = Global.window
-        if Game.isinrange(x, y, 17, 11):  # si la case est dans le tableau
+        if Global.isinrange(x, y, 17, 11):  # si la case est dans le tableau
             if tab_map[x][y].is_walkable and map_pos[x][y] == 0:  # la case est walkable il n y a peronnes sur la carte
                 window.blit(tab_map[self.x][self.y].image, (self.x * 64, self.y * 64))  # dessine la
                 map_pos[self.x][self.y] = 0
@@ -58,7 +58,7 @@ class Personnage:
         """
 
         window = Global.window
-        if Game.isinrange(cursor.x + dir_x, cursor.y + dir_y, 17, 11):  # deplacement et affichage du curseur
+        if Global.isinrange(cursor.x + dir_x, cursor.y + dir_y, 17, 11):  # deplacement et affichage du curseur
             window.blit(cursor.image, (cursor.x * 64, cursor.y * 64))
             if map_pos[cursor.x][cursor.y] != 0:
                 window.blit(map_pos[cursor.x][cursor.y].img, (cursor.x * 64, cursor.y * 64))
