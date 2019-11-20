@@ -1,5 +1,6 @@
 #imports
-
+import pygame
+from src import Global
 
 class Room:
 
@@ -8,7 +9,6 @@ class Room:
 
         :param id: (int) id de la map
         :param brute_map: (np.array) map sous la forme de tableau de chiffre
-        :param tab_map: (list[list]) map sous la forme de tableau d'objets
         :param map_pos: (list[list]) map sous la forme de tableau de personnages
         :param char_tab: (list) list des pnj sur la salle
         :param doors: (list) list des portes de la salle
@@ -24,6 +24,8 @@ class Room:
 
     def convert_to_tab_map(self):
         return []
+
+
     def generate(self):  # fonction qui dessinala map
         """
 
@@ -34,7 +36,6 @@ class Room:
         for i in range(0, len(self.tab_map)):
             for j in range(0, len(self.tab_map[i])):
                 window.blit(self.tab_map[i][j].image, (self.tab_map[i][j].x * 64, self.tab_map[i][j].y * 64))
-
-                    window.blit(self.map_pos[i][j].img, (self.map_pos[i][j].x * 64, self.map_pos[i][j].y * 64))
                 if self.map_pos[i][j] != 0:
+                    window.blit(self.map_pos[i][j].img, (self.map_pos[i][j].x * 64, self.map_pos[i][j].y * 64))
         pygame.display.flip()

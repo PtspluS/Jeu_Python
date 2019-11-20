@@ -1,11 +1,11 @@
 import math
-from room import room
+from src.Game_Object.Map import Room
 import pygame
-from Gameobject import Personnage
+from src.Game_Object.Personnages import Personnage
 from pygame.locals import *
 import math
-import Global
-import UI
+import src.Global as Global
+import src.UI as UI
 # variable de l'ecran
 width = 1500
 height = 700

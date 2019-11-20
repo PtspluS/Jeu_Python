@@ -1,4 +1,4 @@
-from Game_Object.Personnages import Normal
+from src.Game_Object.Personnages import Normal
 
 
 class Fermier(Normal.Normal):
