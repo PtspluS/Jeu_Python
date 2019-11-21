@@ -4,6 +4,7 @@ import numpy as np
 from src.Game_Object.Personnages.Generators.pnj_generator import generate_civil
 from src.Game_Object.Map.Porte import Porte
 from src.Game_Object.Map.Room import Room
+from src.Game_Object.Map.Level import Level
 
 
 # pos_portes = [droite, gauche, haut, bas]
@@ -169,6 +170,11 @@ def generate_level(type = 1, nb_room = 5):
         return generate_castle(brute_map)
 
 def sort_map(map):
+    """
+    yolo c'est magique en fait non mais c'est pas propre
+    :param map: (np.array 2D) map avec des int
+    :return: return list de pos
+    """
     mp = np.copy(map)
     a = np.array(map)
     i = (-a).argsort(axis=None, kind='mergesort')
@@ -258,8 +264,8 @@ def generate_fields(brute_map):
         rooms.append(r)
 
     rooms.reverse()
-
-    print("hello")
+    lvl = Level(map = brute_map, type=1, doors= portes, rooms = rooms)
+    return lvl
 
 
 
