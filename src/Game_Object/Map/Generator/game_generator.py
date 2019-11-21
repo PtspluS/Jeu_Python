@@ -136,14 +136,13 @@ def generate_room(id, id_next, id_previous, type, nb_char = -1, pos_portes = [1,
     return room
 
 
-def generate_level(type = 1, nb_room = 5):
+def generate_level(type = 1, nb_room = 9):
 
     pt = np.array([5,5])
 
     directions = [[1,0], [0,1], [-1,0], [0,-1]]
 
     #current_id = 1
-    rooms = []
     brute_map = np.zeros((10, 10), dtype='int64')
     while np.count_nonzero(brute_map) < nb_room :
         current_id = 1
@@ -159,13 +158,13 @@ def generate_level(type = 1, nb_room = 5):
             previous_dir = directions[directions.index(direction)-2]
 
     # pos_portes = [droite, gauche, haut, bas]
-    # si on est dans la premiere partie
+    # si on est dans la premiere partie du jeu
     if type == 1:
         return generate_fields(brute_map)
-    # si on est dans la seconde partie
+    # si on est dans la seconde partie du jeu
     elif type == 2:
         return generate_town(brute_map)
-    # si on est dans la derniere partie
+    # si on est dans la derniere partie du jeu
     elif type == 3:
         return generate_castle(brute_map)
 
@@ -190,7 +189,7 @@ def sort_map(map):
 
 def generate_fields(brute_map):
     # chance de faire pop un marchand dans une salle
-    ratio_pop_marchand = 0.5
+    ratio_pop_marchand = 0.1
 
     type_room = ['champs', 'mines', 'faubourg', 'porte']
 
@@ -207,6 +206,11 @@ def generate_fields(brute_map):
         id_previous = -1
         id_next = -1
         tab = [0, 0, 0, 0]
+
+        #a chaque tour de room on a une chance de changer de type
+        proba_increase_type_room = 0.1
+
+        tp_room = 0
         if i != len(srt_map)-1:
             id_next = brute_map[srt_map[i + 1][0]][srt_map[i + 1][1]]
             next_room = srt_map[i + 1]
@@ -260,7 +264,19 @@ def generate_fields(brute_map):
                 portes.append(p)
                 id_porte += 1
 
-        r = generate_room(id, id_previous= id_previous, id_next= id_next, type = type_room[0], nb_char=2, pos_portes=tab)
+        if ratio_pop_marchand > random.random():
+            pass
+        else :
+            ratio_pop_marchand += random.choice([0.1,0.2,0.3])
+        if i < len(srt_map)//3 :
+            if proba_increase_type_room > random.random():
+                tp_room += 1 % 2
+                proba_increase_type_room -= random.choice([0.1,0.2,0.05])
+            else :
+                proba_increase_type_room += random.choice([0.1,0.2,0.05])
+        else :
+            tp_room += 1
+        r = generate_room(id, id_previous= id_previous, id_next= id_next, type = type_room[tp_room], nb_char=2, pos_portes=tab)
         rooms.append(r)
 
     rooms.reverse()
