@@ -50,21 +50,21 @@ def generate_room(id, id_next, id_previous, type, nb_char = -1, pos_portes = [1,
         porte.Y = size_Y-1
         doors.append(porte)
     # porte vers le bas
-    elif pos_portes[1] != 0:
+    if pos_portes[1] != 0:
         #porte = Porte(id_door, id, id_previous, random.randint(1, size_X-2), 0)
         porte = pos_portes[1]
         porte.X = random.randint(1, size_X-2)
         porte.Y = 0
         doors.append(porte)
     # porte vers la gauche
-    elif pos_portes[2] != 0:
+    if pos_portes[2] != 0:
         #porte = Porte(id_door, id, id_previous, 0,  random.randint(1,size_Y-2))
         porte = pos_portes[2]
         porte.X = 0
         porte.Y = random.randint(1,size_Y-2)
         doors.append(porte)
     # porte vers la droite
-    elif pos_portes[3] != 0:
+    if pos_portes[3] != 0:
         #porte = Porte(id_door, id, id_previous, size_X-1, random.randint(1, size_Y-2))
         porte = pos_portes[3]
         porte.X = size_X-1
@@ -137,33 +137,39 @@ def generate_room(id, id_next, id_previous, type, nb_char = -1, pos_portes = [1,
 
 def generate_level(type = 1, nb_room = 5):
 
-    brute_map = np.zeros((10,10), dtype='int64')
-
     pt = np.array([5,5])
 
     directions = [[1,0], [0,1], [-1,0], [0,-1]]
 
-    current_id = 1
+    #current_id = 1
     rooms = []
-
-    while current_id <= nb_room and (pt < brute_map.shape).all():
-        brute_map[pt[0]][pt[1]] = current_id
-        current_id += 1
-        pt += random.choice(directions)
+    brute_map = np.zeros((10, 10), dtype='int64')
+    while np.count_nonzero(brute_map) < nb_room :
+        current_id = 1
+        brute_map = np.zeros((10, 10), dtype='int64')
+        previous_dir = [0,0]
+        while current_id <= nb_room and (pt < brute_map.shape).all():
+            brute_map[pt[0]][pt[1]] = current_id
+            current_id += 1
+            direction = random.choice(directions)
+            while direction == previous_dir:
+                direction = random.choice(directions)
+            pt += direction
+            previous_dir = directions[directions.index(direction)-2]
 
     # pos_portes = [droite, gauche, haut, bas]
     # si on est dans la premiere partie
     if type == 1:
-        generate_fields(brute_map)
-
+        return generate_fields(brute_map)
     # si on est dans la seconde partie
     elif type == 2:
-        generate_town(brute_map)
+        return generate_town(brute_map)
     # si on est dans la derniere partie
     elif type == 3:
-        pass
+        return generate_castle(brute_map)
 
 def sort_map(map):
+    mp = np.copy(map)
     a = np.array(map)
     i = (-a).argsort(axis=None, kind='mergesort')
     j = np.unravel_index(i, a.shape)
@@ -171,7 +177,7 @@ def sort_map(map):
     #sort = [[x, y] for x, y in zip(j[0], j[1])]
     sort = []
     for x,y in zip(j[0], j[1]):
-        if map[x][j] != 0:
+        if mp[x][y] != 0:
             sort.append([x,y])
     return sort
 
@@ -185,6 +191,9 @@ def generate_fields(brute_map):
     # on renvoit une map trié dans l'odre inverse des salles de max -> salle de depart
     srt_map = sort_map(brute_map)
     id_porte = 1
+    portes = []
+
+    rooms = []
 
     for i in range(len(srt_map)):
         room = srt_map[i]
@@ -192,23 +201,31 @@ def generate_fields(brute_map):
         id_previous = -1
         id_next = -1
         tab = [0, 0, 0, 0]
-        if i != len(srt_map):
+        if i != len(srt_map)-1:
             id_next = brute_map[srt_map[i + 1][0]][srt_map[i + 1][1]]
             next_room = srt_map[i + 1]
 
             # on vient voir on est situe next_room par rapport a room
             # pos_portes = [droite, gauche, haut, bas]
             if room[0] < next_room[0]:
-                tab[0] = Porte(id_porte, id, id_next)
+                p = Porte(id_porte, id, id_next)
+                tab[3] = p
+                portes.append(p)
                 id_porte += 1
             elif room[0] > next_room[0]:
-                tab[1] = Porte(id_porte, id, id_next)
+                p= Porte(id_porte, id, id_next)
+                tab[2] = p
+                portes.append(p)
                 id_porte += 1
             elif room[1] > next_room[1]:
-                tab[3] = Porte(id_porte, id, id_next)
+                p = Porte(id_porte, id, id_next)
+                tab[1] = p
+                portes.append(p)
                 id_porte += 1
             elif room[1] < next_room[1]:
-                tab[2] = Porte(id_porte, id, id_next)
+                p = Porte(id_porte, id, id_next)
+                tab[0] = p
+                portes.append(p)
                 id_porte += 1
         if i != 0:
             id_previous = brute_map[srt_map[i - 1][0]][srt_map[i - 1][1]]
@@ -217,23 +234,43 @@ def generate_fields(brute_map):
             # on vient voir ou se situe previous_room par rapport a room
             # pos_portes = [droite, gauche, haut, bas]
             if room[0] < previous_room[0]:
-                tab[0] = Porte(id_porte, id, id_previous)
+                p = Porte(id_porte, id, id_previous)
+                tab[3] = p
+                portes.append(p)
                 id_porte += 1
             elif room[0] > previous_room[0]:
-                tab[1] = Porte(id_porte, id, id_previous)
+                p = Porte(id_porte, id, id_previous)
+                tab[2] = p
+                portes.append(p)
                 id_porte += 1
             elif room[1] > previous_room[1]:
-                tab[3] = Porte(id_porte, id, id_previous)
+                p = Porte(id_porte, id, id_previous)
+                tab[1] = p
+                portes.append(p)
                 id_porte += 1
             elif room[1] < previous_room[1]:
-                tab[2] = Porte(id_porte, id, id_previous)
+                p = Porte(id_porte, id, id_previous)
+                tab[0] = p
+                portes.append(p)
                 id_porte += 1
+
+        r = generate_room(id, id_previous= id_previous, id_next= id_next, type = type_room[0], nb_char=2, pos_portes=tab)
+        rooms.append(r)
+
+    rooms.reverse()
+
+    print("hello")
 
 
 
 
 
 def generate_town(brute_map):
+    # chance de faire pop un marchand dans une salle
+    ratio_pop_marchand = 0.5
+    pass
+
+def generate_castle(brute_map):
     # chance de faire pop un marchand dans une salle
     ratio_pop_marchand = 0.5
     pass
