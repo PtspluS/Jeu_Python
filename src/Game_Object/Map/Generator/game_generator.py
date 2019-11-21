@@ -279,7 +279,3 @@ def generate_castle(brute_map):
     ratio_pop_marchand = 0.5
     pass
 
-
-
-
-
