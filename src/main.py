@@ -1,18 +1,12 @@
 import pygame
 
 from src import Global
-from src.Game_Object.Map.Room import Room
-from src.Game_Object.Map.Porte import Porte
-from src.Game_Object.terrain.ground import Ground
+from src.Game_Object.Map.terrain.Porte import Porte
 from src.Game import game
-from src.Game_Object.Personnages import Personnage
 from src import inventory
 from src.Game_Object.Objets import Arme
 from src.Game_Object.Objets import Tete
 from src.Game_Object.Map.Generator.game_generator import generate_room
-import copy
-from pygame.locals import *
-
 
 # Fonction pour tester
 

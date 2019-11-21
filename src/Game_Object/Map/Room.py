@@ -1,6 +1,6 @@
 from src import Global
 import pygame
-from src.Game_Object.terrain import Wall,Door,ground,Water
+from src.Game_Object.Map.terrain import Wall,Porte,ground,Water
 
 class Room:
 
@@ -35,8 +35,8 @@ class Room:
                     my_wall = Wall.Wall(i, j)
                     maliste.append(my_wall)
                 if self.brute_map[i][j] == 2:
-                    my_wall = Wall.Wall(i, j)
-                    maliste.append(my_wall)
+                    my_door = Porte(i, j)
+                    maliste.append(my_door)
                 if self.brute_map[i][j] == 3:
                     my_wall = Wall.Wall(i, j)
                     maliste.append(my_wall)

@@ -23,6 +23,7 @@ window = pygame.display.set_mode((width, height))
 
 grass1 = pygame.image.load('sprite/Grass1.png')
 grass2 = pygame.image.load('sprite/Grass2.png')
+door = pygame.image.load('sprite/Door.png')
 ble = pygame.image.load('sprite/ble.png')
 wall = pygame.image.load('sprite/Wall.png')
 inventory_fond = pygame.image.load('sprite/fond_inventaire.png')

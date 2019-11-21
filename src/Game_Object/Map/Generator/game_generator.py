@@ -2,7 +2,7 @@
 import random
 import numpy as np
 from src.Game_Object.Personnages.Generators.pnj_generator import generate_civil
-from src.Game_Object.Map.Porte import Porte
+from src.Game_Object.Map.terrain.Porte import Porte
 from src.Game_Object.Map.Room import Room
 
 
