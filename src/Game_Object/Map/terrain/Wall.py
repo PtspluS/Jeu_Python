@@ -1,4 +1,4 @@
-from src.Game_Object.terrain import Decor
+from src.Game_Object.Map.terrain import Decor
 from src.Global import wall
 
 class Wall(Decor.Decor):

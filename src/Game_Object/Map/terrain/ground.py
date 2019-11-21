@@ -1,4 +1,4 @@
-from src.Game_Object.terrain import Decor
+from src.Game_Object.Map.terrain import Decor
 from src.Global import grass1
 from src.Global import grass2
 import random

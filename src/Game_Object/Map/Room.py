@@ -18,11 +18,12 @@ class Room:
         self.id = id
         self.brute_map = brute_map
         self.tab_map = []
-        self.convert_to_tab_map()
         self.map_pos = map_pos
         self.char_tab = char_tab
         self.doors = doors
         self.type = type
+        self.convert_to_tab_map()
+
 
     def convert_to_tab_map(self):
         for i in range(0, len(self.brute_map)):
@@ -35,7 +36,8 @@ class Room:
                     my_wall = Wall.Wall(i, j)
                     maliste.append(my_wall)
                 if self.brute_map[i][j] == 2:
-                    my_door = Porte(i, j)
+                    pass
+                    my_door = Porte.Porte(1,1,1,i, j)
                     maliste.append(my_door)
                 if self.brute_map[i][j] == 3:
                     my_wall = Wall.Wall(i, j)

@@ -2,6 +2,7 @@ import math
 from src.Game_Object.Map.Generator.game_generator import generate_room
 import pygame
 from src.Game_Object.Personnages import Personnage
+from src.Game_Object.Personnages import Player
 from pygame.locals import *
 import math
 from src import Global
@@ -87,7 +88,7 @@ def examine( tab_map, map_pos, x, y):
                         Global.ui.write(map_pos[cursor.x][cursor.y].desc)
 
 
-def game(my_room):
+def game(my_room,player):
     """
 
     :param window: fenetre
@@ -95,46 +96,61 @@ def game(my_room):
     :param character_tab: le tableau des personnages de la salles
     :return:
     """
+    my_room.map_pos[1][1]=player
     character_tab=my_room.char_tab
+    character_tab.append(player)
+    character_tab.reverse()
     window = Global.window
     turn = 0  # gestion des tours
-    bob = character_tab[0]
-    Global.ui.write(bob.desc)
-    Global.ui.print_coin(bob)
-    Global.ui.print_life(bob)
-    Global.ui.print_PA(bob)
+
+    Global.ui.write(player.desc)
+    Global.ui.print_coin(player)
+    Global.ui.print_life(player)
+    Global.ui.print_PA(player)
     Global.ui.init_ui_game()
     my_room.print()
     continuer = 1
     while continuer:  # boucle du jeu
-        for event in pygame.event.get():
-            pygame.display.flip()
-            if event.type == QUIT:
-                continuer = 0
-            if event.type == KEYDOWN:  # deplacement
-                if event.key == K_s or event.key == K_DOWN:
-                    bob.move(my_room.tab_map, my_room.map_pos, bob.x, bob.y + 1)
-                if event.key == K_w or event.key == K_UP:
-                    bob.move(my_room.tab_map, my_room.map_pos, bob.x, bob.y - 1)
-                if event.key == K_a or event.key == K_LEFT:
-                    bob.move(my_room.tab_map, my_room.map_pos, bob.x - 1, bob.y)
-                if event.key == K_d or event.key == K_RIGHT:
-                    bob.move(my_room.tab_map, my_room.map_pos, bob.x + 1, bob.y)
-                if event.key == K_q:  # lance la fonction d'attaque
-                    bob.attack(my_room.tab_map, my_room.map_pos)
-                if event.key == K_x:  # lance la fonction d'examination
-                    examine( my_room.tab_map, my_room.map_pos, bob.x, bob.y)
-                if event.key == K_i:  # lance inventaire
-                    bob.inventory.use_inventory()
-                    Global.ui.init_ui_game()
-                    my_room.print()
-                if event.key == K_r:  # l
-                    # ance le menu de sort
-                    print("r")
-                if event.key == K_e:  # lance interact
-                    print("e")
-                if event.key == K_f:  # pich up
-                    print("f")
+        for i in character_tab:
+            if i.hp<=0:
+                my_room.map_pos[i.x][i.y]=i.die()
+                character_tab.remove(i)
+        if character_tab[turn].PA<=0:
+            character_tab[turn].PA= character_tab[turn].PA_max
+            Global.ui.print_PA(character_tab[turn])
+            turn=(turn+1)%len(character_tab)
+        if isinstance(character_tab[turn],Player.Player):
+            for event in pygame.event.get():
+                pygame.display.flip()
+                if event.type == QUIT:
+                    continuer = 0
+                if event.type == KEYDOWN:  # deplacement
+                    if event.key == K_s or event.key == K_DOWN:
+                        player.move(my_room.tab_map, my_room.map_pos, player.x, player.y + 1)
+                    if event.key == K_w or event.key == K_UP:
+                        player.move(my_room.tab_map, my_room.map_pos, player.x, player.y - 1)
+                    if event.key == K_a or event.key == K_LEFT:
+                        player.move(my_room.tab_map, my_room.map_pos, player.x - 1, player.y)
+                    if event.key == K_d or event.key == K_RIGHT:
+                        player.move(my_room.tab_map, my_room.map_pos, player.x + 1, player.y)
+                    if event.key == K_q:  # lance la fonction d'attaque
+                        player.attack(my_room.tab_map, my_room.map_pos)
+                    if event.key == K_x:  # lance la fonction d'examination
+                        examine(my_room.tab_map, my_room.map_pos, player.x, player.y)
+                    if event.key == K_i:  # lance inventaire
+                        player.inventory.use_inventory()
+                        window.blit(Global.black, (0, 0))
+                        Global.ui.init_ui_game()
+                        my_room.print()
+                    if event.key == K_r:  # l
+                        # ance le menu de sort
+                        print("r")
+                    if event.key == K_e:  # lance interact
+                        print("e")
+                    if event.key == K_f:  # pich up
+                        print("f")
+        else:
+            character_tab[turn].play(my_room)
 
 
 
