@@ -268,13 +268,11 @@ def generate_fields(brute_map):
     return lvl
 
 
-
-
-
 def generate_town(brute_map):
     # chance de faire pop un marchand dans une salle
     ratio_pop_marchand = 0.5
     pass
+
 
 def generate_castle(brute_map):
     # chance de faire pop un marchand dans une salle
