@@ -2,7 +2,7 @@
 import random
 import numpy as np
 from src.Game_Object.Personnages.Generators.pnj_generator import generate_civil
-from src.Game_Object.Map.Porte import Porte
+from src.Game_Object.Map.terrain.Porte import Porte
 from src.Game_Object.Map.Room import Room
 from src.Game_Object.Map.Level import Level
 
@@ -102,8 +102,8 @@ def generate_room(id, id_next, id_previous, type, nb_char = -1, pos_portes = [1,
         y_possible.remove(y)
         # on genere un civil pour le moment mais a la fin ca sera un mec selon son type
         p = generate_civil(type= random.choice(type_present))
-        p.X = x
-        p.Y = y
+        p.x = x
+        p.y = y
         pnj.append(p)
         map_pos[x][y] = p
 

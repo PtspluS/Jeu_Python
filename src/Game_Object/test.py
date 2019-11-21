@@ -1,6 +1,6 @@
 from src.Game_Object.Personnages.Generators.pnj_generator import generate_civil
 from src.Game_Object.Map.Generator.game_generator import generate_room, generate_level
-from src.Game_Object.Map.Porte import Porte
+from src.Game_Object.Map.terrain.Porte import Porte
 
 a = generate_civil(type = "fermier")
 b = generate_civil(type='mineur')
