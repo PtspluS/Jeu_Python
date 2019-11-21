@@ -1,5 +1,5 @@
 from src.Game_Object.Personnages import PNJ, Cadavre
-
+from src import Global
 
 class Combattant(PNJ.PNJ):
 
@@ -11,6 +11,9 @@ class Combattant(PNJ.PNJ):
     def heal(self, val):
         self.hp = (self.hp + abs(val)) % self.max_hp
 
+    def play(self,room):
+        self.PA=0
+
     def die(self):
-        img_cadavre = ""
-        return Cadavre.Cadavre(img_cadavre, nom = self.name, desc = self.desc,inventory=self.inventory, lvl = self.lvl, PO= self.money, posX= self.X, posY=self.Y)
+        img_cadavre = Global.inventory_ring
+        return Cadavre.Cadavre(img_cadavre, nom = self.name, desc = self.desc,inventory=self.inventory, lvl = self.lvl, PO= self.money, posX= self.x, posY=self.y)

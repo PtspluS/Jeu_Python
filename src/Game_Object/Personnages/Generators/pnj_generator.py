@@ -1,6 +1,7 @@
 from src.Game_Object.Personnages import Fermier, Mineur, Villageois, Bourgeois
 import random
 from src import inventory
+from src import Global
 
 # partie poor pour les fermiers et mineurs
 list_name_poor = [
@@ -69,10 +70,10 @@ descriptions_rich = [
 
 ]
 
-img_farmer = ""
-img_miner = ""
-img_villager = ""
-img_bourgeois = ""
+img_farmer = Global.bowman
+img_miner = Global.miner
+img_villager = Global.villager
+img_bourgeois = Global.richman
 
 '''
 function which generate a random civil : Fermier or Mineur or Villageois or Bourgeois

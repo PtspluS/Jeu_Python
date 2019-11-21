@@ -1,20 +1,6 @@
 import pygame
 from src import UI
 
-def isinrange(x, y, max_x, max_y):
-    """
-    :param x: position x visée
-    :param y: position y visée
-    :param max_x: taille du tableau x
-    :param max_y: taille du tableau y
-    :return: si on est dans le tableau ou pas
-    """
-    if x >= max_x or x < 0 or y >= max_y or y < 0:
-        return False
-    else:
-        return True
-
-
 pygame.init()
 width = 1500
 height = 704
