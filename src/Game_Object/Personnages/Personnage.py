@@ -46,5 +46,6 @@ class Personnage:
                 window.blit(self.img, (self.x * 64, self.y * 64))
                 self.PA = self.PA -1
                 Global.ui.print_PA(self)
+                pygame.display.flip()
 
 

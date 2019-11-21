@@ -111,6 +111,7 @@ def game(my_room,player):
     my_room.print()
     continuer = 1
     while continuer:  # boucle du jeu
+        pygame.display.flip()
         for i in character_tab:
             if i.hp<=0:
                 my_room.map_pos[i.x][i.y]=i.die()
@@ -121,7 +122,7 @@ def game(my_room,player):
             turn=(turn+1)%len(character_tab)
         if isinstance(character_tab[turn],Player.Player):
             for event in pygame.event.get():
-                pygame.display.flip()
+
                 if event.type == QUIT:
                     continuer = 0
                 if event.type == KEYDOWN:  # deplacement
