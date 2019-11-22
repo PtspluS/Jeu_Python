@@ -137,16 +137,19 @@ def generate_room(id, id_next, id_previous, type, nb_char = -1, pos_portes = [1,
 
 
 def generate_level(type = 1, nb_room = 9):
-
-    pt = np.array([5,5])
+    # on demarre la
+    pt = np.array([nb_room,nb_room])
 
     directions = [[1,0], [0,1], [-1,0], [0,-1]]
 
+    size_X = size_Y = round(nb_room*2)
+    #size_X = size_Y = 10
+
     #current_id = 1
-    brute_map = np.zeros((10, 10), dtype='int64')
+    brute_map = np.zeros((size_X, size_Y), dtype='int64')
     while np.count_nonzero(brute_map) < nb_room :
         current_id = 1
-        brute_map = np.zeros((10, 10), dtype='int64')
+        brute_map = np.zeros((size_X, size_Y), dtype='int64')
         previous_dir = [0,0]
         while current_id <= nb_room and (pt < brute_map.shape).all():
             brute_map[pt[0]][pt[1]] = current_id
@@ -170,7 +173,7 @@ def generate_level(type = 1, nb_room = 9):
 
 def sort_map(map):
     """
-    yolo c'est magique en fait non mais c'est pas propre
+    yolo c'est magique en fait non mais c'est juste propre
     :param map: (np.array 2D) map avec des int
     :return: return list de pos
     """
@@ -181,12 +184,13 @@ def sort_map(map):
     # sort = np.vstack(j).T
     #sort = [[x, y] for x, y in zip(j[0], j[1])]
     sort = []
+    # on renvoit toutes les pos de cases ou il y a une salle dans le sens inverse max -> min
     for x,y in zip(j[0], j[1]):
         if mp[x][y] != 0:
             sort.append([x,y])
     return sort
 
-
+# genere le niveau 1 du jeu
 def generate_fields(brute_map):
     # chance de faire pop un marchand dans une salle
     ratio_pop_marchand = 0.1
@@ -206,6 +210,9 @@ def generate_fields(brute_map):
         id_previous = -1
         id_next = -1
         tab = [0, 0, 0, 0]
+
+        #si on fait pop un marchand
+        pop_marchand = False
 
         #a chaque tour de room on a une chance de changer de type
         proba_increase_type_room = 0.1
@@ -265,6 +272,8 @@ def generate_fields(brute_map):
                 id_porte += 1
 
         if ratio_pop_marchand > random.random():
+            ratio_pop_marchand -= random.choice([0.1, 0.2, 0.3])
+            #pop_marchand = True
             pass
         else :
             ratio_pop_marchand += random.choice([0.1,0.2,0.3])
@@ -276,20 +285,20 @@ def generate_fields(brute_map):
                 proba_increase_type_room += random.choice([0.1,0.2,0.05])
         else :
             tp_room += 1
-        r = generate_room(id, id_previous= id_previous, id_next= id_next, type = type_room[tp_room], nb_char=2, pos_portes=tab)
+        r = generate_room(id, id_previous= id_previous, id_next= id_next, type = type_room[tp_room], nb_char=2, pos_portes=tab, marchand=pop_marchand)
         rooms.append(r)
 
     rooms.reverse()
     lvl = Level(map = brute_map, type=1, doors= portes, rooms = rooms)
     return lvl
 
-
+# genere le niveau 2 du jeu
 def generate_town(brute_map):
     # chance de faire pop un marchand dans une salle
     ratio_pop_marchand = 0.5
     pass
 
-
+# genere le niveau 3 du jeu
 def generate_castle(brute_map):
     # chance de faire pop un marchand dans une salle
     ratio_pop_marchand = 0.5
