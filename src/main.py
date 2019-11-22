@@ -9,7 +9,7 @@ from src.Game_Object.Objets import Arme
 from src.Game_Object.Objets import Sword
 from src.Game_Object.Objets import Bow
 from src.Game_Object.Objets import Tete
-from src.Game_Object.Map.Generator.game_generator import generate_room
+from src.Game_Object.Map.Generator.game_generator import generate_room, generate_level
 
 # Fonction pour tester
 
@@ -50,5 +50,6 @@ first_room = generate_room(0,0,0,"champs",pos_portes=[Porte,0,0,0])
 
 # ancement de la salle
 
-my_player=Player.Player(Global.zombie_bowman,"bob","lol",my_inventory,posX=1,posY=1)
-game( first_room,my_player)
+my_player = Player.Player(Global.zombie_bowman,"bob","lol",my_inventory,posX=1,posY=1)
+l = generate_level(nb_room=5)
+game(l,my_player)

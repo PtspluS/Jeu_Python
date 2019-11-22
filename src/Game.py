@@ -8,7 +8,6 @@ from pygame.locals import *
 import math
 from src import Global
 
-
 # variable de l'ecran
 width = 1500
 height = 700
@@ -17,9 +16,8 @@ height = 700
 # verifie si la case visé est ans le tableau
 
 
-
 # gere l'animation du curseur
-def anim_cursor(tab_map, map_pos, cursor, red_cursor, dir_x, dir_y,player,image_cursor):
+def anim_cursor(tab_map, map_pos, cursor, red_cursor, dir_x, dir_y, player, image_cursor):
     """
     :param window: l'objet fenetre de pygame
     :param tab_map: la carte
@@ -30,16 +28,16 @@ def anim_cursor(tab_map, map_pos, cursor, red_cursor, dir_x, dir_y,player,image_
     :param dir_y:irection du curseur en y
     :return:la position du curseur
     """
-    window=Global.window
+    window = Global.window
     if Global.isinrange(cursor.x + dir_x, cursor.y + dir_y, len(map_pos), len(map_pos[0])):  # si on est dans le tableau
         window.blit(cursor.image, (cursor.x * 64, cursor.y * 64))  # on affiche l'ancienne position du curseur
         if map_pos[cursor.x][cursor.y] != 0:  # si il y a un personnage on l'affice
             window.blit(map_pos[cursor.x][cursor.y].img, (cursor.x * 64, cursor.y * 64))
-        if image_cursor==Global.yellow_cursor:
+        if image_cursor == Global.yellow_cursor:
             cursor = tab_map[cursor.x + dir_x][cursor.y + dir_y]
         else:
             cursor = tab_map[player.x + dir_x][player.y + dir_y]
-          # on actualise le curseur
+        # on actualise le curseur
         window.blit(red_cursor, (cursor.x * 64, cursor.y * 64))  # on affiche le curseur
         return cursor
     else:
@@ -47,7 +45,7 @@ def anim_cursor(tab_map, map_pos, cursor, red_cursor, dir_x, dir_y,player,image_
 
 
 # Faonction qui permet d'examiner les personnage
-def examine( tab_map, map_pos, x, y,image_cursor,player):
+def examine(tab_map, map_pos, x, y, image_cursor, player, lvl):
     """
 
     :param window: la fenetre
@@ -57,7 +55,7 @@ def examine( tab_map, map_pos, x, y,image_cursor,player):
     :param y: pos du player
     :return: nothing
     """
-    window=Global.window
+    window = Global.window
     continuer = 1
     cursor = tab_map[x][y]
     window.blit(image_cursor, (cursor.x * 64, cursor.y * 64))
@@ -73,34 +71,38 @@ def examine( tab_map, map_pos, x, y,image_cursor,player):
                     if map_pos[cursor.x][cursor.y] != 0:
                         window.blit(map_pos[cursor.x][cursor.y].img, (cursor.x * 64, cursor.y * 64))
                 if event.key == K_s or event.key == K_DOWN:
-                    cursor = anim_cursor(tab_map, map_pos, cursor, image_cursor, 0, 1,player,image_cursor)
+                    cursor = anim_cursor(tab_map, map_pos, cursor, image_cursor, 0, 1, player, image_cursor)
 
                 if event.key == K_w or event.key == K_UP:
-                    cursor = anim_cursor(tab_map, map_pos, cursor, image_cursor, 0, -1,player,image_cursor)
+                    cursor = anim_cursor(tab_map, map_pos, cursor, image_cursor, 0, -1, player, image_cursor)
 
                 if event.key == K_a or event.key == K_LEFT:
-                    cursor = anim_cursor(tab_map, map_pos, cursor, image_cursor, -1, 0,player,image_cursor)
+                    cursor = anim_cursor(tab_map, map_pos, cursor, image_cursor, -1, 0, player, image_cursor)
 
                 if event.key == K_d or event.key == K_RIGHT:
-                    cursor = anim_cursor(tab_map, map_pos, cursor, image_cursor, 1, 0,player,image_cursor)
+                    cursor = anim_cursor(tab_map, map_pos, cursor, image_cursor, 1, 0, player, image_cursor)
 
                 if event.key == K_RETURN:
                     window.blit(cursor.image, (cursor.x * 64, cursor.y * 64))
                     if map_pos[cursor.x][cursor.y] != 0:
                         window.blit(map_pos[cursor.x][cursor.y].img, (cursor.x * 64, cursor.y * 64))
                     continuer = 0
-                    if map_pos[cursor.x][cursor.y] != 0:
-                        if image_cursor==Global.yellow_cursor:
-                            Global.ui.write(map_pos[cursor.x][cursor.y].desc)
-                        else :
-                            if isinstance(map_pos[cursor.x][cursor.y],Cadavre.Cadavre):
-                                pass
-                            if isinstance(tab_map[cursor.x][cursor.y], Porte.Porte):
-                                tab_map[cursor.x][cursor.y].open()
+                    if image_cursor == Global.yellow_cursor:
+                        Global.ui.write(map_pos[cursor.x][cursor.y].desc)
+                        return False
+                    else:
+                        if isinstance(map_pos[cursor.x][cursor.y], Cadavre.Cadavre):
+                            return False
+                        elif isinstance(tab_map[cursor.x][cursor.y], Porte.Porte):
+                            pos, room = tab_map[cursor.x][cursor.y].open(lvl)
+                            player.x = pos[0]
+                            player.y = pos[1]
+                            return room
+                        else:
+                            return False
 
 
-
-def game(my_room,player):
+def game(lvl, player):
     """
 
     :param window: fenetre
@@ -108,10 +110,10 @@ def game(my_room,player):
     :param character_tab: le tableau des personnages de la salles
     :return:
     """
-    my_room.map_pos[1][1]=player
-    character_tab=my_room.char_tab
-    character_tab.append(player)
-    character_tab.reverse()
+    my_room=lvl.rooms[0]
+    my_room.map_pos[1][1] = player
+    my_room.char_tab.append(player)
+    my_room.char_tab.reverse()
     window = Global.window
     turn = 0  # gestion des tours
 
@@ -121,11 +123,11 @@ def game(my_room,player):
     Global.ui.print_PA(player)
     Global.ui.init_ui_game()
     my_room.print()
+    pygame.display.flip()
     continuer = 1
     while continuer:  # boucle du jeu
 
-
-        if isinstance(character_tab[turn],Player.Player):
+        if isinstance(my_room.char_tab[turn], Player.Player):
             for event in pygame.event.get():
 
                 if event.type == QUIT:
@@ -142,30 +144,36 @@ def game(my_room,player):
                     if event.key == K_q:  # lance la fonction d'attaque
                         player.attack(my_room.tab_map, my_room.map_pos)
                     if event.key == K_x:  # lance la fonction d'examination
-                        examine(my_room.tab_map, my_room.map_pos, player.x, player.y, Global.yellow_cursor,player)
+                        examine(my_room.tab_map, my_room.map_pos, player.x, player.y, Global.yellow_cursor, player,lvl)
                     if event.key == K_i:  # lance inventaire
                         player.inventory.use_inventory()
-                        window.blit(Global.black, (0, 0))
+
                         Global.ui.init_ui_game()
                         my_room.print()
                     if event.key == K_r:  # l
                         # ance le menu de sort
                         print("r")
                     if event.key == K_e:  # lance interact
-                        examine(my_room.tab_map, my_room.map_pos, player.x, player.y, Global.cyan_cursor,player)
+                        new_room=examine(my_room.tab_map, my_room.map_pos, player.x, player.y, Global.cyan_cursor, player,lvl)
+                        if new_room:
+                            my_room = new_room
+                            turn = 0
+                            my_room.print()
+                            my_room.char_tab.append(player)
+                            my_room.char_tab.reverse()
+
                     if event.key == K_f:  # pich up
                         print("f")
         else:
-            character_tab[turn].play(my_room)
+            my_room.char_tab[turn].play(my_room)
 
-        for i in character_tab:
-            if i.hp<=0:
-                my_room.map_pos[i.x][i.y]=i.die()
-                character_tab.remove(i)
-        if character_tab[turn].PA<=0:
-            character_tab[turn].PA= character_tab[turn].PA_max
-            Global.ui.print_PA(character_tab[turn])
-            turn=(turn+1)%len(character_tab)
+        for i in my_room.char_tab:
+            if i.hp <= 0:
+                my_room.map_pos[i.x][i.y] = i.die()
+                my_room.char_tab.remove(i)
+        if my_room.char_tab[turn].PA <= 0:
+            my_room.char_tab[turn].PA = my_room.char_tab[turn].PA_max
+            Global.ui.print_PA(my_room.char_tab[turn])
+            turn = (turn + 1) % len(my_room.char_tab)
         Global.ui.print_life(player)
         pygame.display.flip()
-
