@@ -1,4 +1,7 @@
+import time
 from copy import deepcopy
+
+import pygame
 
 from src.Game_Object.Personnages import PNJ, Cadavre
 from src import Global
@@ -20,6 +23,8 @@ class Combattant(PNJ.PNJ):
         self.hp = (self.hp + abs(val)) % self.max_hp
 
     def play(self,room):
+        pygame.time.delay(100)
+        pygame.event.clear()
         target=0
         if Global.isinrange(self.x+1,self.y,len(room.map_pos),len(room.map_pos[0])):
             if isinstance(room.map_pos[self.x+1][self.y],Player.Player):
@@ -44,7 +49,9 @@ class Combattant(PNJ.PNJ):
             my_matrix[self.x][self.y] = 0
 
             path=Pathfinder.astar(my_matrix,(self.x,self.y),(room.char_tab[0].x, room.char_tab[0].y))
-            self.move(room.tab_map, room.map_pos, path[1][0], path[1][1])
+            if path:
+                self.move(room.tab_map, room.map_pos, path[1][0], path[1][1])
+            else : self.PA=0
 
         else:
             target.hp=target.hp-1

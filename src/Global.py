@@ -25,6 +25,8 @@ red_cursor = pygame.image.load('sprite/cursor.png')
 red_cursor.set_alpha(100)
 yellow_cursor = pygame.image.load('sprite/yellow_cursor.png')  # curseur d'examination
 yellow_cursor.set_alpha(100)
+cyan_cursor = pygame.image.load('sprite/cyan_cursor.png')  # curseur d'examination
+cyan_cursor.set_alpha(100)
 fond_ui = pygame.image.load('sprite/Fond_ui.png')
 attack_button = pygame.image.load('sprite/Attack_button.png')
 examine_button = pygame.image.load('sprite/Examine_button.png')

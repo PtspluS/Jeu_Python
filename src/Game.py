@@ -1,11 +1,13 @@
 import math
 from src.Game_Object.Map.Generator.game_generator import generate_room
+from src.Game_Object.Map.terrain import Porte
 import pygame
-from src.Game_Object.Personnages import Personnage
+from src.Game_Object.Personnages import Cadavre
 from src.Game_Object.Personnages import Player
 from pygame.locals import *
 import math
 from src import Global
+
 
 # variable de l'ecran
 width = 1500
@@ -17,7 +19,7 @@ height = 700
 
 
 # gere l'animation du curseur
-def anim_cursor(tab_map, map_pos, cursor, red_cursor, dir_x, dir_y):
+def anim_cursor(tab_map, map_pos, cursor, red_cursor, dir_x, dir_y,player,image_cursor):
     """
     :param window: l'objet fenetre de pygame
     :param tab_map: la carte
@@ -29,11 +31,15 @@ def anim_cursor(tab_map, map_pos, cursor, red_cursor, dir_x, dir_y):
     :return:la position du curseur
     """
     window=Global.window
-    if Global.isinrange(cursor.x + dir_x, cursor.y + dir_y, 10, 10):  # si on est dans le tableau
+    if Global.isinrange(cursor.x + dir_x, cursor.y + dir_y, len(map_pos), len(map_pos[0])):  # si on est dans le tableau
         window.blit(cursor.image, (cursor.x * 64, cursor.y * 64))  # on affiche l'ancienne position du curseur
         if map_pos[cursor.x][cursor.y] != 0:  # si il y a un personnage on l'affice
             window.blit(map_pos[cursor.x][cursor.y].img, (cursor.x * 64, cursor.y * 64))
-        cursor = tab_map[cursor.x + dir_x][cursor.y + dir_y]  # on actualise le curseur
+        if image_cursor==Global.yellow_cursor:
+            cursor = tab_map[cursor.x + dir_x][cursor.y + dir_y]
+        else:
+            cursor = tab_map[player.x + dir_x][player.y + dir_y]
+          # on actualise le curseur
         window.blit(red_cursor, (cursor.x * 64, cursor.y * 64))  # on affiche le curseur
         return cursor
     else:
@@ -41,7 +47,7 @@ def anim_cursor(tab_map, map_pos, cursor, red_cursor, dir_x, dir_y):
 
 
 # Faonction qui permet d'examiner les personnage
-def examine( tab_map, map_pos, x, y):
+def examine( tab_map, map_pos, x, y,image_cursor,player):
     """
 
     :param window: la fenetre
@@ -52,10 +58,9 @@ def examine( tab_map, map_pos, x, y):
     :return: nothing
     """
     window=Global.window
-    yellow_cursor = Global.yellow_cursor
     continuer = 1
     cursor = tab_map[x][y]
-    window.blit(yellow_cursor, (cursor.x * 64, cursor.y * 64))
+    window.blit(image_cursor, (cursor.x * 64, cursor.y * 64))
     while continuer:  # boucle qui permet de deplacer le curseur
         for event in pygame.event.get():
             pygame.display.flip()
@@ -68,16 +73,16 @@ def examine( tab_map, map_pos, x, y):
                     if map_pos[cursor.x][cursor.y] != 0:
                         window.blit(map_pos[cursor.x][cursor.y].img, (cursor.x * 64, cursor.y * 64))
                 if event.key == K_s or event.key == K_DOWN:
-                    cursor = anim_cursor(tab_map, map_pos, cursor, yellow_cursor, 0, 1)
+                    cursor = anim_cursor(tab_map, map_pos, cursor, image_cursor, 0, 1,player,image_cursor)
 
                 if event.key == K_w or event.key == K_UP:
-                    cursor = anim_cursor(tab_map, map_pos, cursor, yellow_cursor, 0, -1)
+                    cursor = anim_cursor(tab_map, map_pos, cursor, image_cursor, 0, -1,player,image_cursor)
 
                 if event.key == K_a or event.key == K_LEFT:
-                    cursor = anim_cursor(tab_map, map_pos, cursor, yellow_cursor, -1, 0)
+                    cursor = anim_cursor(tab_map, map_pos, cursor, image_cursor, -1, 0,player,image_cursor)
 
                 if event.key == K_d or event.key == K_RIGHT:
-                    cursor = anim_cursor(tab_map, map_pos, cursor, yellow_cursor, 1, 0)
+                    cursor = anim_cursor(tab_map, map_pos, cursor, image_cursor, 1, 0,player,image_cursor)
 
                 if event.key == K_RETURN:
                     window.blit(cursor.image, (cursor.x * 64, cursor.y * 64))
@@ -85,7 +90,14 @@ def examine( tab_map, map_pos, x, y):
                         window.blit(map_pos[cursor.x][cursor.y].img, (cursor.x * 64, cursor.y * 64))
                     continuer = 0
                     if map_pos[cursor.x][cursor.y] != 0:
-                        Global.ui.write(map_pos[cursor.x][cursor.y].desc)
+                        if image_cursor==Global.yellow_cursor:
+                            Global.ui.write(map_pos[cursor.x][cursor.y].desc)
+                        else :
+                            if isinstance(map_pos[cursor.x][cursor.y],Cadavre.Cadavre):
+                                pass
+                            if isinstance(tab_map[cursor.x][cursor.y], Porte.Porte):
+                                tab_map[cursor.x][cursor.y].open()
+
 
 
 def game(my_room,player):
@@ -111,15 +123,8 @@ def game(my_room,player):
     my_room.print()
     continuer = 1
     while continuer:  # boucle du jeu
-        pygame.display.flip()
-        for i in character_tab:
-            if i.hp<=0:
-                my_room.map_pos[i.x][i.y]=i.die()
-                character_tab.remove(i)
-        if character_tab[turn].PA<=0:
-            character_tab[turn].PA= character_tab[turn].PA_max
-            Global.ui.print_PA(character_tab[turn])
-            turn=(turn+1)%len(character_tab)
+
+
         if isinstance(character_tab[turn],Player.Player):
             for event in pygame.event.get():
 
@@ -137,7 +142,7 @@ def game(my_room,player):
                     if event.key == K_q:  # lance la fonction d'attaque
                         player.attack(my_room.tab_map, my_room.map_pos)
                     if event.key == K_x:  # lance la fonction d'examination
-                        examine(my_room.tab_map, my_room.map_pos, player.x, player.y)
+                        examine(my_room.tab_map, my_room.map_pos, player.x, player.y, Global.yellow_cursor,player)
                     if event.key == K_i:  # lance inventaire
                         player.inventory.use_inventory()
                         window.blit(Global.black, (0, 0))
@@ -147,11 +152,20 @@ def game(my_room,player):
                         # ance le menu de sort
                         print("r")
                     if event.key == K_e:  # lance interact
-                        print("e")
+                        examine(my_room.tab_map, my_room.map_pos, player.x, player.y, Global.cyan_cursor,player)
                     if event.key == K_f:  # pich up
                         print("f")
         else:
             character_tab[turn].play(my_room)
 
-
+        for i in character_tab:
+            if i.hp<=0:
+                my_room.map_pos[i.x][i.y]=i.die()
+                character_tab.remove(i)
+        if character_tab[turn].PA<=0:
+            character_tab[turn].PA= character_tab[turn].PA_max
+            Global.ui.print_PA(character_tab[turn])
+            turn=(turn+1)%len(character_tab)
+        Global.ui.print_life(player)
+        pygame.display.flip()
 

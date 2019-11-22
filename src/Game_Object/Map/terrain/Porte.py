@@ -15,3 +15,7 @@ class Porte(Decor.Decor):
         image = Global.door
         super().__init__(x, y, image)
 
+    def open(self, lvl):
+        for d in lvl.doors:
+            if d.id_in == self.id_out:
+                return [d.x, d.y]

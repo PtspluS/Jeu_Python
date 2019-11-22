@@ -15,7 +15,7 @@ class Node():
 
 def astar(maze, start, end):
     """Returns a list of tuples as a path from the given start to the given end in the given maze"""
-
+    cpt=0
     # Create start and end node
     start_node = Node(None, start)
     start_node.g = start_node.h = start_node.f = 0
@@ -31,7 +31,9 @@ def astar(maze, start, end):
 
     # Loop until you find the end
     while len(open_list) > 0:
-
+        cpt+=1
+        if(cpt==1000):
+            return False
         # Get the current node
         current_node = open_list[0]
         current_index = 0
