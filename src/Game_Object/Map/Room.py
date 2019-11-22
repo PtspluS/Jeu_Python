@@ -9,7 +9,6 @@ class Room:
 
         :param id: (int) id de la map
         :param brute_map: (np.array) map sous la forme de tableau de chiffre
-        :param tab_map: (list[list]) map sous la forme de tableau d'objets
         :param map_pos: (list[list]) map sous la forme de tableau de personnages
         :param char_tab: (list) list des pnj sur la salle
         :param doors: (list) list des portes de la salle
