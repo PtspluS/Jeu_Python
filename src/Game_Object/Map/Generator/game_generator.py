@@ -225,22 +225,22 @@ def generate_fields(brute_map):
             # on vient voir on est situe next_room par rapport a room
             # pos_portes = [droite, gauche, haut, bas]
             if room[0] < next_room[0]:
-                p = Porte(id_porte, id, id_next)
+                p = Porte(id=id_porte, id_in=id, id_out=id_next)
                 tab[3] = p
                 portes.append(p)
                 id_porte += 1
             elif room[0] > next_room[0]:
-                p= Porte(id_porte, id, id_next)
+                p = Porte(id=id_porte, id_in=id, id_out=id_next)
                 tab[2] = p
                 portes.append(p)
                 id_porte += 1
             elif room[1] > next_room[1]:
-                p = Porte(id_porte, id, id_next)
+                p = Porte(id=id_porte, id_in=id, id_out=id_next)
                 tab[1] = p
                 portes.append(p)
                 id_porte += 1
             elif room[1] < next_room[1]:
-                p = Porte(id_porte, id, id_next)
+                p = Porte(id=id_porte, id_in=id, id_out=id_next)
                 tab[0] = p
                 portes.append(p)
                 id_porte += 1
@@ -251,22 +251,22 @@ def generate_fields(brute_map):
             # on vient voir ou se situe previous_room par rapport a room
             # pos_portes = [droite, gauche, haut, bas]
             if room[0] < previous_room[0]:
-                p = Porte(id_porte, id, id_previous)
+                p = Porte(id=id_porte, id_in=id, id_out=id_previous)
                 tab[3] = p
                 portes.append(p)
                 id_porte += 1
             elif room[0] > previous_room[0]:
-                p = Porte(id_porte, id, id_previous)
+                p = Porte(id=id_porte, id_in=id, id_out=id_previous)
                 tab[2] = p
                 portes.append(p)
                 id_porte += 1
             elif room[1] > previous_room[1]:
-                p = Porte(id_porte, id, id_previous)
+                p = Porte(id=id_porte, id_in=id, id_out=id_previous)
                 tab[1] = p
                 portes.append(p)
                 id_porte += 1
             elif room[1] < previous_room[1]:
-                p = Porte(id_porte, id, id_previous)
+                p = Porte(id=id_porte, id_in=id, id_out=id_previous)
                 tab[0] = p
                 portes.append(p)
                 id_porte += 1

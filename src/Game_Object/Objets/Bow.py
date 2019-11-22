@@ -3,8 +3,8 @@ from src.Game_Object.Objets import Arme
 
 class Bow(Arme.Arme):
 
-    def __init__(self, name, image, atk, value):
-        self.range=5
+    def __init__(self, name, image, atk, value, portee = 5):
+        self.range=portee
         self.PA = 2
         super().__init__(name, image,atk, self.range, value)
 
@@ -13,3 +13,6 @@ class Bow(Arme.Arme):
             return super().anim_cursor(tab_map, map_pos, cursor, cursor_image, dir_x, dir_y,player)
         else :
             return cursor
+
+    def describe(self):
+        print("it'a ", self.name, " with ", self.atk, " damage and a range of", self.range,"\nhe has a value of ", self.value, " PO")

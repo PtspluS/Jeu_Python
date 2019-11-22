@@ -1,17 +1,27 @@
-from src.Game_Object.Personnages.Generators.pnj_generator import generate_civil
-from src.Game_Object.Map.Generator.game_generator import generate_room, generate_level
-from src.Game_Object.Map.terrain.Porte import Porte
+from src.Game_Object.Map.Generator.game_generator import generate_level
+from src.Game_Object.Objets.Generators.arme_generator import generate_sword,generate_bow
 
-a = generate_civil(type = "fermier")
-b = generate_civil(type='mineur')
-c = generate_civil(type='villageois')
-d = generate_civil(type='bourgeois')
+e1 = generate_sword(1)
+e2 = generate_sword(2)
+e3 = generate_sword(3)
+e4 = generate_sword(4)
 
-porte = Porte(1,0,2)
+a1 = generate_bow(1)
+a2 = generate_bow(2)
+a3 = generate_bow(3)
+a4 = generate_bow(4)
 
-m = generate_room(2, id_next=3, id_previous=1, type='champs', nb_char=2, pos_portes = [0,0,porte,0])
 l = generate_level(nb_room=10)
 
 
 print(l.map)
-print(l.rooms)
+
+e1.describe()
+e2.describe()
+e3.describe()
+e4.describe()
+
+a1.describe()
+a2.describe()
+a3.describe()
+a4.describe()
