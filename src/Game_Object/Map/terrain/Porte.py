@@ -17,5 +17,5 @@ class Porte(Decor.Decor):
     def open(self, lvl):
         for d in lvl.doors:
             if d.id_in == self.id_out:
-                return [d.X, d.y]
+                return [d.x, d.y]
 
