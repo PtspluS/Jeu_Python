@@ -25,7 +25,7 @@ class Arme(Item.Item):
          :param map_pos: position des joueur sur la carte
          :param cursor: cursor
          :param cursor_image: image rouge
-         :param dir_x: direction xss
+         :param dir_x: direction x
          :param dir_y: direction y
          :return:
               """

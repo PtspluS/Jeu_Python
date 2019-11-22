@@ -69,9 +69,11 @@ class Player(Personnage.Personnage):
                             window.blit(map_pos[cursor.x][cursor.y].img, (cursor.x * 64, cursor.y * 64))
                             map_pos[cursor.x][cursor.y].hp = map_pos[cursor.x][cursor.y].hp - weapon.atk
                             print(map_pos[cursor.x][cursor.y].hp)
+
                         continuer = 0
                         self.PA=self.PA-weapon.PA
                         Global.ui.print_PA(self)
+                    pygame.display.flip()
 
 
 

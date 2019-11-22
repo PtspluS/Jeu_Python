@@ -51,9 +51,9 @@ class Room:
         :return:
         """
         window=Global.window
+        window.blit(Global.black, (0, 0))
         for i in range(0, len(self.tab_map)):
             for j in range(0, len(self.tab_map[i])):
                 window.blit(self.tab_map[i][j].image, (self.tab_map[i][j].x * 64, self.tab_map[i][j].y * 64))
                 if self.map_pos[i][j] != 0:
                     window.blit(self.map_pos[i][j].img, (self.map_pos[i][j].x * 64, self.map_pos[i][j].y * 64))
-        pygame.display.flip()
