@@ -173,7 +173,7 @@ def generate_level(type = 1, nb_room = 9):
 
 def sort_map(map):
     """
-    yolo c'est magique en fait non mais c'est juste propre
+    yolo c'est magique en fait non mais c'est juste tres propre
     :param map: (np.array 2D) map avec des int
     :return: return list de pos
     """
