@@ -1,0 +1,33 @@
+from pymongo import MongoClient
+import pickle
+from bson.binary import Binary
+
+def save_game(level, player, path = 'local', id = 1):
+    """
+    save the game into the db
+    :param level: current level generated
+    :param player: current player
+    :param path: path to save
+    """
+    # on serealize pour save
+    save = {
+        "id" : id,
+        "player" : pickle.dumps(player),
+        "level" : pickle.dumps(level)
+    }
+
+    if path == 'local':
+        client = MongoClient('mongodb://localhost:27017/')
+    else :
+        client = MongoClient(path)
+
+    try :
+        mydb = client['game_python']
+
+        mycol = mydb['save']
+
+        mycol.insert_one(save)
+
+    except Exception:
+        print(Exception)
+

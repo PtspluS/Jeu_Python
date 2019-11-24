@@ -1,5 +1,6 @@
 from src.Game_Object.Map.Generator.game_generator import generate_level
 from src.Game_Object.Objets.Generators.arme_generator import generate_sword,generate_bow
+import src.save as save
 
 e1 = generate_sword(1)
 e2 = generate_sword(2)
@@ -13,6 +14,7 @@ a4 = generate_bow(4)
 
 l = generate_level(nb_room=10)
 
+save
 
 print(l.map)
 
