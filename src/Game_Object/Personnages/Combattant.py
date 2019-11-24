@@ -54,7 +54,7 @@ class Combattant(PNJ.PNJ):
             else : self.PA=0
 
         else:
-            target.hp=target.hp-1
+            target.hp=target.hp-self.attaque
             self.PA-=1
 
 

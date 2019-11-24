@@ -35,9 +35,11 @@ class Room:
                     my_wall = Wall.Wall(i, j)
                     maliste.append(my_wall)
                 if self.brute_map[i][j] == 2:
-                    pass
-                    my_door = Porte.Porte(1,1,1,i, j)
-                    maliste.append(my_door)
+                    for k in self.doors:
+                        if k.x==i and k.y==j:
+                            my_door = k
+                            maliste.append(my_door)
+
                 if self.brute_map[i][j] == 3:
                     my_wall = Wall.Wall(i, j)
                     maliste.append(my_wall)

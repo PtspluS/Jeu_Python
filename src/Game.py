@@ -70,6 +70,7 @@ def examine(tab_map, map_pos, x, y, image_cursor, player, lvl):
                     continuer = 0
                     if map_pos[cursor.x][cursor.y] != 0:
                         window.blit(map_pos[cursor.x][cursor.y].img, (cursor.x * 64, cursor.y * 64))
+                    return False, False
                 if event.key == K_s or event.key == K_DOWN:
                     cursor = anim_cursor(tab_map, map_pos, cursor, image_cursor, 0, 1, player, image_cursor)
 
@@ -89,22 +90,20 @@ def examine(tab_map, map_pos, x, y, image_cursor, player, lvl):
                     continuer = 0
                     if image_cursor == Global.yellow_cursor:
                         Global.ui.write(map_pos[cursor.x][cursor.y].desc)
-                        return False
+                        return False, False
                     else:
                         if isinstance(map_pos[cursor.x][cursor.y], Cadavre.Cadavre):
-                            return False
+                            return False, False
                         elif isinstance(tab_map[cursor.x][cursor.y], Porte.Porte):
                             pos, room = tab_map[cursor.x][cursor.y].open(lvl)
-                            player.x = pos[0]
-                            player.y = pos[1]
-                            return room
+
+                            return room,pos
                         else:
-                            return False
+                            return False, False
 
 
 def game(lvl, player):
     """
-
     :param window: fenetre
     :param my_room: la salle
     :param character_tab: le tableau des personnages de la salles
@@ -147,20 +146,26 @@ def game(lvl, player):
                         examine(my_room.tab_map, my_room.map_pos, player.x, player.y, Global.yellow_cursor, player,lvl)
                     if event.key == K_i:  # lance inventaire
                         player.inventory.use_inventory()
-
                         Global.ui.init_ui_game()
                         my_room.print()
                     if event.key == K_r:  # l
                         # ance le menu de sort
                         print("r")
                     if event.key == K_e:  # lance interact
-                        new_room=examine(my_room.tab_map, my_room.map_pos, player.x, player.y, Global.cyan_cursor, player,lvl)
+                        new_room,pos=examine(my_room.tab_map, my_room.map_pos, player.x, player.y, Global.cyan_cursor, player,lvl)
                         if new_room:
+                            my_room.map_pos[player.x][player.y] = 0
+                            player.x = pos[0]
+                            player.y = pos[1]
                             my_room = new_room
+                            my_room.map_pos[pos[0]][pos[1]] = player
                             turn = 0
-                            my_room.print()
+                            player.PA=player.PA_max
                             my_room.char_tab.append(player)
                             my_room.char_tab.reverse()
+                            my_room.print()
+                            Global.ui.print_PA(player)
+
 
                     if event.key == K_f:  # pich up
                         print("f")
