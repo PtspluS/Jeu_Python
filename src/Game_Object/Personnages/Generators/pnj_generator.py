@@ -34,7 +34,8 @@ descriptions_poor = [
     "Ne boit jamais de vin.",
     "Ne boit pas tout court, mais comment il fait d'ailleurs ?",
     "Il a travaillé dans des mines de trucs brillants, il se souvient plus de quoi.",
-    "Sa plus grande peur ? Que le ciel lui tombe sur la tête."
+    "Sa plus grande peur ? Que le ciel lui tombe sur la tête.",
+    "Avant il etait un fiert chevalier, mais une fleche dans le genou a tout change."
 
 ]
 

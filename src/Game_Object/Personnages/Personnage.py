@@ -14,6 +14,7 @@ class Personnage:
         self.name = nom
         self.desc = desc
         self.hp = vie
+        self.max_hp = vie
         self.money = PO
         self.x = posX
         self.y = posY
@@ -47,5 +48,3 @@ class Personnage:
                 self.PA = self.PA -1
                 Global.ui.print_PA(self)
                 pygame.display.flip()
-
-

@@ -100,7 +100,7 @@ class inventory:
     def pick(self, item):
         """
 
-        :param item: l'itemramassé
+        :param item: l'item ramassé
         :return:
         """
         for i in range(0, len(self.stuff)):
