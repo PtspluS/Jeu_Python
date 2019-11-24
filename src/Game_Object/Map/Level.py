@@ -38,8 +38,6 @@ def sort_map(map):
     a = np.array(map)
     i = (-a).argsort(axis=None, kind='mergesort')
     j = np.unravel_index(i, a.shape)
-    # sort = np.vstack(j).T
-    #sort = [[x, y] for x, y in zip(j[0], j[1])]
     sort = []
     for x,y in zip(j[0], j[1]):
         if mp[x][y] != 0:
