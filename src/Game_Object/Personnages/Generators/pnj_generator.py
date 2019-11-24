@@ -104,16 +104,16 @@ function which generate a farmer
 '''
 def generate_fermier(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 0):
     # def des attributs et de leurs bornes
-    att_max = 10
+    att_max = 20
     vie_max = 150
-    vie_min = 50
+    vie_min = 75
     lvl_max = 3
     lvl_min = 1
 
     PA_list = [2,3,4]
 
-    PO_max = 30
-    PO_min = 10
+    PO_max = 40
+    PO_min = 15
 
     courage_max = 3
     courage_min = 1
@@ -142,9 +142,9 @@ function which generate a miner
 '''
 def generate_mineur(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 0):
     # def des attributs et de leurs bornes
-    att_max = 15
+    att_max = 25
     vie_max = 150
-    vie_min = 75
+    vie_min = 50
     lvl_max = 4
     lvl_min = 2
 
@@ -181,9 +181,9 @@ function which generate a villager
 '''
 def generate_villageois(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 0):
     # def des attributs et de leurs bornes
-    att_max = 10
-    vie_max = 150
-    vie_min = 50
+    att_max = 20
+    vie_max = 200
+    vie_min = 100
     lvl_max = 5
     lvl_min = 3
 
@@ -220,9 +220,9 @@ function which generate a bourgeois
 '''
 def generate_bourgeois(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 0):
     # def des attributs et de leurs bornes
-    att_max = 10
-    vie_max = 150
-    vie_min = 50
+    att_max = 15
+    vie_max = 200
+    vie_min = 125
     lvl_max = 7
     lvl_min = 4
 
