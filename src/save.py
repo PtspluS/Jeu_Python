@@ -13,7 +13,7 @@ def save_game(level, player, path = 'local'):
     save = {
         "date" : str(datetime.now()),
         "player" : pickle.dumps(player),
-        "level" : pickle.dumps(level)
+        #"level" : pickle.dumps(level)
     }
 
     if path == 'local':
