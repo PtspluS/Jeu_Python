@@ -46,29 +46,29 @@ def generate_room(id, id_next, id_previous, type, nb_char=-1, pos_portes=[1, 0, 
     if pos_portes[0] != 0:
         # porte = Porte(id_door, id, id_previous, random.randint(1,size_X-2), size_Y-1)
         porte = pos_portes[0]
-        porte.X = random.randint(1, size_X - 2)
-        porte.Y = size_Y - 1
+        porte.x = random.randint(1, size_X - 2)
+        porte.y = size_Y - 1
         doors.append(porte)
     # porte vers le bas
     if pos_portes[1] != 0:
         # porte = Porte(id_door, id, id_previous, random.randint(1, size_X-2), 0)
         porte = pos_portes[1]
-        porte.X = random.randint(1, size_X - 2)
-        porte.Y = 0
+        porte.x = random.randint(1, size_X - 2)
+        porte.y = 0
         doors.append(porte)
     # porte vers la gauche
     if pos_portes[2] != 0:
         # porte = Porte(id_door, id, id_previous, 0,  random.randint(1,size_Y-2))
         porte = pos_portes[2]
-        porte.X = 0
-        porte.Y = random.randint(1, size_Y - 2)
+        porte.x= 0
+        porte.y = random.randint(1, size_Y - 2)
         doors.append(porte)
     # porte vers la droite
     if pos_portes[3] != 0:
         # porte = Porte(id_door, id, id_previous, size_X-1, random.randint(1, size_Y-2))
         porte = pos_portes[3]
-        porte.X = size_X - 1
-        porte.Y = random.randint(1, size_Y - 2)
+        porte.x = size_X - 1
+        porte.y = random.randint(1, size_Y - 2)
         doors.append(porte)
 
     # on genere les pnj dans la piece
@@ -126,7 +126,7 @@ def generate_room(id, id_next, id_previous, type, nb_char=-1, pos_portes=[1, 0, 
                     proba_decor += random.choice([0.01, 0.05, 0.075, 0.1])
 
             for d in doors:
-                if d.X == i and d.Y == j:
+                if d.x == i and d.y == j:
                     brute_map[i][j] = 2
 
     room = Room(id, brute_map=brute_map, map_pos=map_pos, char_tab=pnj, doors=doors, type=type)

@@ -51,5 +51,5 @@ first_room = generate_room(0,0,0,"champs",pos_portes=[Porte,0,0,0])
 # ancement de la salle
 
 my_player = Player.Player(Global.zombie_bowman,"bob","lol",my_inventory,posX=1,posY=1)
-l = generate_level(nb_room=5)
+l = generate_level(nb_room=3)
 game(l,my_player)

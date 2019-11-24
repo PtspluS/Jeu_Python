@@ -4,7 +4,7 @@ from src import Global
 class Porte(Decor.Decor):
     is_destructible = False
     is_block = True
-    is_walkable = True
+    is_walkable = False
     is_close = True
 
     def __init__(self, id, id_in, id_out, x = 0, y = 0):
@@ -21,8 +21,8 @@ class Porte(Decor.Decor):
         :return: [x,y,room] x et y du perso
         """
         for d in lvl.doors:
-            if d.id_out == self.id:
-                pos = [d.X, d.Y]
+            if d.id_in == self.id_out and d.id_out == self.id_in:
+                pos = [d.x, d.y]
 
                 # une fois qu'on a trouve la porte qui correspond, on cherche la salle en rapport
                 for r in lvl.rooms:
