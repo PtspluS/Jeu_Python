@@ -1,4 +1,4 @@
-# Monster legacie 
+# Monster legacie (Français)
 
 ## Principe du jeu 
 
@@ -36,4 +36,54 @@ Lors du combat, il n'y a que trois issus possibles :
 	-  Soit le joueur tue son (ou ses adversaires) et gagne ses xp (points d'expérience) pour passer de niveau.
 
 Le gain de niveau en combat est géré selon la règle simple qui est que plus l'adversaire est dur à tuer et plus il rapport d'xp.
+
+### Looting 
+
+Lorsqu'un pnj meurt, il fait apparaitre son cadavre. Ce dernier continent l'or qu'avait le feu pnj ainsi que son inventaire. 
+Le joueur peut alors s'en approcher pour récupérer ce qu'il contient.
+⚠️ Une fois le cadavre looté, il disparait, que son inventaire soit vide ou non.
+
+## Classes 
+
+### Joueur
+
+Le joueur peut commencé avec une classe de base qui est :
+
+|Nom de la classe|Attaque par défaut|Vie par défaut |PA défaut|
+|:------------------:|:---------------------:|:----------------:|:--------:|
+|Zombie| moyenne | moyenne | moyen |
+|Spectre|haute|basse|moyen|
+|Vampire|haute|moyenne|bas|
+|Sirène|basse|haute|moyen|
+|Loup garou|haute|basse|haut|
+
+### Marchand
+
+Lors de son parcours, le jouer peut tomber sur différents type de marchands :
+
+|Type|Étale|
+|:----:|:---:|
+|Le lépreux | Armes et armures |
+|La rousse | Magie |
+|Le croc-mort | Vie |
+
+### Les adversaires
+
+Le joueur rencontrera aussi des adversaires lors de son parcours, qui seront : 
+
+|Type|Attaque moyenne|Vie moyenne|PA moyen|Argent moyen|
+|:---:|:---------------------:|:--------------:|:-----------:|:----------:|
+|Fermier|basse | moyenne | bas | bas |
+|Mineur| moyenne | bas | bas | bas |
+|Villageois|moyenne|moyenne|bas|moyen|
+|Bourgeois|basse|haute|bas|haut|
+|Garde|basse|moyenne|moyen|bas|
+|Guerrier|moyenne|haute|moyen|moyen|
+|Archer|moyenne|basse|haut|moyen|
+|Mage|haute|basse|moyen|haut|
+|Chevalier|haute|haute|moyen|haut|
+|Alchimiste|haute|moyenne|haut|haut
+
+
+
 
