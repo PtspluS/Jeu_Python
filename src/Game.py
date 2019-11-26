@@ -157,6 +157,9 @@ def game(my_room, player):
                     if event.key == K_r:  # l
                         # ance le menu de sort
                         print("r")
+                    if event.key == K_SPACE:  # l
+                        # ance le menu de sort
+                        player.PA=0
                     if event.key == K_e:  # lance interact
                        door=examine(my_room.tab_map, my_room.map_pos, player.x, player.y, Global.cyan_cursor, player)
                        if door:

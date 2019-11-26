@@ -71,6 +71,7 @@ class inventory:
             window.blit(self.inventory_tile, (self.start_stuff_x + x * 64, self.start_stuff_y + y * 64))
         if self.stuff[x][y] != 0:
             window.blit(self.stuff[x][y].image, (self.start_stuff_x + x * 64 + 24, self.start_stuff_y + y * 64 + 24))
+            Global.ui.write(self.stuff[x][y].describe())
 
     def blit_equipement(self, x, y, ispress):# affiche l'equipement
         window = Global.window
@@ -82,6 +83,7 @@ class inventory:
             window.blit(self.equipement[x][y].image,
                         (self.start_equipement_x + x * self.space_equipement + 16,
                          self.start_equipement_y + 16 + y * self.space_equipement))
+            Global.ui.write(self.equipement[x][y].describe())
         else:
             window.blit(self.equipement[x][y],
                         (self.start_equipement_x + x * self.space_equipement + 16,
@@ -225,6 +227,8 @@ class inventory:
                     cursor_x = cursor_x + dir_x  # on change le curseur
                     cursor_y = cursor_y + dir_y
                     self.blit_equipement( cursor_x, cursor_y, True)
+
+
                     return cursor_x, cursor_y
             return cursor_x, cursor_y
 
@@ -239,12 +243,7 @@ class inventory:
                 return cursor_x, cursor_y
 
     def use_inventory(self):
-        """
 
-        :param window: le fenetre
-        :param room: la salle
-        :return:
-        """
         window = Global.window
         Global.ui.init_ui_inventory()
         inventory_width = 1300
@@ -340,6 +339,8 @@ class inventory:
         isequip = False
         continuer = 1
         while continuer:  # boucle de gestion de l'inventaire
+
+
             for event in pygame.event.get():
                 pygame.display.flip()
                 if event.type == QUIT:
@@ -366,6 +367,8 @@ class inventory:
                             cursor_x = 0
                             cursor_y = 0
                             self.blit_stuff( cursor_x, cursor_y, True)
+                            if isinstance(self.stuff[cursor_x][cursor_y], Item.Item):
+                                Global.ui.write(self.stuff[cursor_x][cursor_y].describe())
 
                         else:
                             isequip = True  # on passe du stuff a l'inventaire
@@ -373,6 +376,8 @@ class inventory:
                             cursor_x = 1
                             cursor_y = 1
                             self.blit_equipement( cursor_x, cursor_y, True)
+                            if isinstance(self.equipement[cursor_x][cursor_y], Item.Item):
+                                Global.ui.write(self.equipement[cursor_x][cursor_y].describe())
 
                     if event.key == K_ESCAPE:
 

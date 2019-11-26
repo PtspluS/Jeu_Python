@@ -15,4 +15,4 @@ class Bow(Arme.Arme):
             return cursor
 
     def describe(self):
-        print("it'a ", self.name, " with ", self.atk, " damage and a range of", self.range,"\nhe has a value of ", self.value, " PO")
+        return ("it'a "+str(self.name)+ " with "+ str(self.atk)+ " damage and a range of"+ str(self.range)+"he has a value of " +str(self.value)+ " PO")

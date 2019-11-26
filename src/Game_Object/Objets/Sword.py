@@ -18,4 +18,4 @@ class Sword(Arme.Arme):
 
 
     def describe(self):
-        print("it'a ", self.name, " with ", self.atk, " damage\nhe has a value of ", self.value, " PO")
+        return "it'a "+ str(self.name)+ " with "+ str(self.atk)+ " damage he has a value of "+ str(self.value)+ " PO"

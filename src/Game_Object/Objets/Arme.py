@@ -12,7 +12,8 @@ class Arme(Item.Item):
         super().use()
 
     def describe(self):
-        print("it'a ", self.name, " with ", self.atk, " damage\nhe has a value of ", self.value, " PO")
+        #return str("it'a ", self.name, " with ", self.atk, " damage\nhe has a value of ", self.value, " PO")
+        return "e"
 
 
 
