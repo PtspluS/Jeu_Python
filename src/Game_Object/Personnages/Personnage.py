@@ -21,6 +21,7 @@ class Personnage:
         self.lvl = lvl
         self.PA_max = PA_max
         self.PA=PA
+        self.attaque = 0
 
     def heal(self, val):
         self.hp = self.hp + abs(val) % self.max_hp
@@ -47,5 +48,12 @@ class Personnage:
                 self.PA = self.PA -1
                 Global.ui.print_PA(self)
                 pygame.display.flip()
+
+
+    def description(self):
+        txt = str(self.name)+'\n'+str(self.desc)+' '+str(self.attaque)+' '+str(self.hp)+'\t/'+str(self.max_hp)\
+            +' PO: '+str(self.money)+'\tPA: '+str(self.PA_max)
+
+        return txt
 
 

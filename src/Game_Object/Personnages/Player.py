@@ -135,29 +135,32 @@ class Player(Personnage.Personnage):
             save_achivement_first_respawn(player=self)
         victims = sorted(self.victims.items())
 
-        if len(self.victims) != 0:
-            # on retrouve la personne qui a la plus grande victim value
+        # on retrouve la personne qui a la plus grande victim value
+        if len(victims) != 0 :
             victim = victims[-1][1]
+        else:
+            victim = self
 
-            self.hp += round(victim.max_hp*0.1)
-            self.max_hp += round(victim.max_hp*0.1)
-            if self.PA_max > victim.PA_max :
-                self.PA = self.PA_max
-                self.PA_max = self.PA_max
-            else :
-                self.PA = victim.PA_max
-                self.PA_max = victim.PA_max
-            self.xp = 0
-            self.lvl = 1
-            self.inventory = victim.inventory
-            self.PO = victim.PO
-
-            # ne pas oublier de surcharger change_image_from_victim
-            self.change_image_from_victim(victim)
-
+        self.hp = victim.max_hp
+        self.max_hp = victim.max_hp
+        if self.PA_max > victim.PA_max :
+            self.PA = self.PA_max
+            self.PA_max = self.PA_max
         else :
-            self.hp = self.max_hp
-            self.inventory = inventory()
+            self.PA = victim.PA_max
+            self.PA_max = victim.PA_max
+        self.xp = 0
+        self.lvl = 1
+        self.inventory = victim.inventory
+        self.money = victim.money
+        self.x = 1
+        self.y = 1
+        self.attaque = victim.attaque
+
+
+        # ne pas oublier de surcharger change_image_from_victim
+        self.change_image_from_victim(victim)
+
 
         return True
 
