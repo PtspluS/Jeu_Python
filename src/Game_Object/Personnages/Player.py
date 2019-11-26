@@ -122,7 +122,7 @@ class Player(Personnage.Personnage):
 
         return res
 
-    def respawn(self):
+    def die(self):
         """
         change les stats du players par rapport a sa derniere victime pour el faire respawn
         :return: le nouveau level genere au depart
@@ -132,17 +132,25 @@ class Player(Personnage.Personnage):
             self.dead = True
             save_achivement_first_respawn(player=self)
         victims = sorted(self.victims.items())
-        # on retrouve la personne qui a la plus grande victim value
-        victim = victims[-1][1]
 
-        self.hp += round(victim.max_hp*0.1)
-        self.max_hp += round(victim.max_hp*0.1)
-        self.PA = self.PA_max // 2 + victim.PA_max
-        self.PA_max = self.PA_max // 2 + victim.PA_max
-        self.inventory = inventory()
+        if len(self.victims) != 0:
+            # on retrouve la personne qui a la plus grande victim value
+            victim = victims[-1][1]
 
-        # ne pas oublier de surcharger change_image_from_victim
-        self.change_image_from_victim(victim)
+            self.hp += round(victim.max_hp*0.1)
+            self.max_hp += round(victim.max_hp*0.1)
+            self.PA = self.PA_max // 2 + victim.PA_max
+            self.PA_max = self.PA_max // 2 + victim.PA_max
+            self.inventory = inventory()
+
+            # ne pas oublier de surcharger change_image_from_victim
+            self.change_image_from_victim(victim)
+
+        else :
+            self.hp = self.max_hp
+            self.inventory = inventory()
+
+        return True
 
     def change_image_from_victim(self, victim):
         pass
