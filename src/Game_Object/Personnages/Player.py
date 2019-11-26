@@ -4,20 +4,27 @@ from src.Game_Object.Objets import Arme
 from src.Game_Object.Objets import Fist
 from src import Global
 from pygame.locals import *
+import math
+from src.inventory import inventory
+from src.save import save_achivement_first_kill, save_achivement_first_respawn
 
 class Player(Personnage.Personnage):
 
-    def __init__(self, img, nom, desc,inventory, vie=100, PO=50, posX=0, posY=0, lvl=1,PA=6,PA_max=6):
-        super().__init__(img, nom, desc,inventory, vie, PO, posX, posY, lvl,PA,PA_max)
+    def __init__(self, img, nom, inventory, vie=100, PO=50, posX=0, posY=0, lvl=1,PA=6,PA_max=6):
+        super().__init__(img=img,nom= nom,inventory= inventory,vie= vie,PO= PO,posX= posX,posY= posY,lvl= lvl,PA = PA,PA_max= PA_max, desc= "")
+        # liste des victimes
+        self.victims = {}
+        self.dead = False
+        self.xp = 0
+        self.next_level = 100
 
     def level_up(self):
         self.lvl += 1
+        self.hp += self.max_hp*0.05
         self.max_hp += self.max_hp*0.1
 
     def move(self, tab_map, map_pos, x, y):
         super().move(tab_map,map_pos,x,y)
-
-
 
     def attack(self, tab_map, map_pos):  # fonction d'attaque
         """
@@ -74,6 +81,81 @@ class Player(Personnage.Personnage):
                         self.PA=self.PA-weapon.PA
                         Global.ui.print_PA(self)
                     pygame.display.flip()
+
+    def kill(self, victime):
+        """
+        add the victim to the list of the monster's victims
+        :param victime: object Combattant
+        :return:
+        """
+        # sert pour les achevements
+        if len(self.victims) == 0:
+            save_achivement_first_kill(self)
+        value = self.value_of_the_victim(victime)
+        self.victims[value] = victime
+
+        xp = self.xp_increase(victime)
+
+        while self.xp + xp >= self.next_level:
+            self.level_up()
+            self.xp = self.xp + xp % self.next_level
+            xp = xp - (self.next_level - self.xp)
+            self.next_level = self.next_level * (1.25)
+
+        self.xp += xp
+
+    def xp_increase(self, victim):
+        eq = (1+ math.tanh(victim.lvl - self.lvl))*abs(victim.max_hp - self.max_hp)*math.log(victim.attaque, 5)
+
+        return eq
+
+    @staticmethod
+    def value_of_the_victim(victime):
+        """
+        equation to determine the value of a victim.
+        :param victime: object Combatant
+        :return: the result of the equation
+        """
+        if victime.lvl == 1:
+            victime.lvl += 1
+        res = victime.max_hp*victime.attaque/math.log(victime.lvl, 2)
+
+        return res
+
+    def die(self):
+        """
+        change les stats du players par rapport a sa derniere victime pour el faire respawn
+        :return: le nouveau level genere au depart
+        """
+        # sert pour les achevements
+        if not self.dead :
+            self.dead = True
+            save_achivement_first_respawn(player=self)
+        victims = sorted(self.victims.items())
+
+        if len(self.victims) != 0:
+            # on retrouve la personne qui a la plus grande victim value
+            victim = victims[-1][1]
+
+            self.hp += round(victim.max_hp*0.1)
+            self.max_hp += round(victim.max_hp*0.1)
+            self.PA = self.PA_max // 2 + victim.PA_max
+            self.PA_max = self.PA_max // 2 + victim.PA_max
+            self.inventory = inventory()
+
+            # ne pas oublier de surcharger change_image_from_victim
+            self.change_image_from_victim(victim)
+
+        else :
+            self.hp = self.max_hp
+            self.inventory = inventory()
+
+        return True
+
+    def change_image_from_victim(self, victim):
+        pass
+
+
 
 
 
