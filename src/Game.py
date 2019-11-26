@@ -177,7 +177,7 @@ def game(lvl, player):
                 vitime = my_room.map_pos[i.x][i.y]
                 if vitime.die():
                     pass
-                if not isinstance(i, Player):
+                if not isinstance(i, Player.Player):
                     player.kill(i)
                 my_room.char_tab.remove(i)
         if my_room.char_tab[turn].PA <= 0:

@@ -20,7 +20,7 @@ class Player(Personnage.Personnage):
 
     def level_up(self):
         self.lvl += 1
-        self.hp = self.max_hp*0.05
+        self.hp += self.max_hp*0.05
         self.max_hp += self.max_hp*0.1
 
     def move(self, tab_map, map_pos, x, y):
@@ -99,7 +99,7 @@ class Player(Personnage.Personnage):
         while self.xp + xp >= self.next_level:
             self.level_up()
             self.xp = self.xp + xp % self.next_level
-            xp = (self.next_level - self.xp)
+            xp = xp - (self.next_level - self.xp)
             self.next_level = self.next_level * (1.25)
 
         self.xp += xp
