@@ -14,18 +14,14 @@ class Porte(Decor.Decor):
         image = Global.door
         super().__init__(x, y, image)
 
-    def open(self, lvl):
+    def open(self):
         """
         permet de savoir ou la porte mene
         :param lvl: level sur lequel on joue
         :return: [x,y,room] x et y du perso
-        """
-        for d in lvl.doors:
-            if d.id_in == self.id_out and d.id_out == self.id_in:
-                pos = [d.x, d.y]
 
-                # une fois qu'on a trouve la porte qui correspond, on cherche la salle en rapport
-                for r in lvl.rooms:
-                    if r.id == d.id_in:
-                        return [pos, r]
+
+         """
+        return self
+
 

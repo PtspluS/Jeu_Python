@@ -1,6 +1,7 @@
 import pygame
 
-from src import Global
+from src import Global, Game_level
+from src import Game_room
 from src.Game_Object.Map.terrain.Porte import Porte
 from src.Game import game
 from src import inventory
@@ -44,12 +45,11 @@ my_inventory.pick(sword)
 my_inventory.pick(bow)
 # character_tab est le tableau contenant tput les personnages de la salle
 # creation de la salle
-Porte=Porte(0,0,0)
-first_room = generate_room(0,0,0,"champs",pos_portes=[Porte,0,0,0])
+
 
 
 # ancement de la salle
 
-my_player = Player.Player(Global.zombie_bowman,"bob","lol",my_inventory,posX=1,posY=1)
+my_player = Player.Player(img=Global.zombie_bowman,nom="bob",inventory=my_inventory,posX=1,posY=1)
 l = generate_level(nb_room=3)
-game(l,my_player)
+Game_level.game_level()

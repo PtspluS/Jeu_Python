@@ -45,7 +45,7 @@ def anim_cursor(tab_map, map_pos, cursor, red_cursor, dir_x, dir_y, player, imag
 
 
 # Faonction qui permet d'examiner les personnage
-def examine(tab_map, map_pos, x, y, image_cursor, player, lvl):
+def examine(tab_map, map_pos, x, y, image_cursor, player):
     """
 
     :param window: la fenetre
@@ -70,7 +70,7 @@ def examine(tab_map, map_pos, x, y, image_cursor, player, lvl):
                     continuer = 0
                     if map_pos[cursor.x][cursor.y] != 0:
                         window.blit(map_pos[cursor.x][cursor.y].img, (cursor.x * 64, cursor.y * 64))
-                    return False, False
+                    return False
                 if event.key == K_s or event.key == K_DOWN:
                     cursor = anim_cursor(tab_map, map_pos, cursor, image_cursor, 0, 1, player, image_cursor)
 
@@ -90,32 +90,37 @@ def examine(tab_map, map_pos, x, y, image_cursor, player, lvl):
                     continuer = 0
                     if image_cursor == Global.yellow_cursor:
                         Global.ui.write(map_pos[cursor.x][cursor.y].desc)
-                        return False, False
+                        return False
                     else:
                         if isinstance(map_pos[cursor.x][cursor.y], Cadavre.Cadavre):
-                            return False, False
+                            return False
                         elif isinstance(tab_map[cursor.x][cursor.y], Porte.Porte):
-                            pos, room = tab_map[cursor.x][cursor.y].open(lvl)
+                            door = tab_map[cursor.x][cursor.y].open()
 
-                            return room,pos
+                            return door
                         else:
-                            return False, False
+                            return False
 
 
-def game(lvl, player):
+def game(my_room, player):
     """
     :param window: fenetre
     :param my_room: la salle
     :param character_tab: le tableau des personnages de la salles
     :return:
     """
-    my_room=lvl.rooms[0]
-    my_room.map_pos[1][1] = player
-    my_room.char_tab.append(player)
-    my_room.char_tab.reverse()
-    window = Global.window
-    turn = 0  # gestion des tours
 
+    my_room.map_pos[player.x][player.y] = player
+    player.PA = player.PA_max
+    if len(my_room.char_tab)==0:
+        my_room.char_tab.append(player)
+        my_room.char_tab.reverse()
+    elif not isinstance( my_room.char_tab[0],Player.Player):
+        my_room.char_tab.append(player)
+        my_room.char_tab.reverse()
+
+
+    window = Global.window
     Global.ui.write(player.desc)
     Global.ui.print_coin(player)
     Global.ui.print_life(player)
@@ -123,6 +128,7 @@ def game(lvl, player):
     Global.ui.init_ui_game()
     my_room.print()
     pygame.display.flip()
+    turn=0
     continuer = 1
     while continuer:  # boucle du jeu
 
@@ -143,7 +149,7 @@ def game(lvl, player):
                     if event.key == K_q:  # lance la fonction d'attaque
                         player.attack(my_room.tab_map, my_room.map_pos)
                     if event.key == K_x:  # lance la fonction d'examination
-                        examine(my_room.tab_map, my_room.map_pos, player.x, player.y, Global.yellow_cursor, player,lvl)
+                        examine(my_room.tab_map, my_room.map_pos, player.x, player.y, Global.yellow_cursor, player)
                     if event.key == K_i:  # lance inventaire
                         player.inventory.use_inventory()
                         Global.ui.init_ui_game()
@@ -152,37 +158,27 @@ def game(lvl, player):
                         # ance le menu de sort
                         print("r")
                     if event.key == K_e:  # lance interact
-                        new_room,pos=examine(my_room.tab_map, my_room.map_pos, player.x, player.y, Global.cyan_cursor, player,lvl)
-                        if new_room:
-                            my_room.map_pos[player.x][player.y] = 0
-                            player.x = pos[0]
-                            player.y = pos[1]
-                            my_room = new_room
-                            my_room.map_pos[pos[0]][pos[1]] = player
-                            turn = 0
-                            player.PA=player.PA_max
-                            my_room.char_tab.append(player)
-                            my_room.char_tab.reverse()
-                            my_room.print()
-                            Global.ui.print_PA(player)
-
-
+                       door=examine(my_room.tab_map, my_room.map_pos, player.x, player.y, Global.cyan_cursor, player)
+                       if door:
+                           my_room.map_pos[player.x][player.y] = 0
+                           return door
                     if event.key == K_f:  # pich up
                         print("f")
         else:
             my_room.char_tab[turn].play(my_room)
 
-        for i in my_room.char_tab:
-            if i.hp <= 0:
-                vitime = my_room.map_pos[i.x][i.y]
-                if vitime.die():
-                    pass
-                if not isinstance(i, Player.Player):
-                    player.kill(i)
-                my_room.char_tab.remove(i)
         if my_room.char_tab[turn].PA <= 0:
             my_room.char_tab[turn].PA = my_room.char_tab[turn].PA_max
             Global.ui.print_PA(my_room.char_tab[turn])
             turn = (turn + 1) % len(my_room.char_tab)
+        for i in my_room.char_tab:
+            if i.hp <= 0:
+                victime = my_room.map_pos[i.x][i.y]
+                if victime.die()==True:
+                   return player
+                else:
+                    player.kill(i)
+                my_room.char_tab.remove(i)
+
         Global.ui.print_life(player)
         pygame.display.flip()
