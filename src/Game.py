@@ -2,7 +2,7 @@ import math
 from src.Game_Object.Map.Generator.game_generator import generate_room
 from src.Game_Object.Map.terrain import Porte
 import pygame
-from src.Game_Object.Personnages import Cadavre
+from src.Game_Object.Personnages import Cadavre, Marchand
 from src.Game_Object.Personnages import Player
 from pygame.locals import *
 import math
@@ -63,7 +63,7 @@ def examine(tab_map, map_pos, x, y, image_cursor, player):
         for event in pygame.event.get():
             pygame.display.flip()
             if event.type == QUIT:
-                continuer = 0
+                return False
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:  # retour
                     window.blit(cursor.image, (cursor.x * 64, cursor.y * 64))
@@ -97,6 +97,9 @@ def examine(tab_map, map_pos, x, y, image_cursor, player):
                             map_pos[cursor.x][cursor.y]=0
                             Global.ui.init_ui_game()
                             return False
+
+
+
                         elif isinstance(tab_map[cursor.x][cursor.y], Porte.Porte):
                             door = tab_map[cursor.x][cursor.y].open()
 
@@ -140,6 +143,7 @@ def game(my_room, player):
 
                 if event.type == QUIT:
                     continuer = 0
+                    return False
                 if event.type == KEYDOWN:  # deplacement
                     if event.key == K_s or event.key == K_DOWN:
                         player.move(my_room.tab_map, my_room.map_pos, player.x, player.y + 1)

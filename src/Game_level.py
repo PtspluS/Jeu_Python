@@ -29,3 +29,4 @@ def game_level():
     while continuer:
         lvl=generate_level(nb_room=5)
         player=Game_room.game_room(lvl,player)
+        continuer=0
