@@ -1,16 +1,12 @@
 import pygame
 
 from src import Global, Game_level
-from src import Game_room
-from src.Game_Object.Map.terrain.Porte import Porte
-from src.Game import game
 from src import inventory
 from src.Game_Object.Personnages.Zombi import Zombi
-from src.Game_Object.Objets import Arme
 from src.Game_Object.Objets import Sword
 from src.Game_Object.Objets import Bow
 from src.Game_Object.Objets import Tete
-from src.Game_Object.Map.Generator.game_generator import generate_room, generate_level
+from src.Game_Object.Map.Generator.game_generator import generate_level
 
 # Fonction pour tester
 

@@ -5,6 +5,7 @@ from src.Game_Object.Personnages.Generators.pnj_generator import generate_civil
 from src.Game_Object.Map.terrain.Porte import Porte
 from src.Game_Object.Map.Room import Room
 from src.Game_Object.Map.Level import Level
+from src.Game_Object.Personnages.Generators.marchand_generator import generate_marchand
 
 
 # pos_portes = [droite, gauche, haut, bas]
@@ -31,6 +32,8 @@ def generate_room(id, id_next, id_previous, type, nb_char=-1, pos_portes=[1, 0, 
         nb_char = random.randint(min_char, max_char)
     elif marchand:
         nb_char = 0
+        momo = generate_marchand(t='Lepreux')
+        # momo = generate_marchand()
     elif last_room:
         nb_char = random.randint(0, 2)
         boss = 1
@@ -93,18 +96,30 @@ def generate_room(id, id_next, id_previous, type, nb_char=-1, pos_portes=[1, 0, 
     # on regarde ou on peut mettre les persos
     x_possible = list(range(2, size_X - 2))
     y_possible = list(range(2, size_Y - 2))
-    for i in range(nb_char):
+    if not marchand :
+        for i in range(nb_char):
+            # on donne des pos rng aux persos et on retire du tab les endroit ou ils sont
+            x = random.choice(x_possible)
+            y = random.choice(y_possible)
+            x_possible.remove(x)
+            y_possible.remove(y)
+            # on genere un civil pour le moment mais a la fin ca sera un mec selon son type
+            p = generate_civil(type=random.choice(type_present))
+            p.x = x
+            p.y = y
+            pnj.append(p)
+            map_pos[x][y] = p
+    elif marchand :
         # on donne des pos rng aux persos et on retire du tab les endroit ou ils sont
         x = random.choice(x_possible)
         y = random.choice(y_possible)
         x_possible.remove(x)
         y_possible.remove(y)
-        # on genere un civil pour le moment mais a la fin ca sera un mec selon son type
-        p = generate_civil(type=random.choice(type_present))
-        p.x = x
-        p.y = y
-        pnj.append(p)
-        map_pos[x][y] = p
+
+        momo.x = x
+        momo.y = y
+        pnj.append(momo)
+        map_pos[x][y] = momo
 
     # on genere la map brute
     brute_map = np.zeros((size_X, size_Y), dtype='int64')
@@ -272,9 +287,8 @@ def generate_fields(brute_map):
                 id_porte += 1
 
         if ratio_pop_marchand > random.random():
-            ratio_pop_marchand -= random.choice([0.1, 0.2, 0.3])
-            # pop_marchand = True
-            pass
+            ratio_pop_marchand = 0
+            pop_marchand = True
         else:
             ratio_pop_marchand += random.choice([0.1, 0.2, 0.3])
         if i < len(srt_map) // 3:
