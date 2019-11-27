@@ -10,8 +10,9 @@ from src.inventory import inventory
 
 class Player(Personnage.Personnage):
 
-    def __init__(self, img, nom, inventory, vie=100, PO=50, posX=0, posY=0, lvl=1,PA=6,PA_max=6):
-        super().__init__(img=img,nom= nom,inventory= inventory,vie= vie,PO= PO,posX= posX,posY= posY,lvl= lvl,PA = PA,PA_max= PA_max, desc= "")
+    def __init__(self, img, nom, inventory, vie=100, PO=50, posX=0, posY=0, lvl=1, PA=6, PA_max=6):
+        super().__init__(img=img, nom=nom, inventory=inventory, vie=vie, PO=PO, posX=posX, posY=posY, lvl=lvl, PA=PA,
+                         PA_max=PA_max, desc="")
         # liste des victimes
         self.victims = {}
         self.dead = False

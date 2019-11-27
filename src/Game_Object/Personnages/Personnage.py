@@ -14,6 +14,7 @@ class Personnage:
         self.name = nom
         self.desc = desc
         self.hp = vie
+        self.max_hp = vie
         self.money = PO
         self.x = posX
         self.y = posY
@@ -51,8 +52,8 @@ class Personnage:
 
 
     def description(self):
-        txt = str(self.name)+''+str(self.desc)+' ATK:'+str(self.attaque)+' HP:'+str(self.hp)+'/'+str(self.max_hp)\
-            +' PO: '+str(self.money)+'PA: '+str(self.PA_max)
+        txt = str(self.name)+' '+str(self.desc)+' ATK:'+str(self.attaque)+' HP:'+str(self.hp)+'/'+str(self.max_hp)\
+            +' PO: '+str(self.money)+' PA: '+str(self.PA_max)
 
         return txt
 

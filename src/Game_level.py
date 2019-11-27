@@ -5,7 +5,7 @@ from src import Game_room
 from src.Game_Object.Map.terrain.Porte import Porte
 from src.Game import game
 from src import inventory
-from src.Game_Object.Personnages import Player
+from src.Game_Object.Personnages.Zombi import Zombi
 from src.Game_Object.Objets import Arme
 from src.Game_Object.Objets import Sword
 from src.Game_Object.Objets import Bow
@@ -23,7 +23,7 @@ def game_level():
     bow = Bow.Bow("bow", imgepee, 100, 10)
     my_inventory.pick(sword)
     my_inventory.pick(bow)
-    player = Player.Player(img=Global.zombie_bowman, nom="bob", inventory=my_inventory, posX=1, posY=1)
+    player = Zombi(img=Global.zombie_bowman,nom="bob",inventory=my_inventory,posX=1,posY=1)
 
     continuer=1
     while continuer:
