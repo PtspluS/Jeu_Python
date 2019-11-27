@@ -89,10 +89,13 @@ def examine(tab_map, map_pos, x, y, image_cursor, player):
                         window.blit(map_pos[cursor.x][cursor.y].img, (cursor.x * 64, cursor.y * 64))
                     continuer = 0
                     if image_cursor == Global.yellow_cursor:
-                        Global.ui.write(map_pos[cursor.x][cursor.y].desc)
+                        Global.ui.write(map_pos[cursor.x][cursor.y].description())
                         return False
                     else:
                         if isinstance(map_pos[cursor.x][cursor.y], Cadavre.Cadavre):
+                            map_pos[cursor.x][cursor.y].inventory.use_inventory(player)
+                            map_pos[cursor.x][cursor.y]=0
+                            Global.ui.init_ui_game()
                             return False
                         elif isinstance(tab_map[cursor.x][cursor.y], Porte.Porte):
                             door = tab_map[cursor.x][cursor.y].open()
@@ -151,7 +154,7 @@ def game(my_room, player):
                     if event.key == K_x:  # lance la fonction d'examination
                         examine(my_room.tab_map, my_room.map_pos, player.x, player.y, Global.yellow_cursor, player)
                     if event.key == K_i:  # lance inventaire
-                        player.inventory.use_inventory()
+                        player.inventory.use_inventory(player)
                         Global.ui.init_ui_game()
                         my_room.print()
                     if event.key == K_r:  # l
@@ -165,23 +168,26 @@ def game(my_room, player):
                        if door:
                            my_room.map_pos[player.x][player.y] = 0
                            return door
-                    if event.key == K_f:  # pich up
-                        print("f")
+                       else :
+                           my_room.print()
+
+
         else:
             my_room.char_tab[turn].play(my_room)
 
-        if my_room.char_tab[turn].PA <= 0:
-            my_room.char_tab[turn].PA = my_room.char_tab[turn].PA_max
-            Global.ui.print_PA(my_room.char_tab[turn])
-            turn = (turn + 1) % len(my_room.char_tab)
         for i in my_room.char_tab:
             if i.hp <= 0:
-                victime = my_room.map_pos[i.x][i.y]
-                if victime.die()==True:
+                cadavre=i.die()
+                if cadavre==True:
                    return player
                 else:
                     player.kill(i)
                 my_room.char_tab.remove(i)
-
+                my_room.map_pos[i.x][i.y]=cadavre
+                my_room.print()
+        if my_room.char_tab[turn].PA <= 0:
+            my_room.char_tab[turn].PA = my_room.char_tab[turn].PA_max
+            Global.ui.print_PA(my_room.char_tab[turn])
+            turn = (turn + 1) % len(my_room.char_tab)
         Global.ui.print_life(player)
         pygame.display.flip()

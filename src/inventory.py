@@ -90,7 +90,7 @@ class inventory:
                          self.start_equipement_y + 16 + y * self.space_equipement))
 
     def throw(self,  cursor_x, cursor_y, isequip):
-        window = Global.window
+
         if isequip:
             self.equipement[cursor_x][cursor_y] = self.empty_equipement[cursor_x][
                 cursor_y]
@@ -98,6 +98,13 @@ class inventory:
         else:
             self.stuff[cursor_x][cursor_x] = 0
             self.blit_stuff(cursor_x,cursor_y,True)
+
+    def buy(self, inventory ,cursor_x, cursor_y, isequip):
+        if isequip:
+            inventory.pick(self.equipement[cursor_x][cursor_y])
+        else : inventory.pick(self.stuff[cursor_x][cursor_y])
+
+
 
     def pick(self, item):
         """
@@ -242,7 +249,7 @@ class inventory:
             else:
                 return cursor_x, cursor_y
 
-    def use_inventory(self):
+    def use_inventory(self,player):
 
         window = Global.window
         Global.ui.init_ui_inventory()
@@ -357,7 +364,7 @@ class inventory:
                     if event.key == K_e:
                         self.equipe( cursor_x, cursor_y, isequip)
                     if event.key == K_r:
-                        print("use")
+                        self.buy(player.inventory,cursor_x,cursor_y,isequip)
                     if event.key == K_t:
                         self.throw( cursor_x, cursor_y, isequip)
                     if event.key == K_TAB:

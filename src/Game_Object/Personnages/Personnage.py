@@ -51,8 +51,8 @@ class Personnage:
 
 
     def description(self):
-        txt = str(self.name)+'\n'+str(self.desc)+' '+str(self.attaque)+' '+str(self.hp)+'\t/'+str(self.max_hp)\
-            +' PO: '+str(self.money)+'\tPA: '+str(self.PA_max)
+        txt = str(self.name)+''+str(self.desc)+' ATK:'+str(self.attaque)+' HP:'+str(self.hp)+'/'+str(self.max_hp)\
+            +' PO: '+str(self.money)+'PA: '+str(self.PA_max)
 
         return txt
 
