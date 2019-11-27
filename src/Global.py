@@ -23,7 +23,7 @@ inventory_shoes = pygame.image.load('sprite/inventory_shoes.png')
 inventory_ring = pygame.image.load('sprite/inventory_ring.png')
 red_cursor = pygame.image.load('sprite/cursor.png')
 red_cursor.set_alpha(100)
-yellow_cursor = pygame.image.load('sprite/yellow_cursor.png')  # curseur d'examination
+yellow_cursor = pygame.image.load('src/sprite/yellow_cursor.png')  # curseur d'examination
 yellow_cursor.set_alpha(100)
 cyan_cursor = pygame.image.load('sprite/cyan_cursor.png')  # curseur d'examination
 cyan_cursor.set_alpha(100)
