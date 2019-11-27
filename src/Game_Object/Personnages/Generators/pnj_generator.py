@@ -70,7 +70,7 @@ descriptions_rich = [
 
 ]
 
-img_farmer = Global.bowman
+img_farmer = Global.farmer
 img_miner = Global.miner
 img_villager = Global.villager
 img_bourgeois = Global.richman
@@ -135,7 +135,7 @@ def generate_fermier(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 
         PO = random.randint(PO_min, PO_max)
 
     # on return un objet fermier avec les attributs aleatoires
-    return Fermier.Fermier(img_farmer, name, vie = vie, PO = PO, inventory = stuff, attaque = attaque, lvl = niveau, PA = PA, courage = courage, desc= desc)
+    return Fermier.Fermier(img_farmer, name, vie = vie, PO = PO, inventory = stuff, attaque = attaque, lvl = niveau, PA = PA, desc= desc)
 
 '''
 function which generate a miner

@@ -94,6 +94,7 @@ def examine(tab_map, map_pos, x, y, image_cursor, player):
                     else:
                         if isinstance(map_pos[cursor.x][cursor.y], Cadavre.Cadavre):
                             map_pos[cursor.x][cursor.y].inventory.use_inventory(player)
+                            player.money+=map_pos[cursor.x][cursor.y].money
                             map_pos[cursor.x][cursor.y]=0
                             Global.ui.init_ui_game()
                             return False
@@ -127,11 +128,12 @@ def game(my_room, player):
 
 
     window = Global.window
+    Global.ui.init_ui_game()
     Global.ui.write(player.desc)
     Global.ui.print_coin(player)
     Global.ui.print_life(player)
     Global.ui.print_PA(player)
-    Global.ui.init_ui_game()
+
     my_room.print()
     pygame.display.flip()
     turn=0
@@ -163,7 +165,8 @@ def game(my_room, player):
                         my_room.print()
                     if event.key == K_r:  # l
                         # ance le menu de sort
-                        print("r")
+                        player.spell_book.open(my_room)
+                        my_room.print()
                     if event.key == K_SPACE:  # l
                         # ance le menu de sort
                         player.PA=0
@@ -183,7 +186,19 @@ def game(my_room, player):
             if i.hp <= 0:
                 cadavre=i.die()
                 if cadavre==True:
-                   return player
+                    wait=1
+                    window.blit(Global.fond_death, (0, 0))
+                    pygame.display.flip()
+                    pygame.mixer.music.stop()
+                    pygame.mixer.music.load('sprite/music_death.mp3')
+                    pygame.mixer.music.play(-1)
+                    while wait:
+                        for event in pygame.event.get():
+                            if event.type == KEYDOWN:
+                                wait=0
+                                pygame.mixer.music.stop()
+
+                    return player
                 else:
                     player.kill(i)
                 my_room.char_tab.remove(i)

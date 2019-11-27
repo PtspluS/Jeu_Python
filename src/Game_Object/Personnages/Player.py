@@ -163,6 +163,7 @@ class Player(Personnage.Personnage):
         self.change_image_from_victim(victim)
 
 
+
         return True
 
     def change_image_from_victim(self, victim):

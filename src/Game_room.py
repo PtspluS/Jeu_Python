@@ -21,7 +21,8 @@ def game_room(lvl,player):
                     for r in lvl.rooms:
                         if r.id == d.id_in:
                             room = r
-        else : continuer =0
+        else :
+            return False
 
 
 
