@@ -42,7 +42,7 @@ class Player(Personnage.Personnage):
         elif isinstance(self.inventory.equipement[2][1],Arme.Arme):
             weapon = self.inventory.equipement[2][1]
         else:
-            weapon = Fist.Fist("fist", "", 10, 0)
+            weapon = Fist.Fist("fist", "", self.attaque, 0)
 
         continuer = 1
         cursor = tab_map[self.x][self.y]

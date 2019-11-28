@@ -1,6 +1,7 @@
 from src.Game_Object.Objets.Sword import Sword
 from src.Game_Object.Objets.Bow import Bow
 import random
+from src import Global
 
 def generate_sword(rarete = 1):
     epe_type = [
@@ -56,7 +57,7 @@ def generate_sword(rarete = 1):
         value_max = 1000
         value_min = 10
 
-        img = ""
+        img = Global.coin
 
         atk_max = 30
         atk_min = 5
@@ -67,7 +68,7 @@ def generate_sword(rarete = 1):
         value_max = 2500
         value_min = 500
 
-        img = ""
+        img = Global.coin
 
         atk_max = 50
         atk_min = 20
@@ -77,7 +78,7 @@ def generate_sword(rarete = 1):
         value_max = 8000
         value_min = 1000
 
-        img = ""
+        img = Global.coin
 
         atk_max = 100
         atk_min = 50
@@ -159,7 +160,7 @@ def generate_bow(rarete = 1):
         atk_max = 30
 
         name = random.choice(arc_type)+' '+random.choice(adj_1)
-        img = ""
+        img = Global.coin
 
     elif rarete == 2:
         range_min = 3
@@ -172,7 +173,7 @@ def generate_bow(rarete = 1):
         atk_max = 50
 
         name = random.choice(arc_type) + ' ' + random.choice(adj_2)
-        img = ""
+        img = Global.coin
     elif rarete == 3:
         range_min = 4
         range_max = 6
@@ -184,7 +185,7 @@ def generate_bow(rarete = 1):
         atk_max = 95
 
         name = random.choice(arc_type) + ' ' + random.choice(adj_3)
-        img = ""
+        img = Global.coin
     elif rarete == 4:
         arc = [
             ["Gandiva", "", 134, 10000, 8],

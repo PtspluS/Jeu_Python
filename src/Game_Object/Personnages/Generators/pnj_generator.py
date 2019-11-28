@@ -2,6 +2,7 @@ from src.Game_Object.Personnages import Fermier, Mineur, Villageois, Bourgeois
 import random
 from src import inventory
 from src import Global
+from src.Game_Object.Objets.Generators.generate_inventory import generate_stuff
 
 # partie poor pour les fermiers et mineurs
 list_name_poor = [
@@ -134,6 +135,7 @@ def generate_fermier(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 
     if PO == 0:
         PO = random.randint(PO_min, PO_max)
 
+    stuff = generate_stuff(niveau)
     # on return un objet fermier avec les attributs aleatoires
     return Fermier.Fermier(img_farmer, name, vie = vie, PO = PO, inventory = stuff, attaque = attaque, lvl = niveau, PA = PA, desc= desc)
 
@@ -172,6 +174,7 @@ def generate_mineur(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 0
     if PO == 0:
         PO = random.randint(PO_min, PO_max)
 
+    stuff = generate_stuff(niveau)
     # on renvoit un obj mineur
     return Mineur.Mineur(img_miner, name, vie = vie, PO = PO, inventory = stuff, attaque = attaque, lvl = niveau, PA = PA, desc= desc)
 
@@ -211,6 +214,7 @@ def generate_villageois(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO
     if PO == 0:
         PO = random.randint(PO_min, PO_max)
 
+    stuff = generate_stuff(niveau)
     # on renvoit un obj villageois
     return Villageois.Villageois(img_villager, name,inventory=stuff, vie = vie, PO = PO, attaque = attaque, lvl = niveau, PA = PA, desc= desc)
 
@@ -250,5 +254,6 @@ def generate_bourgeois(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO 
     if PO == 0:
         PO = random.randint(PO_min, PO_max)
 
+    stuff = generate_stuff(niveau)
     # on renvoit un objet bourgeois
     return Bourgeois.Bourgeois(img_bourgeois, name, vie = vie, PO = PO, inventory = stuff, attaque = attaque, lvl = niveau, PA = PA, desc = desc)
