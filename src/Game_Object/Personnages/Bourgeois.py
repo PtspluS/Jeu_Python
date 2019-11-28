@@ -5,3 +5,4 @@ class Bourgeois(Combattant.Combattant):
                  PA=1):
         super().__init__(img, nom, desc, inventory, vie, PO, posX, posY, attaque, lvl)
         self.PA = PA
+        self.PA_max = PA

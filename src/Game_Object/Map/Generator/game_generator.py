@@ -303,7 +303,7 @@ def generate_fields(brute_map):
                           pos_portes=tab, marchand=pop_marchand)
         rooms.append(r)
 
-    rooms.reverse()
+    #rooms.reverse()
     lvl = Level(map=brute_map, type=1, doors=portes, rooms=rooms)
     return lvl
 

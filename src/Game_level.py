@@ -11,6 +11,7 @@ from src.Game_Object.Objets import Sword
 from src.Game_Object.Objets import Bow
 from src.Game_Object.Objets import Tete
 from src.Game_Object.Map.Generator.game_generator import generate_room, generate_level
+import random
 
 
 def game_level():
@@ -29,7 +30,8 @@ def game_level():
     while continuer:
         pygame.mixer.music.load('sprite/music.mp3')
         pygame.mixer.music.play(-1)
-        lvl=generate_level(nb_room=5)
+        nb_room = random.randint(7,12)
+        lvl=generate_level(nb_room=nb_room)
         player=Game_room.game_room(lvl,player)
         if not player:
             pygame.mixer.music.stop()
