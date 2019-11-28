@@ -2,7 +2,7 @@ from src.Game_Object.Objets.Generators.arme_generator import generate_bow, gener
 from src.Game_Object.Personnages.Rousse import Rousse
 from src.Game_Object.Personnages.Lepreux import Lepreux
 from src.Game_Object.Personnages.Croque_mort import Croque_mort
-from src.inventory import inventory
+from src.marchant_inventory import marchant_inventory
 from src import Global
 
 import random
@@ -25,7 +25,7 @@ def generate_rousse():
 
 
 def generate_lepreux():
-    inv = inventory()
+    inv = marchant_inventory()
 
     nb_item = random.randint(3, 7)
 

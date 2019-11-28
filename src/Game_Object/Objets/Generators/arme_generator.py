@@ -57,7 +57,7 @@ def generate_sword(rarete = 1):
         value_max = 1000
         value_min = 10
 
-        img = Global.coin
+        img = Global.epe2
 
         atk_max = 30
         atk_min = 5
@@ -68,7 +68,7 @@ def generate_sword(rarete = 1):
         value_max = 2500
         value_min = 500
 
-        img = Global.coin
+        img = Global.epe2
 
         atk_max = 50
         atk_min = 20
@@ -78,7 +78,7 @@ def generate_sword(rarete = 1):
         value_max = 8000
         value_min = 1000
 
-        img = Global.coin
+        img = Global.epe3
 
         atk_max = 100
         atk_min = 50
@@ -86,13 +86,13 @@ def generate_sword(rarete = 1):
         name = random.choice(epe_type) + " " + random.choice(adj_3)
     elif rarete == 4:
         legendaire = [
-            ["Flamberge volcanique", "", 169, 16753],
-            ["Sabre de damocles", "", 160, 14985],
-            ["Epee en diamand", "", 156, 10185],
-            ["Claymor nordique", "", 179, 11140],
-            ["Manoda", "", 183, 19566],
-            ["Hotmourne", "", 164,  17083],
-            ["Slave Sword", "", 151, 11230]
+            ["Flamberge volcanique", Global.epe4, 169, 16753],
+            ["Sabre de damocles", Global.epe4, 160, 14985],
+            ["Epee en diamand", Global.epe4, 156, 10185],
+            ["Claymor nordique", Global.epe4, 179, 11140],
+            ["Manoda", Global.epe4, 183, 19566],
+            ["Hotmourne", Global.epe4, 164,  17083],
+            ["Slave Sword", Global.epe4, 151, 11230]
         ]
 
         sw = random.choice(legendaire)
@@ -160,7 +160,7 @@ def generate_bow(rarete = 1):
         atk_max = 30
 
         name = random.choice(arc_type)+' '+random.choice(adj_1)
-        img = Global.coin
+        img = Global.arc1
 
     elif rarete == 2:
         range_min = 3
@@ -173,7 +173,8 @@ def generate_bow(rarete = 1):
         atk_max = 50
 
         name = random.choice(arc_type) + ' ' + random.choice(adj_2)
-        img = Global.coin
+        img = Global.arc1
+
     elif rarete == 3:
         range_min = 4
         range_max = 6
@@ -185,13 +186,14 @@ def generate_bow(rarete = 1):
         atk_max = 95
 
         name = random.choice(arc_type) + ' ' + random.choice(adj_3)
-        img = Global.coin
+        img = Global.arc1
+
     elif rarete == 4:
         arc = [
-            ["Gandiva", "", 134, 10000, 8],
-            ["Vijaya", "", 126, 11485, 9],
-            ["Penelope", "", 145, 19352, 12],
-            ["Arc de Paris", "", 200, 18123, 3]
+            ["Gandiva", Global.arc4, 134, 10000, 8],
+            ["Vijaya", Global.arc4, 126, 11485, 9],
+            ["Penelope", Global.arc4, 145, 19352, 12],
+            ["Arc de Paris", Global.arc4, 200, 18123, 3]
         ]
 
         bw = random.choice(arc)

@@ -167,6 +167,19 @@ class marchant_inventory:
                         # on reessine la map
                         continuer = 0
 
+    def pick(self, item):
+        """
+
+        :param item: l'itemramassé
+        :return:
+        """
+        for i in range(0, len(self.stuff)):
+            for j in range(0, len(self.stuff[i])):  # si il reste de la place
+                if self.stuff[i][j] == 0:
+                    self.stuff[i][j] = item
+                    return i, j
+        return -1, -1
+
 
 
 

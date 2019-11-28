@@ -22,9 +22,9 @@ def game_level():
     imgepee = pygame.image.load('sprite/ble.png')
     sword = Sword.Sword("epee", imgepee, 100, 10)
     bow = Bow.Bow("bow", imgepee, 100, 10)
-    my_inventory.pick(sword)
-    my_inventory.pick(bow)
-    player = Zombi.Zombi(img=Global.zombie, nom="bob", inventory=my_inventory, posX=1, posY=1)
+    #my_inventory.pick(sword)
+    #my_inventory.pick(bow)
+    player = Zombi.Zombi(img=Global.zombie, nom="You", inventory=my_inventory, posX=1, posY=1)
 
     continuer=1
     while continuer:

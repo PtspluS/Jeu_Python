@@ -37,8 +37,8 @@ helmet=Tete.Tete("casque",imgcasque, 1, 10)
 imgepee = pygame.image.load('sprite/ble.png')
 sword=Sword.Sword("epee",imgepee, 100, 10)
 bow=Bow.Bow("bow",imgepee, 100, 10)
-my_inventory.pick(sword)
-my_inventory.pick(bow)
+#my_inventory.pick(sword)
+#my_inventory.pick(bow)
 # character_tab est le tableau contenant tput les personnages de la salle
 # creation de la salle
 

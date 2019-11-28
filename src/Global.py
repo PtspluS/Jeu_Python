@@ -55,9 +55,11 @@ PA = pygame.image.load('sprite/PA.png')
 stat_tile = pygame.image.load('sprite/stat_tile.png')
 print_text = pygame.image.load('sprite/print_board.png')
 
+# spell
 spell = pygame.image.load('sprite/spell.png')
 bite = pygame.image.load('sprite/bite.png')
 
+# zombie charac
 zombie = pygame.image.load('sprite/Zombie.png')
 zombie_bowman = pygame.image.load('sprite/Zombie_Bowman.png')
 zombie_villager = pygame.image.load('sprite/Zombie_Villager.png')
@@ -65,6 +67,7 @@ zombie_richman = pygame.image.load('sprite/Zombie_Richman.png')
 zombie_mineur = pygame.image.load('sprite/Zombie_miner.png')
 zombie_farmer = pygame.image.load('sprite/Zombie_farmer.png')
 
+# pnj charac
 villager = pygame.image.load('sprite/Villager.png')
 farmer = pygame.image.load('sprite/Farmer.png')
 miner = pygame.image.load('sprite/Miner.png')
@@ -72,7 +75,17 @@ richman = pygame.image.load('sprite/Richman.png')
 grave = pygame.image.load('sprite/Grave.png')
 bowman = pygame.image.load('sprite/Bowman.png')
 
+# music
 pygame.mixer.music.load('sprite/music.mp3')
+
+# arme
+# epe
+epe2 = pygame.image.load('sprite/iron_sword.png')
+epe3 = pygame.image.load('sprite/steel_sword.png')
+epe4 = pygame.image.load('sprite/master_sword.png')
+# arc
+arc1 = pygame.image.load('sprite/Arc.png')
+arc4 = pygame.image.load('sprite/arc_elfique.png')
 
 police = pygame.font.Font('8bit.ttf', 20)
 ui = UI.UI()
