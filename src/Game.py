@@ -94,11 +94,13 @@ def examine(tab_map, map_pos, x, y, image_cursor, player):
                     else:
                         if isinstance(map_pos[cursor.x][cursor.y], Cadavre.Cadavre):
                             map_pos[cursor.x][cursor.y].inventory.use_inventory(player)
-                            player.money+=map_pos[cursor.x][cursor.y].money
-                            map_pos[cursor.x][cursor.y]=0
+                            player.money += map_pos[cursor.x][cursor.y].money
+                            map_pos[cursor.x][cursor.y] = 0
                             Global.ui.init_ui_game()
                             return False
-
+                        elif isinstance(map_pos[cursor.x][cursor.y], Marchand.Marchand):
+                            map_pos[cursor.x][cursor.y].inventory.use_inventory(player)
+                            Global.ui.init_ui_game()
 
 
                         elif isinstance(tab_map[cursor.x][cursor.y], Porte.Porte):
@@ -119,13 +121,12 @@ def game(my_room, player):
 
     my_room.map_pos[player.x][player.y] = player
     player.PA = player.PA_max
-    if len(my_room.char_tab)==0:
+    if len(my_room.char_tab) == 0:
         my_room.char_tab.append(player)
         my_room.char_tab.reverse()
-    elif not isinstance( my_room.char_tab[0],Player.Player):
+    elif not isinstance(my_room.char_tab[0], Player.Player):
         my_room.char_tab.append(player)
         my_room.char_tab.reverse()
-
 
     window = Global.window
     Global.ui.init_ui_game()
@@ -136,7 +137,7 @@ def game(my_room, player):
 
     my_room.print()
     pygame.display.flip()
-    turn=0
+    turn = 0
     continuer = 1
     while continuer:  # boucle du jeu
 
@@ -162,21 +163,31 @@ def game(my_room, player):
                     if event.key == K_i:  # lance inventaire
                         player.inventory.use_inventory(player)
                         Global.ui.init_ui_game()
+                        Global.ui.print_coin(player)
+                        Global.ui.print_life(player)
+                        Global.ui.print_PA(player)
+                        Global.ui.write("")
                         my_room.print()
                     if event.key == K_r:  # l
                         # ance le menu de sort
                         player.spell_book.open(my_room)
+                        Global.ui.init_ui_game()
                         my_room.print()
                     if event.key == K_SPACE:  # l
                         # ance le menu de sort
-                        player.PA=0
+                        player.PA = 0
                     if event.key == K_e:  # lance interact
-                       door=examine(my_room.tab_map, my_room.map_pos, player.x, player.y, Global.cyan_cursor, player)
-                       if door:
-                           my_room.map_pos[player.x][player.y] = 0
-                           return door
-                       else :
-                           my_room.print()
+                        door = examine(my_room.tab_map, my_room.map_pos, player.x, player.y, Global.cyan_cursor, player)
+                        if door:
+                            my_room.map_pos[player.x][player.y] = 0
+                            return door
+                        else:
+                            Global.ui.init_ui_game()
+                            Global.ui.print_coin(player)
+                            Global.ui.print_life(player)
+                            Global.ui.print_PA(player)
+                            Global.ui.write("")
+                            my_room.print()
 
 
         else:
@@ -184,9 +195,9 @@ def game(my_room, player):
 
         for i in my_room.char_tab:
             if i.hp <= 0:
-                cadavre=i.die()
-                if cadavre==True:
-                    wait=1
+                cadavre = i.die()
+                if cadavre == True:
+                    wait = 1
                     window.blit(Global.fond_death, (0, 0))
                     pygame.display.flip()
                     pygame.mixer.music.stop()
@@ -195,14 +206,14 @@ def game(my_room, player):
                     while wait:
                         for event in pygame.event.get():
                             if event.type == KEYDOWN:
-                                wait=0
+                                wait = 0
                                 pygame.mixer.music.stop()
 
                     return player
                 else:
                     player.kill(i)
                 my_room.char_tab.remove(i)
-                my_room.map_pos[i.x][i.y]=cadavre
+                my_room.map_pos[i.x][i.y] = cadavre
                 my_room.print()
         if my_room.char_tab[turn].PA <= 0:
             my_room.char_tab[turn].PA = my_room.char_tab[turn].PA_max

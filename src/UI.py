@@ -18,12 +18,14 @@ class UI:
         self.equipe_button = Global.equipe_button
         self.switch_button = Global.switch_button
         self.use_button = Global.use_button
-        self.throw_button = Global.inventory_button
+        self.throw_button = Global.throw_button
         self.pass_button = Global.pass_button
         self.pick_button = Global.pick_button
         self.return_button = Global.return_button
         self.life_bar = Global.life_bar
         self.life_bar_full = Global.life_bar_full
+        self.cast_button = Global.cast_button
+        self.sell_button = Global.sell_button
         self.xp_bar_full = Global.xp_bar_full
         self.coin = Global.coin
         self.PA = Global.PA
@@ -43,11 +45,30 @@ class UI:
 
     def init_ui_inventory(self):
         self.window.blit(self.equipe_button, (1170, 100))
-        self.window.blit(self.use_button, (1270, 100))
-        self.window.blit(self.throw_button, (1370, 100))
-        self.window.blit(self.switch_button, (1170, 200))
-        self.window.blit(self.pick_button, (1270, 200))
-        self.window.blit(self.return_button, (1370, 200))
+        self.window.blit(self.throw_button, (1270, 100))
+        self.window.blit(self.switch_button, (1370, 100))
+        self.window.blit(self.pick_button, (1170, 200))
+        self.window.blit(self.return_button, (1270, 200))
+        self.window.blit(Global.inventory_tile, (1370, 200))
+
+    def init_ui_marchant(self):
+        self.window.blit(self.sell_button, (1170, 100))
+        self.window.blit(self.switch_button, (1270, 100))
+        self.window.blit(self.return_button, (1370, 100))
+        self.window.blit(Global.inventory_tile, (1170, 200))
+        self.window.blit(Global.inventory_tile, (1270, 200))
+        self.window.blit(Global.inventory_tile, (1370, 200))
+
+    def init_ui_spell(self):
+        self.window.blit(self.cast_button, (1170, 100))
+        self.window.blit(self.return_button, (1270, 100))
+        self.window.blit(Global.inventory_tile, (1370, 100))
+        self.window.blit(Global.inventory_tile, (1170, 200))
+        self.window.blit(Global.inventory_tile, (1270, 200))
+        self.window.blit(Global.inventory_tile, (1370, 200))
+
+
+
 
     def print_coin(self, player):
         self.window.blit(self.stat_tile, (1170, 400))
