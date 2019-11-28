@@ -111,9 +111,13 @@ class inventory:
         if isequip:
             if isinstance(self.equipement[cursor_x][cursor_y], Item.Item):
                 player.inventory.pick(self.equipement[cursor_x][cursor_y])
+                self.equipement[cursor_x][cursor_y]=0
+                self.blit_equipement(cursor_x,cursor_y,False)
         else:
             if isinstance(self.stuff[cursor_x][cursor_y], Item.Item):
                 player.inventory.pick(self.stuff[cursor_x][cursor_y])
+                self.stuff[cursor_x][cursor_y] = 0
+                self.blit_stuff(cursor_x, cursor_y, False)
 
 
     def pick(self, item):

@@ -37,12 +37,16 @@ class Player(Personnage.Personnage):
         """
         window = Global.window
         red_cursor = Global.red_cursor
-        if isinstance(self.inventory.equipement[0][1],Arme.Arme):
-            weapon=self.inventory.equipement[0][1]
-        elif isinstance(self.inventory.equipement[2][1],Arme.Arme):
+        damage=0
+        if isinstance(self.inventory.equipement[2][1],Arme.Arme):
             weapon = self.inventory.equipement[2][1]
+            damage+=weapon.atk
+        if isinstance(self.inventory.equipement[0][1], Arme.Arme):
+            weapon = self.inventory.equipement[0][1]
+            damage += weapon.atk
         else:
             weapon = Fist.Fist("fist", "", self.attaque, 0)
+            damage += weapon.atk
 
         continuer = 1
         cursor = tab_map[self.x][self.y]
@@ -75,7 +79,9 @@ class Player(Personnage.Personnage):
                         window.blit(cursor.image, (cursor.x * 64, cursor.y * 64))
                         if map_pos[cursor.x][cursor.y] != 0:
                             window.blit(map_pos[cursor.x][cursor.y].img, (cursor.x * 64, cursor.y * 64))
-                            map_pos[cursor.x][cursor.y].hp = map_pos[cursor.x][cursor.y].hp - weapon.atk
+
+
+                            map_pos[cursor.x][cursor.y].hp = map_pos[cursor.x][cursor.y].hp - damage
                             print(map_pos[cursor.x][cursor.y].hp)
 
                         continuer = 0
