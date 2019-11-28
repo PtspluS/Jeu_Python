@@ -16,9 +16,7 @@ class Zombi(Player.Player):
         bite=Zombie_Bite.Zombie_bite()
         self.spell_book.spell_tab[0][0]=bite
 
-    def bite_death(self, Cadavre):
-        h = Cadavre.Cadavre.lvl * 5 / 2 + 10
-        self.heal(h)
+
 
     def change_image_from_victim(self,victime):
         if isinstance(victime,Villageois.Villageois):
