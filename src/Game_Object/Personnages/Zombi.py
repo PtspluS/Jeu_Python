@@ -1,6 +1,9 @@
-from src.Game_Object.Personnages import Player
+from src import Global, Spell_book
+from src.Game_Object.Personnages import Player, Villageois, Mineur, Fermier, Bourgeois
 from src.Game_Object.Personnages import Cadavre
 import random
+
+from src.Game_Object.spell import Zombie_Bite
 
 
 class Zombi(Player.Player):
@@ -9,9 +12,18 @@ class Zombi(Player.Player):
         super(Zombi, self).__init__(img = img ,nom= nom,vie= vie,PO= PO,posX= posX,posY= posY, inventory=inventory, lvl = lvl)
         self.attaque = 35
         self.desc = "Je suis un zombi"
+        self.spell_book=Spell_book.spell_book()
+        bite=Zombie_Bite.Zombie_bite()
+        self.spell_book.spell_tab[0][0]=bite
 
-    def bite_death(self, Cadavre):
-        rng = random.random()*(50-2)+2
-        h = Cadavre.Cadavre.lvl*rng % 50
-        self.heal(h)
 
+
+    def change_image_from_victim(self,victime):
+        if isinstance(victime,Villageois.Villageois):
+            self.img=Global.zombie_villager
+        if isinstance(victime,Mineur.Mineur):
+            self.img=Global.zombie_mineur
+        if isinstance(victime,Fermier.Fermier):
+            self.img=Global.zombie_farmer
+        if isinstance(victime,Bourgeois.Bourgeois):
+            self.img=Global.zombie_richman

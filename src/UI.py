@@ -30,9 +30,10 @@ class UI:
         self.stat_tile = Global.stat_tile
         self.print_text = Global.print_text
         self.police = Global.police
-        self.window.blit(self.fond_ui, (1088, 0))
+
 
     def init_ui_game(self):
+        self.window.blit(self.fond_ui, (1088, 0))
         self.window.blit(self.attack_button, (1170, 100))
         self.window.blit(self.examine_button, (1270, 100))
         self.window.blit(self.interact_button, (1370, 100))

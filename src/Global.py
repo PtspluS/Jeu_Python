@@ -6,11 +6,14 @@ width = 1500
 height = 704
 window = pygame.display.set_mode((width, height))
 
+fond_death = pygame.image.load('sprite/dead.png')
+
 grass1 = pygame.image.load('sprite/Grass1.png')
 grass2 = pygame.image.load('sprite/Grass2.png')
 door = pygame.image.load('sprite/Door.png')
 ble = pygame.image.load('sprite/ble.png')
 wall = pygame.image.load('sprite/Wall.png')
+
 inventory_fond = pygame.image.load('sprite/fond_inventaire.png')
 black = pygame.image.load('sprite/black.png')
 inventory_tile = pygame.image.load('sprite/inventory_tiles.png')
@@ -21,12 +24,14 @@ inventory_chest = pygame.image.load('sprite/inventory_chest.png')
 inventory_pants = pygame.image.load('sprite/inventory_pants.png')
 inventory_shoes = pygame.image.load('sprite/inventory_shoes.png')
 inventory_ring = pygame.image.load('sprite/inventory_ring.png')
+
 red_cursor = pygame.image.load('sprite/cursor.png')
 red_cursor.set_alpha(100)
 yellow_cursor = pygame.image.load('sprite/yellow_cursor.png')  # curseur d'examination
 yellow_cursor.set_alpha(100)
 cyan_cursor = pygame.image.load('sprite/cyan_cursor.png')  # curseur d'examination
 cyan_cursor.set_alpha(100)
+
 fond_ui = pygame.image.load('sprite/Fond_ui.png')
 attack_button = pygame.image.load('sprite/Attack_button.png')
 examine_button = pygame.image.load('sprite/Examine_button.png')
@@ -47,12 +52,26 @@ coin = pygame.image.load('sprite/coin.png')
 PA = pygame.image.load('sprite/PA.png')
 stat_tile = pygame.image.load('sprite/stat_tile.png')
 print_text = pygame.image.load('sprite/print_board.png')
+
+spell = pygame.image.load('sprite/spell.png')
+bite = pygame.image.load('sprite/bite.png')
+
+zombie = pygame.image.load('sprite/Zombie.png')
 zombie_bowman = pygame.image.load('sprite/Zombie_Bowman.png')
+zombie_villager = pygame.image.load('sprite/Zombie_Villager.png')
+zombie_richman = pygame.image.load('sprite/Zombie_Richman.png')
+zombie_mineur = pygame.image.load('sprite/Zombie_miner.png')
+zombie_farmer = pygame.image.load('sprite/Zombie_farmer.png')
+
 villager = pygame.image.load('sprite/Villager.png')
+farmer = pygame.image.load('sprite/Farmer.png')
 miner = pygame.image.load('sprite/Miner.png')
 richman = pygame.image.load('sprite/Richman.png')
 grave = pygame.image.load('sprite/Grave.png')
 bowman = pygame.image.load('sprite/Bowman.png')
+
+pygame.mixer.music.load('sprite/music.mp3')
+
 police = pygame.font.Font('8bit.ttf', 20)
 ui = UI.UI()
 
