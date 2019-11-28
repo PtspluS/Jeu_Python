@@ -1,7 +1,7 @@
-from src.Game_Object.Personnages import Normal
+from src.Game_Object.Personnages import Combattant
 
 
-class Garde(Normal.Normal):
+class Garde(Combattant.Combattant):
 
     def __init__(self):
         pass
