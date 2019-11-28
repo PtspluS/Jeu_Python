@@ -107,27 +107,14 @@ class inventory:
             self.stuff[cursor_x][cursor_x] = 0
             self.blit_stuff(cursor_x, cursor_y, True)
 
-    def buy(self, player, cursor_x, cursor_y, isequip, ismarchant):
-        if ismarchant:
-            if isequip:
-                if isinstance(self.equipement[cursor_x][cursor_y], Item.Item):
-                    if self.equipement[cursor_x][cursor_y].value <= player.money:
-                        player.inventory.pick(self.equipement[cursor_x][cursor_y])
-                        player.money -= self.equipement[cursor_x][cursor_y].value
-
-            else:
-                if isinstance(self.stuff[cursor_x][cursor_y], Item.Item):
-                    if self.stuff[cursor_x][cursor_y].value <= player.money:
-                        player.inventory.pick(self.stuff[cursor_x][cursor_y])
-                        player.money -= self.stuff[cursor_x][cursor_y].value
-
+    def pick_up(self, player, cursor_x, cursor_y, isequip):
+        if isequip:
+            if isinstance(self.equipement[cursor_x][cursor_y], Item.Item):
+                player.inventory.pick(self.equipement[cursor_x][cursor_y])
         else:
-            if isequip:
-                if isinstance(self.equipement[cursor_x][cursor_y], Item.Item):
-                    player.inventory.pick(self.equipement[cursor_x][cursor_y])
-            else:
-                if isinstance(self.stuff[cursor_x][cursor_y], Item.Item):
-                    player.inventory.pick(self.stuff[cursor_x][cursor_y])
+            if isinstance(self.stuff[cursor_x][cursor_y], Item.Item):
+                player.inventory.pick(self.stuff[cursor_x][cursor_y])
+
 
     def pick(self, item):
         """
@@ -384,11 +371,9 @@ class inventory:
                         cursor_x, cursor_y = self.anim_cursor(cursor_x, cursor_y, 1, 0, isequip)
                     if event.key == K_e:
                         self.equipe(cursor_x, cursor_y, isequip)
-                    if event.key == K_r:
-                        if isinstance(player, Marchand.Marchand):
-                            self.buy(player.inventory, cursor_x, cursor_y, isequip, True)
-                        else:
-                            self.buy(player.inventory, cursor_x, cursor_y, isequip, False)
+                    if event.key == K_RETURN:
+                        if player.inventory!=self:
+                            self.pick_up(player, cursor_x, cursor_y, isequip)
                     if event.key == K_t:
                         self.throw(cursor_x, cursor_y, isequip)
                     if event.key == K_TAB:

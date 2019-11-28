@@ -56,7 +56,7 @@ class spell_book:
         cursor_y=0
         continuer=1
         window = Global.window
-        Global.ui.init_ui_inventory()
+        Global.ui.init_ui_spell()
         window.blit(self.inventory_fond, (0, 0))
         for i in range(0, 5):
             for j in range(0, 2):
