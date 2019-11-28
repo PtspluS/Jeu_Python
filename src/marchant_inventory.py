@@ -61,6 +61,7 @@ class marchant_inventory:
             if isinstance(player.inventory.stuff[cursor_x][cursor_y], Item.Item):
                 player.money+=player.inventory.stuff[cursor_x][cursor_y].value
                 player.inventory.stuff[cursor_x][cursor_y]=0
+                self.blit_player_stuff(cursor_x, cursor_y, True,player)
 
         else:
             if isinstance(self.stuff[cursor_x][cursor_y], Item.Item):
@@ -68,6 +69,7 @@ class marchant_inventory:
                     player.inventory.pick(self.stuff[cursor_x][cursor_y])
                     self.stuff[cursor_x][cursor_y]=0
                     player.money -=self.stuff[cursor_x][cursor_y].value
+                    self.blit_stuff(cursor_x, cursor_y, True)
         Global.ui.print_coin(player)
 
     def anim_cursor(self, cursor_x, cursor_y, dir_x, dir_y, isequip,player):  # animation du curseur d'inventaire

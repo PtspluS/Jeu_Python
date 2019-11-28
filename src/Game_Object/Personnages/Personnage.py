@@ -23,6 +23,7 @@ class Personnage:
         self.PA_max = PA_max
         self.PA=PA
         self.attaque = 0
+        self.dir="right"
 
     def heal(self, val):
         self.hp = self.hp + abs(val) % self.max_hp
@@ -37,6 +38,15 @@ class Personnage:
         :param y: case y ou on veut se deplacer
         :return:
         """
+
+        if self.x - x > 0 and self.dir=="right":
+            self.img=pygame.transform.flip(self.img, True,False)
+            self.dir="left"
+        elif self.x - x < 0 and self.dir=="left":
+            self.img=pygame.transform.flip(self.img, True, False)
+            self.dir = "right"
+
+
         window = Global.window
         if Global.isinrange(x, y, 17, 11):  # si la case est dans le tableau
             if tab_map[x][y].is_walkable and map_pos[x][y] == 0:  # la case est walkable il n y a peronnes sur la carte
@@ -45,6 +55,7 @@ class Personnage:
                 self.x = x
                 self.y = y
                 (map_pos[self.x][self.y]) = self
+
                 window.blit(self.img, (self.x * 64, self.y * 64))
                 self.PA = self.PA -1
                 Global.ui.print_PA(self)
