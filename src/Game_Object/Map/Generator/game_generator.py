@@ -83,7 +83,6 @@ def generate_room(id, id_next, id_previous, type, nb_char=-1, pos_portes=[1, 0, 
     if type == 'champs':
         type_present.append(pnj_type[0])
         type_present.append(pnj_type[0])
-        boss = Garde_de_la_porte()
     elif type == 'mines':
         type_present.append(pnj_type[1])
         type_present.append(pnj_type[1])
@@ -93,6 +92,7 @@ def generate_room(id, id_next, id_previous, type, nb_char=-1, pos_portes=[1, 0, 
     elif type == 'porte':
         type_present.append(pnj_type[2])
         type_present.append(pnj_type[3])
+        boss = Garde_de_la_porte()
 
     # on regarde ou on peut mettre les persos
     x_possible = list(range(2, size_X - 2))
@@ -164,6 +164,7 @@ def generate_room(id, id_next, id_previous, type, nb_char=-1, pos_portes=[1, 0, 
 
     if last_room :
         pnj.append(boss)
+        map_pos[boss.x][boss.y] = boss
 
     room = Room(id, brute_map=brute_map, map_pos=map_pos, char_tab=pnj, doors=doors, type=type)
 

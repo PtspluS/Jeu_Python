@@ -9,7 +9,7 @@ class Kick(Spell):
 
     def __init__(self):
         self.image = Global.spell
-        self.PA_cost = 1
+        self.PA_cost = 2
         self.range = 1
         super().__init__(self.image,range=self.range, PA=self.PA_cost)
 

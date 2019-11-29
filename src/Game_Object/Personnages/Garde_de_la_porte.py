@@ -1,31 +1,42 @@
 from copy import deepcopy
 
+import inventory as inventory
 import pygame
 
 from src import Pathfinder, Global
 from src.Game_Object.Personnages import Boss
 from src.Game_Object.spell import Kick
+from src.inventory import inventory
+
+
+
 
 
 class Garde_de_la_porte(Boss.Boss):
 
-    def __init__(self,img, nom, desc, inventory, vie, PO, posX, posY, attaque, lvl):
+    def __init__(self, vie = 500, PO = 1000, posX = 2, posY = 1, attaque = 25, lvl = 10):
         self.ranges=2
         self.img=Global.guarde_de_la_porte
         self.kick=Kick.Kick()
-        super().__init__(img, nom, desc, inventory, vie, PO, posX, posY, attaque, lvl, ranges=self.ranges)
+
+        # definition du perso
+        nom = "Guarde de la porte"
+        desc = "Il ne compte quand même que pour un !"
+        inv = inventory()
+
+        super().__init__(self.img, nom, desc, inv, vie, PO, posX, posY, attaque, lvl, ranges=self.ranges)
 
 
 
     def play(self,room):
         pygame.time.delay(100)
         pygame.event.clear()
-        self.range=1
+        self.ranges=1
         target = self.is_on_target(room)
         if target !=0:
-            self.kick.cast(self,room,target)
+            self.kick.cast(self,room,room.tab_map[target.x][target.y])
         else :
-            self.range = 2
+            self.ranges = 2
             target = self.is_on_target(room)
             if target == 0:
                 my_matrix = deepcopy(room.brute_map)
