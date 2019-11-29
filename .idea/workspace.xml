@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4c7bb88-48cf-4cf3-9b49-f1340d0b219e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/UI.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game_Object/Personnages/Generators/pnj_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game_Object/Personnages/Generators/pnj_generator.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -228,7 +229,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575054742138</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="xp print">
+      <created>1575055003774</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1575055003774</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,7 +275,8 @@
     <MESSAGE value="achievement avalaible" />
     <MESSAGE value="bug sortie de map" />
     <MESSAGE value="achievements bdd" />
-    <option name="LAST_COMMIT_MESSAGE" value="achievements bdd" />
+    <MESSAGE value="xp print" />
+    <option name="LAST_COMMIT_MESSAGE" value="xp print" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -278,11 +287,6 @@
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/Game_Object/Personnages/Player.py</url>
-          <line>144</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/UI.py</url>
           <line>84</line>
           <option name="timeStamp" value="32" />
@@ -291,6 +295,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Jeu_Python$main.coverage" NAME="main Coverage Results" MODIFIED="1575054834355" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/Jeu_Python$main.coverage" NAME="main Coverage Results" MODIFIED="1575055103361" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
 </project>

@@ -145,7 +145,7 @@ function which generate a miner
 '''
 def generate_mineur(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 0):
     # def des attributs et de leurs bornes
-    att_min = 12
+    att_min = 13
     att_max = 25
     vie_max = 150
     vie_min = 50
@@ -193,7 +193,7 @@ def generate_villageois(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO
     lvl_max = 5
     lvl_min = 3
 
-    PA_list = [2, 3, 4]
+    PA_list = [3, 4, 5]
 
     PO_max = 10
     PO_min = 5
@@ -234,7 +234,7 @@ def generate_bourgeois(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO 
     lvl_max = 7
     lvl_min = 4
 
-    PA_list = [1, 2, 3]
+    PA_list = [1, 2, 3, 4]
 
     PO_max = 300
     PO_min = 10
