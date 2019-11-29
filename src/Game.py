@@ -19,7 +19,9 @@ height = 700
 # gere l'animation du curseur
 def anim_cursor(tab_map, map_pos, cursor, red_cursor, dir_x, dir_y, player, image_cursor):
     """
-    :param window: l'objet fenetre de pygame
+
+    :param image_cursor: curseru bleu ou jaune
+    :param player: la joueur
     :param tab_map: la carte
     :param map_pos: la position des joueur sur la carte
     :param cursor: objet curseur qui pointe sur une case
@@ -44,15 +46,17 @@ def anim_cursor(tab_map, map_pos, cursor, red_cursor, dir_x, dir_y, player, imag
         return cursor
 
 
-# Faonction qui permet d'examiner les personnage
+# Faonction qui permet d'examiner les personnage et d'interagire
 def examine(tab_map, map_pos, x, y, image_cursor, player):
     """
 
-    :param window: la fenetre
+
     :param tab_map: la carte
     :param map_pos: la position des joueur sur la carte
     :param x: pos du player
     :param y: pos du player
+    :param image_cursor :cursor jaune pour examiné, cursor bleu pour interact
+    :param player: player
     :return: nothing
     """
     window = Global.window
@@ -88,23 +92,23 @@ def examine(tab_map, map_pos, x, y, image_cursor, player):
                     if map_pos[cursor.x][cursor.y] != 0:
                         window.blit(map_pos[cursor.x][cursor.y].img, (cursor.x * 64, cursor.y * 64))
                     continuer = 0
-                    if image_cursor == Global.yellow_cursor:
-                        Global.ui.write(map_pos[cursor.x][cursor.y].description())
+                    if image_cursor == Global.yellow_cursor:  # si on examine
+                        Global.ui.write(map_pos[cursor.x][cursor.y].description())  # on affiche la description
                         return False
-                    else:
-                        if isinstance(map_pos[cursor.x][cursor.y], Cadavre.Cadavre):
-                            map_pos[cursor.x][cursor.y].inventory.use_inventory(player)
-                            player.money += map_pos[cursor.x][cursor.y].money
-                            map_pos[cursor.x][cursor.y] = 0
+                    else:  # si on interact
+                        if isinstance(map_pos[cursor.x][cursor.y], Cadavre.Cadavre):  # si on a un cadavre
+                            map_pos[cursor.x][cursor.y].inventory.use_inventory(player)  # on ouvre son inventaire
+                            player.money += map_pos[cursor.x][cursor.y].money  # on prend son or
+                            map_pos[cursor.x][cursor.y] = 0  # on enleve le cadavre
                             Global.ui.init_ui_game()
                             return False
-                        elif isinstance(map_pos[cursor.x][cursor.y], Marchand.Marchand):
-                            map_pos[cursor.x][cursor.y].inventory.use_inventory(player)
+                        elif isinstance(map_pos[cursor.x][cursor.y], Marchand.Marchand):  # si on a un marchant
+                            map_pos[cursor.x][cursor.y].inventory.use_inventory(
+                                player)  # on ouvre l'inventaire du marchant
                             Global.ui.init_ui_game()
 
-
-                        elif isinstance(tab_map[cursor.x][cursor.y], Porte.Porte):
-                            door = tab_map[cursor.x][cursor.y].open()
+                        elif isinstance(tab_map[cursor.x][cursor.y], Porte.Porte):  # si c est une porte
+                            door = tab_map[cursor.x][cursor.y].open()  # on retourne la porte
 
                             return door
                         else:
@@ -113,23 +117,24 @@ def examine(tab_map, map_pos, x, y, image_cursor, player):
 
 def game(my_room, player):
     """
-    :param window: fenetre
+
     :param my_room: la salle
-    :param character_tab: le tableau des personnages de la salles
+    :param player : le player
     :return:
     """
 
-    my_room.map_pos[player.x][player.y] = player
-    player.PA = player.PA_max
-    if len(my_room.char_tab) == 0:
-        my_room.char_tab.append(player)
+    my_room.map_pos[player.x][player.y] = player  # on place le player dans la map
+    player.PA = player.PA_max  # on set les PA
+    if len(my_room.char_tab) == 0:  # si la salle est vide
+        my_room.char_tab.append(player)  # on ajoute le player
         my_room.char_tab.reverse()
-    elif not isinstance(my_room.char_tab[0], Player.Player):
-        my_room.char_tab.append(player)
+    elif not isinstance(my_room.char_tab[0],
+                        Player.Player):  # sinon on verifie que le player n'est pas deja dans la salle
+        my_room.char_tab.append(player)  # on ajoute le player
         my_room.char_tab.reverse()
 
     window = Global.window
-    Global.ui.init_ui_game()
+    Global.ui.init_ui_game()  # on init l'interface
     Global.ui.write(player.desc)
     Global.ui.print_coin(player)
     Global.ui.print_life(player)
@@ -141,7 +146,7 @@ def game(my_room, player):
     continuer = 1
     while continuer:  # boucle du jeu
 
-        if isinstance(my_room.char_tab[turn], Player.Player):
+        if isinstance(my_room.char_tab[turn], Player.Player):  # si c'est la tour du player
             for event in pygame.event.get():
 
                 if event.type == QUIT:
@@ -169,12 +174,11 @@ def game(my_room, player):
                         Global.ui.write("")
                         my_room.print()
                     if event.key == K_r:  # l
-                        # ance le menu de sort
+                        # lance le menu de sort
                         player.spell_book.open(my_room)
                         Global.ui.init_ui_game()
                         my_room.print()
-                    if event.key == K_SPACE:  # l
-                        # ance le menu de sort
+                    if event.key == K_SPACE:  # on passe le tour
                         player.PA = 0
                     if event.key == K_e:  # lance interact
                         door = examine(my_room.tab_map, my_room.map_pos, player.x, player.y, Global.cyan_cursor, player)
@@ -189,18 +193,17 @@ def game(my_room, player):
                             Global.ui.write("")
                             my_room.print()
 
-
         else:
             my_room.char_tab[turn].play(my_room)
 
-        for i in my_room.char_tab:
+        for i in my_room.char_tab:  # on regarde qui est mort
             if i.hp <= 0:
                 cadavre = i.die()
-                if cadavre == True:
+                if cadavre:  # si le player meurt
                     wait = 1
-                    window.blit(Global.fond_death, (0, 0))
+                    window.blit(Global.fond_death, (0, 0))  # on affiche l'ecran de mort
                     pygame.display.flip()
-                    pygame.mixer.music.stop()
+                    pygame.mixer.music.stop()  # on lance la music de mort
                     pygame.mixer.music.load('sprite/music_death.mp3')
                     pygame.mixer.music.play(-1)
                     while wait:
@@ -210,12 +213,12 @@ def game(my_room, player):
                                 pygame.mixer.music.stop()
 
                     return player
-                else:
+                else:  # si un enemie est mort, on l'ajoute a la liste des victimes du player
                     player.kill(i)
                 my_room.char_tab.remove(i)
                 my_room.map_pos[i.x][i.y] = cadavre
                 my_room.print()
-        if my_room.char_tab[turn].PA <= 0:
+        if my_room.char_tab[turn].PA <= 0:  # si qq n'a plus de PA on change le tour
             my_room.char_tab[turn].PA = my_room.char_tab[turn].PA_max
             Global.ui.print_PA(my_room.char_tab[turn])
             turn = (turn + 1) % len(my_room.char_tab)

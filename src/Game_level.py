@@ -13,9 +13,9 @@ from src.Game_Object.Objets import Tete
 from src.Game_Object.Map.Generator.game_generator import generate_room, generate_level
 
 
-def game_level():
+def game_level(): #boucle qui gere les levels
     #test
-    my_inventory = inventory.inventory()
+    my_inventory = inventory.inventory()# set inventory
     imgcasque = pygame.image.load('sprite/wall.png')
     helmet = Tete.Tete("casque", imgcasque, 1, 10)
     imgepee = pygame.image.load('sprite/ble.png')
@@ -23,14 +23,14 @@ def game_level():
     bow = Bow.Bow("bow", imgepee, 100, 10)
     my_inventory.pick(sword)
     my_inventory.pick(bow)
-    player = Zombi.Zombi(img=Global.zombie, nom="bob", inventory=my_inventory, posX=1, posY=1)
+    player = Zombi.Zombi(img=Global.zombie, nom="bob", inventory=my_inventory, posX=1, posY=1)#init player
 
     continuer=1
     while continuer:
         pygame.mixer.music.load('sprite/music.mp3')
-        pygame.mixer.music.play(-1)
+        pygame.mixer.music.play(-1)#start music
         lvl=generate_level(nb_room=5)
-        player=Game_room.game_room(lvl,player)
+        player=Game_room.game_room(lvl,player)#demare la premiere room"
         if not player:
             pygame.mixer.music.stop()
 
