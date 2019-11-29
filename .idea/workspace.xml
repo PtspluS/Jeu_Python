@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d4c7bb88-48cf-4cf3-9b49-f1340d0b219e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Jeu_Python3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Jeu_Python3.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game_Object/Objets/Generators/arme_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game_Object/Objets/Generators/arme_generator.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1UCQLy6Ik9Rgk8YngZJmtZQ541I" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Jeu_Python3" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\pierr\AppData\Local\Programs\Python\Python37\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d4c7bb88-48cf-4cf3-9b49-f1340d0b219e" name="Default Changelist" comment="" />
+      <created>1574858044544</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1574858044544</updated>
+      <workItem from="1574858045704" duration="890000" />
+      <workItem from="1574866709600" duration="5509000" />
+      <workItem from="1574886030334" duration="5474000" />
+      <workItem from="1574938400740" duration="3769000" />
+      <workItem from="1574948251023" duration="17671000" />
+      <workItem from="1575013585362" duration="4556000" />
+      <workItem from="1575039681205" duration="7716000" />
+    </task>
+    <task id="LOCAL-00001" summary="pour PE">
+      <created>1574868601397</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1574868601397</updated>
+    </task>
+    <task id="LOCAL-00002" summary="on a des marchands ptn">
+      <created>1574890080175</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1574890080175</updated>
+    </task>
+    <task id="LOCAL-00003" summary="on genere les gars avec du stuff">
+      <created>1574954763591</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1574954763591</updated>
+    </task>
+    <task id="LOCAL-00004" summary="correct zombi">
+      <created>1574961293548</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1574961293548</updated>
+    </task>
+    <task id="LOCAL-00005" summary="marchand immortel">
+      <created>1574966666117</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1574966666117</updated>
+    </task>
+    <task id="LOCAL-00006" summary="version 0.5">
+      <created>1575014216552</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1575014216552</updated>
+    </task>
+    <task id="LOCAL-00007" summary="change pop rate">
+      <created>1575014930610</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1575014930610</updated>
+    </task>
+    <task id="LOCAL-00008" summary="patch game">
+      <created>1575015331020</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1575015331020</updated>
+    </task>
+    <task id="LOCAL-00009" summary="equilibrage zombi">
+      <created>1575015918157</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1575015918157</updated>
+    </task>
+    <task id="LOCAL-00010" summary="equilibrage pnj">
+      <created>1575016218744</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1575016218744</updated>
+    </task>
+    <task id="LOCAL-00011" summary="equilibrage prix">
+      <created>1575018262556</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1575018262556</updated>
+    </task>
+    <task id="LOCAL-00012" summary="equilibrage zombi start">
+      <created>1575040067509</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1575040067509</updated>
+    </task>
+    <task id="LOCAL-00013" summary="toutes les salles sont generables plus combattants avec marchands">
+      <created>1575041669652</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1575041669652</updated>
+    </task>
+    <task id="LOCAL-00014" summary="equlibrage generate room">
+      <created>1575043097246</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1575043097246</updated>
+    </task>
+    <task id="LOCAL-00015" summary="equlibrage arme et specialement epee">
+      <created>1575043788573</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1575043788573</updated>
+    </task>
+    <task id="LOCAL-00016" summary="supp lignes qui servent à rien">
+      <created>1575046502468</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1575046502468</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="pour PE" />
+    <MESSAGE value="on a des marchands ptn" />
+    <MESSAGE value="on genere les gars avec du stuff" />
+    <MESSAGE value="correct zombi" />
+    <MESSAGE value="marchand immortel" />
+    <MESSAGE value="version 0.5" />
+    <MESSAGE value="change pop rate" />
+    <MESSAGE value="patch game" />
+    <MESSAGE value="equilibrage zombi" />
+    <MESSAGE value="equilibrage pnj" />
+    <MESSAGE value="equilibrage prix" />
+    <MESSAGE value="equilibrage zombi start" />
+    <MESSAGE value="toutes les salles sont generables plus combattants avec marchands" />
+    <MESSAGE value="equlibrage generate room" />
+    <MESSAGE value="equlibrage arme et specialement epee" />
+    <MESSAGE value="supp lignes qui servent à rien" />
+    <option name="LAST_COMMIT_MESSAGE" value="supp lignes qui servent à rien" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/Game_Object/Personnages/Player.py</url>
+          <line>110</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/Game_Object/Map/Generator/game_generator.py</url>
+          <line>103</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Jeu_Python$main.coverage" NAME="main Coverage Results" MODIFIED="1575047497624" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+  </component>
+</project>

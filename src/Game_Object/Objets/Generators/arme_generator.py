@@ -66,22 +66,22 @@ def generate_sword(rarete = 1):
 
     elif rarete == 2:
         value_max = 250
-        value_min = 50
+        value_min = 100
 
         img = Global.epe2
 
-        atk_max = 39
-        atk_min = 20
+        atk_max = 24
+        atk_min = 10
 
         name = random.choice(epe_type) + " " + random.choice(adj_2)
     elif rarete == 3:
-        value_max = 800
-        value_min = 100
+        value_max = 1300
+        value_min = 700
 
         img = Global.epe3
 
-        atk_max = 53
-        atk_min = 45
+        atk_max = 42
+        atk_min = 30
 
         name = random.choice(epe_type) + " " + random.choice(adj_3)
     elif rarete == 4:
