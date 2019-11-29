@@ -169,6 +169,11 @@ class Player(Personnage.Personnage):
         # ne pas oublier de surcharger change_image_from_victim
         self.change_image_from_victim(victim)
 
+        if  victim.dir=="left":
+            self.img=pygame.transform.flip(self.img, True,False)
+            self.dir="left"
+
+
 
 
         return True
