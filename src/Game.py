@@ -199,7 +199,7 @@ def game(my_room, player):
         for i in my_room.char_tab:  # on regarde qui est mort
             if i.hp <= 0:
                 cadavre = i.die()
-                if cadavre:  # si le player meurt
+                if cadavre == True:  # si le player meurt
                     wait = 1
                     window.blit(Global.fond_death, (0, 0))  # on affiche l'ecran de mort
                     pygame.display.flip()
