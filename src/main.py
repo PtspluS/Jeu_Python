@@ -8,8 +8,6 @@ from src.Game_Object.Objets import Bow
 from src.Game_Object.Objets import Tete
 from src.Game_Object.Map.Generator.game_generator import generate_level
 
-# Fonction pour tester
-
 
 width = 1500
 height = 704
