@@ -260,4 +260,4 @@ def generate_bourgeois(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO 
 
     stuff = generate_stuff(niveau)
     # on renvoit un objet bourgeois
-    return Bourgeois.Bourgeaois(img_bourgeois, name, vie = vie, PO = PO, inventory = stuff, attaque = attaque, lvl = niveau, PA = PA, desc = desc)
+    return Bourgeois.Bourgeois(img_bourgeois, name, vie = vie, PO = PO, inventory = stuff, attaque = attaque, lvl = niveau, PA = PA, desc = desc)

@@ -19,7 +19,7 @@ def generate_room(id, id_next, id_previous, type, nb_char=-1, pos_portes=[1, 0, 
     size_Y_min = 8
 
     min_char = 1
-    max_char = 5
+    max_char = 7
 
     nb_decors = 10
 
@@ -31,7 +31,7 @@ def generate_room(id, id_next, id_previous, type, nb_char=-1, pos_portes=[1, 0, 
     if nb_char == -1 and not marchand:
         nb_char = random.randint(min_char, max_char)
     elif marchand:
-        nb_char = 0
+        nb_char = random.randint(0,3)
         momo = generate_marchand(t='Lepreux')
         # momo = generate_marchand()
     elif last_room:
@@ -120,6 +120,19 @@ def generate_room(id, id_next, id_previous, type, nb_char=-1, pos_portes=[1, 0, 
         momo.y = y
         pnj.append(momo)
         map_pos[x][y] = momo
+
+        for i in range(nb_char):
+            # on donne des pos rng aux persos et on retire du tab les endroit ou ils sont
+            x = random.choice(x_possible)
+            y = random.choice(y_possible)
+            x_possible.remove(x)
+            y_possible.remove(y)
+            # on genere un civil pour le moment mais a la fin ca sera un mec selon son type
+            p = generate_civil(type=random.choice(type_present))
+            p.x = x
+            p.y = y
+            pnj.append(p)
+            map_pos[x][y] = p
 
     # on genere la map brute
     brute_map = np.zeros((size_X, size_Y), dtype='int64')
@@ -219,6 +232,14 @@ def generate_fields(brute_map):
 
     rooms = []
 
+    # si on fait pop un marchand
+    pop_marchand = False
+
+    # le type de salle actuel
+    tp_room = 0
+    # a chaque tour de room on a une chance de changer de type
+    proba_increase_type_room = 0.05
+
     for i in range(len(srt_map)):
         room = srt_map[i]
         id = brute_map[room[0]][room[1]]
@@ -226,13 +247,7 @@ def generate_fields(brute_map):
         id_next = -1
         tab = [0, 0, 0, 0]
 
-        # si on fait pop un marchand
-        pop_marchand = False
 
-        # a chaque tour de room on a une chance de changer de type
-        proba_increase_type_room = 0.2
-
-        tp_room = 0
         if i != len(srt_map) - 1:
             id_next = brute_map[srt_map[i + 1][0]][srt_map[i + 1][1]]
             next_room = srt_map[i + 1]
@@ -291,17 +306,31 @@ def generate_fields(brute_map):
             pop_marchand = True
         else:
             ratio_pop_marchand += random.choice([0.1, 0.2, 0.3])
-        if i % 5 < len(srt_map) // 3:
-            if proba_increase_type_room > random.random():
-                tp_room += 1 % 4
+        if i < len(srt_map) // 4:
+            rng = random.random()
+            if proba_increase_type_room > rng:
+                if tp_room < 3:
+                    tp_room += 1
+
+                else:
+                    tp_room = 3
+
                 proba_increase_type_room -= random.choice([0.1, 0.2, 0.05])
             else:
                 proba_increase_type_room += random.choice([0.15, 0.25, 0.07])
         else:
-            tp_room += 1
+            if tp_room < 3:
+                tp_room += 1
+
+            else:
+                tp_room = 3
+
         r = generate_room(id, id_previous=id_previous, id_next=id_next, type=type_room[tp_room], nb_char=2,
                           pos_portes=tab, marchand=pop_marchand)
         rooms.append(r)
+
+        if pop_marchand == True:
+            pop_marchand = False
 
     #rooms.reverse()
     lvl = Level(map=brute_map, type=1, doors=portes, rooms=rooms)
