@@ -94,7 +94,7 @@ def generate_lepreux():
 
     nom = "Lépreux"
     desc = "Si il perd un bras, il peut bien en vendre un..."
-    img = Global.zombie_bowman
+    img = Global.lepreux
     return Lepreux(img=img, nom=nom, desc=desc, inventory=inv)
 
 

@@ -81,6 +81,7 @@ miner = pygame.image.load('sprite/Miner.png')
 richman = pygame.image.load('sprite/Richman.png')
 grave = pygame.image.load('sprite/Grave.png')
 bowman = pygame.image.load('sprite/Bowman.png')
+lepreux = pygame.image.load('sprite/Lepreux.png')
 
 # music
 pygame.mixer.music.load('sprite/music.mp3')

@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d4c7bb88-48cf-4cf3-9b49-f1340d0b219e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game_Object/Map/Generator/game_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game_Object/Map/Generator/game_generator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game_Object/Personnages/Garde_de_la_porte.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game_Object/Personnages/Garde_de_la_porte.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game_Object/spell/Kick.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game_Object/spell/Kick.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game_Object/Personnages/Generators/marchand_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game_Object/Personnages/Generators/marchand_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Global.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Global.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +96,7 @@
       <workItem from="1574948251023" duration="17671000" />
       <workItem from="1575013585362" duration="4556000" />
       <workItem from="1575039681205" duration="7716000" />
-      <workItem from="1575057018337" duration="2506000" />
+      <workItem from="1575057018337" duration="3629000" />
     </task>
     <task id="LOCAL-00001" summary="pour PE">
       <created>1574868601397</created>
@@ -253,7 +252,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575057346660</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="boss add to the end">
+      <created>1575059693290</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1575059693290</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -294,16 +300,12 @@
     <MESSAGE value="xp print" />
     <MESSAGE value="equilibrage pnj" />
     <MESSAGE value="equilibrage generation" />
-    <option name="LAST_COMMIT_MESSAGE" value="equilibrage generation" />
+    <MESSAGE value="boss add to the end" />
+    <option name="LAST_COMMIT_MESSAGE" value="boss add to the end" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/Game_Object/Personnages/Player.py</url>
-          <line>110</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/Game_Object/spell/Spell.py</url>
           <line>74</line>
@@ -330,6 +332,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Jeu_Python$main.coverage" NAME="main Coverage Results" MODIFIED="1575059528353" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/Jeu_Python$main.coverage" NAME="main Coverage Results" MODIFIED="1575061050447" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
 </project>
