@@ -230,7 +230,7 @@ def generate_fields(brute_map):
         pop_marchand = False
 
         # a chaque tour de room on a une chance de changer de type
-        proba_increase_type_room = 0.1
+        proba_increase_type_room = 0.2
 
         tp_room = 0
         if i != len(srt_map) - 1:
@@ -291,12 +291,12 @@ def generate_fields(brute_map):
             pop_marchand = True
         else:
             ratio_pop_marchand += random.choice([0.1, 0.2, 0.3])
-        if i < len(srt_map) // 3:
+        if i % 5 < len(srt_map) // 3:
             if proba_increase_type_room > random.random():
-                tp_room += 1 % 2
+                tp_room += 1 % 4
                 proba_increase_type_room -= random.choice([0.1, 0.2, 0.05])
             else:
-                proba_increase_type_room += random.choice([0.1, 0.2, 0.05])
+                proba_increase_type_room += random.choice([0.15, 0.25, 0.07])
         else:
             tp_room += 1
         r = generate_room(id, id_previous=id_previous, id_next=id_next, type=type_room[tp_room], nb_char=2,

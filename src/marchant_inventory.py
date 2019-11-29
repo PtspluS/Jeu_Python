@@ -151,8 +151,6 @@ class marchant_inventory:
                             cursor_x = 0
                             cursor_y = 0
                             self.blit_stuff(cursor_x, cursor_y, True)
-                            if isinstance(self.stuff[cursor_x][cursor_y], Item.Item):
-                                Global.ui.write(player.inventory.stuff[cursor_x][cursor_y].describe())
 
                         else:
                             issell = True  # on passe du stuff a l'inventaire
@@ -160,8 +158,6 @@ class marchant_inventory:
                             cursor_x = 0
                             cursor_y = 0
                             self.blit_player_stuff(cursor_x, cursor_y, True,player)
-                            if isinstance(player.inventory.stuff[cursor_x][cursor_y], Item.Item):
-                                Global.ui.write(player.inventory.stuff[cursor_x][cursor_y].describe())
 
                     if event.key == K_ESCAPE:
                         # on reessine la map

@@ -14,4 +14,4 @@ class Marchand(PNJ.PNJ):
 
     def play(self, myroom):
         self.PA = 0
-        self.hp = 99999999
+        self.hp = self.max_hp

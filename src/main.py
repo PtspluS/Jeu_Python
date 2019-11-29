@@ -44,8 +44,5 @@ bow=Bow.Bow("bow",imgepee, 100, 10)
 
 
 
-# ancement de la salle
-
-my_player = Zombi(img=Global.zombie_bowman,nom="bob",inventory=my_inventory,posX=1,posY=1)
-l = generate_level(nb_room=3)
+# lancement de la salle
 Game_level.game_level()
