@@ -6,13 +6,13 @@ import random
 
 def generate_stuff(lvl):
     tab_proba = {
-        1: {1: 0.8, 2: 0.15, 3: 0.05, 4: 0, "nb_item_max": 1, "nb_item_min": 0},
-        2: {1: 0.8, 2: 0.15, 3: 0.05, 4: 0, "nb_item_max": 1, "nb_item_min": 1},
-        3: {1: 0.8, 2: 0.15, 3: 0.05, 4: 0, "nb_item_max": 2, "nb_item_min": 1},
-        4: {1: 0.8, 2: 0.15, 3: 0.05, 4: 0, "nb_item_max": 2, "nb_item_min": 2},
-        5: {1: 0.6, 2: 0.25, 3: 0.15, 4: 0, "nb_item_max": 2, "nb_item_min": 2},
-        6: {1: 0.5, 2: 0.25, 3: 0.15, 4: 0.1, "nb_item_max": 2, "nb_item_min": 2},
-        7: {1: 0.45, 2: 0.25, 3: 0.15, 4: 0.15, "nb_item_max": 2, "nb_item_min": 2},
+        1: {1: 0.99, 2: 0.01, 3: 0, 4: 0, "nb_item_max": 1, "nb_item_min": 0},
+        2: {1: 0.99, 2: 0.01, 3: 0, 4: 0, "nb_item_max": 1, "nb_item_min": 1},
+        3: {1: 0.99, 2: 0.01, 3: 0, 4: 0, "nb_item_max": 2, "nb_item_min": 1},
+        4: {1: 0.99, 2: 0.01, 3: 0, 4: 0, "nb_item_max": 2, "nb_item_min": 2},
+        5: {1: 0.99, 2: 0.01, 3: 0, 4: 0, "nb_item_max": 2, "nb_item_min": 2},
+        6: {1: 0.95, 2: 0.05, 3: 0, 4: 0, "nb_item_max": 2, "nb_item_min": 2},
+        7: {1: 0.94, 2: 0.06, 3: 0, 4: 0, "nb_item_max": 2, "nb_item_min": 2},
     }
 
     # on sort la ligne du tableau correpondant au niveau du pnj
