@@ -4,9 +4,15 @@ from src import UI
 pygame.init()
 width = 1500
 height = 704
-window = pygame.display.set_mode((width, height))
 
+window = pygame.display.set_mode((width, height))
 fond_death = pygame.image.load('sprite/dead.png')
+fond = pygame.image.load('sprite/Fond.png')
+new_game_button_picture = pygame.image.load('sprite/New_game.png')
+continue_button_picture = pygame.image.load('sprite/Continue.png')
+exit_button_picture = pygame.image.load('sprite/Exit.png')
+fleche_picture = pygame.image.load('sprite/Fleche.png').convert_alpha()
+
 
 grass1 = pygame.image.load('sprite/Grass1.png')
 grass2 = pygame.image.load('sprite/Grass2.png')
@@ -86,6 +92,10 @@ epe4 = pygame.image.load('sprite/master_sword.png')
 # arc
 arc1 = pygame.image.load('sprite/Arc.png')
 arc4 = pygame.image.load('sprite/arc_elfique.png')
+
+
+
+pygame.display.set_icon(zombie)
 
 police = pygame.font.Font('8bit.ttf', 20)
 ui = UI.UI()

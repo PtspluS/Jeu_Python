@@ -177,7 +177,11 @@ def game(my_room, player):
                     if event.key == K_r:  # l
                         # lance le menu de sort
                         player.spell_book.open(my_room)
-                        Global.ui.init_ui_game()
+                        Global.ui.init_ui_game()  # on init l'interface
+                        Global.ui.write(player.desc)
+                        Global.ui.print_coin(player)
+                        Global.ui.print_life(player)
+                        Global.ui.print_PA(player)
                         my_room.print()
                     if event.key == K_SPACE:  # on passe le tour
                         player.PA = 0

@@ -1,5 +1,6 @@
 import pygame
 
+import Menu
 from src import Global, Game_level
 from src import inventory
 from src.Game_Object.Personnages.Zombi import Zombi
@@ -43,4 +44,4 @@ bow=Bow.Bow("bow",imgepee, 100, 10)
 
 
 # lancement de la salle
-Game_level.game_level()
+Menu.menu()

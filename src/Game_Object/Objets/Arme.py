@@ -3,8 +3,9 @@ from src import Global
 
 class Arme(Item.Item):
 
-    def __init__(self, name, image, atk,range, value):
+    def __init__(self, name, image, atk,range, value,nb_hand=0):
         super().__init__(name, image, value)
+        self.nb_hand=nb_hand
         self.atk = atk
         self.range=range
 

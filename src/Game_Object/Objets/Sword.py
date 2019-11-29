@@ -6,7 +6,7 @@ class Sword(Arme.Arme):
     def __init__(self, name, image, atk, value):
         self.range=1
         self.PA = 1
-        super().__init__(name, image,atk,self.range, value)
+        super().__init__(name, image,atk,self.range, value,nb_hand=1)
 
 
     def use(self):
@@ -18,4 +18,4 @@ class Sword(Arme.Arme):
 
 
     def describe(self):
-        return "it'a "+ str(self.name)+ " with "+ str(self.atk)+ " damage he has a value of "+ str(self.value)+ " PO"
+        return str(self.name)+ " ATK:" + str(self.atk)+" Value :" +str(self.value)+ " PO"
