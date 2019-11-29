@@ -14,30 +14,23 @@ from src import Pathfinder
 
 class Combattant(PNJ.PNJ):
 
-    def __init__(self, img, nom, desc,inventory, vie=100, PO=50, posX=0, posY=0,attaque=0,lvl=1):
+    def __init__(self, img, nom, desc,inventory, vie=100, PO=50, posX=0, posY=0,attaque=0,lvl=1,ranges=1):
         super(Combattant, self).__init__(img, nom = nom, desc = desc,inventory=inventory, vie= vie, PO= PO, posX= posX, posY = posY, lvl=lvl, attaquable=True)
         self.attaque = attaque
         self.item = inventory.stuff
-
+        self.ranges=ranges
     def heal(self, val):
         self.hp = (self.hp + abs(val)) % self.max_hp
+
+
+
 
     def play(self,room):
         pygame.time.delay(100)
         pygame.event.clear()
-        target=0
-        if Global.isinrange(self.x+1,self.y,len(room.map_pos),len(room.map_pos[0])):
-            if isinstance(room.map_pos[self.x+1][self.y],Player.Player):
-                target=room.map_pos[self.x+1][self.y]
-        if Global.isinrange(self.x-1,self.y,len(room.map_pos),len(room.map_pos[0])):
-            if isinstance(room.map_pos[self.x-1][self.y],Player.Player):
-                target=room.map_pos[self.x-1][self.y]
-        if Global.isinrange(self.x,self.y+1,len(room.map_pos),len(room.map_pos[0])):
-            if isinstance(room.map_pos[self.x][self.y+1],Player.Player):
-                target=room.map_pos[self.x][self.y+1]
-        if Global.isinrange(self.x,self.y-1,len(room.map_pos),len(room.map_pos[0])):
-            if isinstance(room.map_pos[self.x][self.y-1],Player.Player):
-                target=room.map_pos[self.x][self.y-1]
+
+
+        target=self.is_on_target(room)
         if target ==0:
 
             my_matrix = deepcopy(room.brute_map)
@@ -58,6 +51,25 @@ class Combattant(PNJ.PNJ):
             self.PA-=1
 
 
+
+    def is_on_target(self,room):
+        target=0
+        for i in range (0,self.ranges+1):
+            if Global.isinrange(self.x + i, self.y, len(room.map_pos), len(room.map_pos[0])):
+                if isinstance(room.map_pos[self.x + i][self.y], Player.Player):
+                    target = room.map_pos[self.x + i][self.y]
+            if Global.isinrange(self.x - i, self.y, len(room.map_pos), len(room.map_pos[0])):
+                if isinstance(room.map_pos[self.x - i][self.y], Player.Player):
+                    target = room.map_pos[self.x - i][self.y]
+
+        for i in range (0,self.ranges+1):
+            if Global.isinrange(self.x , self.y+i, len(room.map_pos), len(room.map_pos[0])):
+                if isinstance(room.map_pos[self.x][self.y+i], Player.Player):
+                    target = room.map_pos[self.x ][self.y+i]
+            if Global.isinrange(self.x , self.y-i, len(room.map_pos), len(room.map_pos[0])):
+                if isinstance(room.map_pos[self.x][self.y-i], Player.Player):
+                    target = room.map_pos[self.x ][self.y-i]
+        return  target
 
 
 

@@ -1,14 +1,10 @@
 import pygame
 
-import Menu
-from src import Global, Game_level
+from src import Global, Menu
 from src import inventory
-from src.Game_Object.Personnages.Zombi import Zombi
 from src.Game_Object.Objets import Sword
 from src.Game_Object.Objets import Bow
 from src.Game_Object.Objets import Tete
-from src.Game_Object.Map.Generator.game_generator import generate_level
-
 
 width = 1500
 height = 704

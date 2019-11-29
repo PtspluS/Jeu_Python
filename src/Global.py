@@ -84,6 +84,7 @@ bowman = pygame.image.load('sprite/Bowman.png')
 # music
 pygame.mixer.music.load('sprite/music.mp3')
 
+
 # arme
 # epe
 epe2 = pygame.image.load('sprite/iron_sword.png')
