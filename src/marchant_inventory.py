@@ -69,8 +69,8 @@ class marchant_inventory: #l'inventaire d'un marchant
             if isinstance(self.stuff[cursor_x][cursor_y], Item.Item):
                 if self.stuff[cursor_x][cursor_y].value <= player.money:
                     player.inventory.pick(self.stuff[cursor_x][cursor_y])
-                    self.stuff[cursor_x][cursor_y] = 0
                     player.money -= self.stuff[cursor_x][cursor_y].value
+                    self.stuff[cursor_x][cursor_y] = 0
                     self.blit_stuff(cursor_x, cursor_y, True)
         Global.ui.print_coin(player)
 
@@ -121,7 +121,7 @@ class marchant_inventory: #l'inventaire d'un marchant
         for i in range(0, 10):
             for j in range(0, 5):
                 self.blit_player_stuff(i, j, False, player)
-
+        self.blit_stuff(0,0,True)
         cursor_x = 0
         cursor_y = 0
         issell = False
