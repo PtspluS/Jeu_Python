@@ -93,7 +93,8 @@ def examine(tab_map, map_pos, x, y, image_cursor, player):
                         window.blit(map_pos[cursor.x][cursor.y].img, (cursor.x * 64, cursor.y * 64))
                     continuer = 0
                     if image_cursor == Global.yellow_cursor:  # si on examine
-                        Global.ui.write(map_pos[cursor.x][cursor.y].description())  # on affiche la description
+                        if map_pos[cursor.x][cursor.y]!=0:
+                            Global.ui.write(map_pos[cursor.x][cursor.y].description())  # on affiche la description
                         return False
                     else:  # si on interact
                         if isinstance(map_pos[cursor.x][cursor.y], Cadavre.Cadavre):  # si on a un cadavre
