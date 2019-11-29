@@ -148,6 +148,7 @@ def game(my_room, player):
     while continuer:  # boucle du jeu
 
         if isinstance(my_room.char_tab[turn], Player.Player):  # si c'est la tour du player
+            Global.ui.print_PA(my_room.char_tab[turn])
             for event in pygame.event.get():
 
                 if event.type == QUIT:
