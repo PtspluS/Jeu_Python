@@ -86,6 +86,7 @@ pygame.mixer.music.load('sprite/music.mp3')
 
 # arme
 # epe
+epe1 = pygame.image.load('sprite/sword.png')
 epe2 = pygame.image.load('sprite/iron_sword.png')
 epe3 = pygame.image.load('sprite/steel_sword.png')
 epe4 = pygame.image.load('sprite/master_sword.png')

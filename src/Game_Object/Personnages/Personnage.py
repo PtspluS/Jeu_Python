@@ -48,7 +48,7 @@ class Personnage:
 
 
         window = Global.window
-        if Global.isinrange(x, y, 17, 11):  # si la case est dans le tableau
+        if Global.isinrange(x, y, len(tab_map), len(tab_map[0])):  # si la case est dans le tableau
             if tab_map[x][y].is_walkable and map_pos[x][y] == 0:  # la case est walkable il n y a peronnes sur la carte
                 window.blit(tab_map[self.x][self.y].image, (self.x * 64, self.y * 64))  # dessine la
                 map_pos[self.x][self.y] = 0

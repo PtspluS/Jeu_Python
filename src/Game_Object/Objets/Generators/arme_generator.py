@@ -57,7 +57,7 @@ def generate_sword(rarete = 1):
         value_max = 100
         value_min = 1
 
-        img = Global.epe2
+        img = Global.epe1
 
         atk_max = 12
         atk_min = 5
