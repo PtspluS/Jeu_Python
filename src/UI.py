@@ -82,7 +82,7 @@ class UI:
         self.window.blit(
             pygame.transform.scale(self.life_bar_full, (round(player.hp / player.max_hp * self.full_bar), 16)),
             (1160, 310))
-        self.window.blit(pygame.transform.scale(self.xp_bar_full,(round(player.lvl/player.next_level*self.full_bar), 16)),(1160, 360))
+        self.window.blit(pygame.transform.scale(self.xp_bar_full,(round(player.xp/player.next_level*self.full_bar), 16)),(1160, 360))
 
     def print_PA(self, player):
         self.window.blit(self.stat_tile, (1335, 400))
