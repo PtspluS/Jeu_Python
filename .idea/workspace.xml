@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d4c7bb88-48cf-4cf3-9b49-f1340d0b219e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game_Object/Personnages/Generators/pnj_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game_Object/Personnages/Generators/pnj_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game_Object/Map/Generator/game_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game_Object/Map/Generator/game_generator.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -95,6 +95,7 @@
       <workItem from="1574948251023" duration="17671000" />
       <workItem from="1575013585362" duration="4556000" />
       <workItem from="1575039681205" duration="7716000" />
+      <workItem from="1575057018337" duration="314000" />
     </task>
     <task id="LOCAL-00001" summary="pour PE">
       <created>1574868601397</created>
@@ -236,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575055003774</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="equilibrage pnj">
+      <created>1575055414475</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1575055414475</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -265,7 +273,6 @@
     <MESSAGE value="change pop rate" />
     <MESSAGE value="patch game" />
     <MESSAGE value="equilibrage zombi" />
-    <MESSAGE value="equilibrage pnj" />
     <MESSAGE value="equilibrage prix" />
     <MESSAGE value="equilibrage zombi start" />
     <MESSAGE value="toutes les salles sont generables plus combattants avec marchands" />
@@ -276,7 +283,8 @@
     <MESSAGE value="bug sortie de map" />
     <MESSAGE value="achievements bdd" />
     <MESSAGE value="xp print" />
-    <option name="LAST_COMMIT_MESSAGE" value="xp print" />
+    <MESSAGE value="equilibrage pnj" />
+    <option name="LAST_COMMIT_MESSAGE" value="equilibrage pnj" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

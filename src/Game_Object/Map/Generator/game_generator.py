@@ -6,6 +6,7 @@ from src.Game_Object.Map.terrain.Porte import Porte
 from src.Game_Object.Map.Room import Room
 from src.Game_Object.Map.Level import Level
 from src.Game_Object.Personnages.Generators.marchand_generator import generate_marchand
+from src.Game_Object.Personnages.Garde_de_la_porte import Garde_de_la_porte
 
 
 # pos_portes = [droite, gauche, haut, bas]
@@ -19,7 +20,7 @@ def generate_room(id, id_next, id_previous, type, nb_char=-1, pos_portes=[1, 0, 
     size_Y_min = 8
 
     min_char = 1
-    max_char = 5
+    max_char = 6
 
     nb_decors = 10
 
@@ -35,8 +36,7 @@ def generate_room(id, id_next, id_previous, type, nb_char=-1, pos_portes=[1, 0, 
         momo = generate_marchand(t='Lepreux')
         # momo = generate_marchand()
     elif nb_char == -1 and last_room == True:
-        nb_char = random.randint(0, 2)
-        boss = 1
+        nb_char = random.randint(0, 3)
 
     # on genere la taille de la map
     size_X = random.randint(size_X_min, size_X_max)
@@ -83,6 +83,7 @@ def generate_room(id, id_next, id_previous, type, nb_char=-1, pos_portes=[1, 0, 
     if type == 'champs':
         type_present.append(pnj_type[0])
         type_present.append(pnj_type[0])
+        boss = Garde_de_la_porte()
     elif type == 'mines':
         type_present.append(pnj_type[1])
         type_present.append(pnj_type[1])
@@ -160,6 +161,9 @@ def generate_room(id, id_next, id_previous, type, nb_char=-1, pos_portes=[1, 0, 
             for d in doors:
                 if d.x == i and d.y == j:
                     brute_map[i][j] = 2
+
+    if last_room :
+        pnj.append(boss)
 
     room = Room(id, brute_map=brute_map, map_pos=map_pos, char_tab=pnj, doors=doors, type=type)
 
