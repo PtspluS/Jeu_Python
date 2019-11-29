@@ -2,7 +2,7 @@ from copy import deepcopy
 
 import pygame
 
-from src import Pathfinder
+from src import Pathfinder, Global
 from src.Game_Object.Personnages import Boss
 from src.Game_Object.spell import Kick
 
@@ -11,6 +11,7 @@ class Garde_de_la_porte(Boss.Boss):
 
     def __init__(self,img, nom, desc, inventory, vie, PO, posX, posY, attaque, lvl):
         self.ranges=2
+        self.img=Global.guarde_de_la_porte
         self.kick=Kick.Kick()
         super().__init__(img, nom, desc, inventory, vie, PO, posX, posY, attaque, lvl, ranges=self.ranges)
 
