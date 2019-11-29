@@ -8,9 +8,9 @@ from src.Game_Object.spell import Zombie_Bite
 
 class Zombi(Player.Player):
 
-    def __init__(self, img, nom, vie=100, PO=50, posX=0, posY=0, inventory=[], lvl=1):
+    def __init__(self, img, nom, vie=100, PO=0, posX=0, posY=0, inventory=[], lvl=1):
         super(Zombi, self).__init__(img = img ,nom= nom,vie= vie,PO= PO,posX= posX,posY= posY, inventory=inventory, lvl = lvl)
-        self.attaque = 35
+        self.attaque = 15
         self.desc = "Je suis un zombi"
         self.spell_book=Spell_book.spell_book()
         bite=Zombie_Bite.Zombie_bite()
