@@ -6,7 +6,7 @@ from src import Global
 from pygame.locals import *
 import math
 from src.inventory import inventory
-#from src.save import save_achivement_first_kill, save_achivement_first_respawn
+from src.save import save_achivement_first_kill, save_achivement_first_respawn
 
 class Player(Personnage.Personnage):
 
@@ -99,8 +99,8 @@ class Player(Personnage.Personnage):
         """
         # sert pour les achevements
         if len(self.victims) == 0:
-            pass
-            #save_achivement_first_kill(self)
+            #pass
+            save_achivement_first_kill(self)
         value = self.value_of_the_victim(victime)
         self.victims[value] = victime
 
@@ -142,7 +142,7 @@ class Player(Personnage.Personnage):
         # sert pour les achevements
         if not self.dead :
             self.dead = True
-            #save_achivement_first_respawn(player=self)
+            save_achivement_first_respawn(player=self)
         victims = sorted(self.victims.items())
 
         # on retrouve la personne qui a la plus grande victim value
@@ -174,9 +174,6 @@ class Player(Personnage.Personnage):
         if  victim.dir=="left":
             self.img=pygame.transform.flip(self.img, True,False)
             self.dir="left"
-
-
-
 
         return True
 

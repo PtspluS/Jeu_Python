@@ -68,7 +68,7 @@ def save_achivement_first_kill(player, path = 'local'):
     try :
         mydb = client['game_python']
 
-        mycol = mydb["Le meurtre est l'ultime échec de la parole."]
+        mycol = mydb["Le meurtre est l'ultime échec de la parole"]
 
         # si l'achievements et pas fait on le met dans la collection
         if mycol.count() == 0:
@@ -94,7 +94,7 @@ def save_achivement_first_respawn(player, path = 'local'):
     try:
         mydb = client['game_python']
 
-        mycol = mydb["La mort est une journée qui mérite d'être vécu."]
+        mycol = mydb["La mort est une journée qui mérite d'être vécu"]
 
         # si l'achievements et pas fait on le met dans la collection
         if mycol.count() == 0:
