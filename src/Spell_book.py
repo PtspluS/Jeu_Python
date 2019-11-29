@@ -85,7 +85,7 @@ class spell_book:
 
                     if event.key == K_RETURN:
                         if  self.spell_tab[cursor_x][cursor_y]!=0:
-                            self.spell_tab[cursor_x][cursor_y].cast(room)
+                            self.spell_tab[cursor_x][cursor_y].cast(room.char_tab[0],room)
                         continuer=0
                     if event.key == K_ESCAPE:
                         # on reessine la map

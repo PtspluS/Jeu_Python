@@ -35,6 +35,7 @@ def game_level(): #boucle qui gere les levels
         player=Game_room.game_room(lvl,player)#demare la premiere room"
         if not player:
             pygame.mixer.music.stop()
+            return False
 
-            continuer=0
+
 

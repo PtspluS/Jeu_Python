@@ -74,6 +74,7 @@ zombie_mineur = pygame.image.load('sprite/Zombie_miner.png')
 zombie_farmer = pygame.image.load('sprite/Zombie_farmer.png')
 
 # pnj charac
+guarde_de_la_porte= pygame.image.load('sprite/Soldier.png')
 villager = pygame.image.load('sprite/Villager.png')
 farmer = pygame.image.load('sprite/Farmer.png')
 miner = pygame.image.load('sprite/Miner.png')
@@ -83,6 +84,7 @@ bowman = pygame.image.load('sprite/Bowman.png')
 
 # music
 pygame.mixer.music.load('sprite/music.mp3')
+
 
 # arme
 # epe

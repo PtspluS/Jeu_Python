@@ -3,7 +3,7 @@ from src.Game_Object.Personnages import Player, Villageois, Mineur, Fermier, Bou
 from src.Game_Object.Personnages import Cadavre
 import random
 
-from src.Game_Object.spell import Zombie_Bite
+from src.Game_Object.spell import Zombie_Bite, Kick
 
 
 class Zombi(Player.Player):
@@ -15,6 +15,7 @@ class Zombi(Player.Player):
         self.spell_book=Spell_book.spell_book()
         bite=Zombie_Bite.Zombie_bite()
         self.spell_book.spell_tab[0][0]=bite
+
 
 
 
