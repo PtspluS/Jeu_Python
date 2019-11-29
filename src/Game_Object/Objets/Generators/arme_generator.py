@@ -53,13 +53,13 @@ def generate_sword(rarete = 1):
         "sans aucune marque"
     ]
 
-    if rarete <=1 :
+    if rarete <= 1:
         value_max = 100
         value_min = 1
 
         img = Global.epe2
 
-        atk_max = 30
+        atk_max = 12
         atk_min = 5
 
         name = random.choice(epe_type)+" "+random.choice(adj_1)
@@ -70,7 +70,7 @@ def generate_sword(rarete = 1):
 
         img = Global.epe2
 
-        atk_max = 50
+        atk_max = 39
         atk_min = 20
 
         name = random.choice(epe_type) + " " + random.choice(adj_2)
@@ -80,19 +80,19 @@ def generate_sword(rarete = 1):
 
         img = Global.epe3
 
-        atk_max = 100
-        atk_min = 50
+        atk_max = 53
+        atk_min = 45
 
         name = random.choice(epe_type) + " " + random.choice(adj_3)
     elif rarete == 4:
         legendaire = [
-            ["Flamberge volcanique", Global.epe4, 169, 8502],
-            ["Sabre de damocles", Global.epe4, 160, 7952],
-            ["Epee en diamand", Global.epe4, 156, 5050],
-            ["Claymor nordique", Global.epe4, 179, 6100],
-            ["Manoda", Global.epe4, 183, 9547],
-            ["Hotmourne", Global.epe4, 164,  8472],
-            ["Slave Sword", Global.epe4, 151, 5555]
+            ["Flamberge volcanique", Global.epe4, 69, 8502],
+            ["Sabre de damocles", Global.epe4, 60, 7952],
+            ["Epee en diamand", Global.epe4, 56, 5050],
+            ["Claymor nordique", Global.epe4, 79, 6100],
+            ["Manoda", Global.epe4, 83, 9547],
+            ["Hotmourne", Global.epe4, 64,  8472],
+            ["Slave Sword", Global.epe4, 51, 5555]
         ]
 
         sw = random.choice(legendaire)
@@ -156,7 +156,7 @@ def generate_bow(rarete = 1):
         value_min = 1
         value_max = 100
 
-        atk_min = 10
+        atk_min = 7
         atk_max = 30
 
         name = random.choice(arc_type)+' '+random.choice(adj_1)

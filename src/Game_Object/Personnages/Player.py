@@ -16,8 +16,10 @@ class Player(Personnage.Personnage):
         # liste des victimes
         self.victims = {}
         self.dead = False
+        # nombre d'exp actuel
         self.xp = 0
-        self.next_level = 500
+        # nombre d'exp qu'il faut pour aller au prochain lvl
+        self.next_level = 250
 
     def level_up(self):
         self.lvl += 1

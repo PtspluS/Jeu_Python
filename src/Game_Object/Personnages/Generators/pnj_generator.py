@@ -188,8 +188,8 @@ def generate_villageois(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO
     # def des attributs et de leurs bornes
     att_min = 15
     att_max = 20
-    vie_max = 200
-    vie_min = 100
+    vie_max = 250
+    vie_min = 150
     lvl_max = 5
     lvl_min = 3
 
