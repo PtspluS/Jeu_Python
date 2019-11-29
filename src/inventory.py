@@ -81,10 +81,12 @@ class inventory:
         window = Global.window
         if ispress:
             window.blit(self.inventory_press_tile, (
-            self.start_equipement_x + x * self.space_equipement, self.start_equipement_y + y * self.space_equipement))
+                self.start_equipement_x + x * self.space_equipement,
+                self.start_equipement_y + y * self.space_equipement))
         else:
             window.blit(self.inventory_tile, (
-            self.start_equipement_x + x * self.space_equipement, self.start_equipement_y + y * self.space_equipement))
+                self.start_equipement_x + x * self.space_equipement,
+                self.start_equipement_y + y * self.space_equipement))
         if isinstance(self.equipement[x][y], Item.Item):
             window.blit(self.equipement[x][y].image,
                         (self.start_equipement_x + x * self.space_equipement + 16,
@@ -97,7 +99,7 @@ class inventory:
                          self.start_equipement_y + 16 + y * self.space_equipement))
             Global.ui.write("")
 
-    def throw(self, cursor_x, cursor_y, isequip):
+    def throw(self, cursor_x, cursor_y, isequip):  # on jette  un item
 
         if isequip:
             self.equipement[cursor_x][cursor_y] = self.empty_equipement[cursor_x][
@@ -107,20 +109,19 @@ class inventory:
             self.stuff[cursor_x][cursor_x] = 0
             self.blit_stuff(cursor_x, cursor_y, True)
 
-    def pick_up(self, player, cursor_x, cursor_y, isequip):
+    def pick_up(self, player, cursor_x, cursor_y, isequip):  # on prend iun item
         if isequip:
             if isinstance(self.equipement[cursor_x][cursor_y], Item.Item):
                 player.inventory.pick(self.equipement[cursor_x][cursor_y])
-                self.equipement[cursor_x][cursor_y]=0
-                self.blit_equipement(cursor_x,cursor_y,False)
+                self.equipement[cursor_x][cursor_y] = 0
+                self.blit_equipement(cursor_x, cursor_y, False)
         else:
             if isinstance(self.stuff[cursor_x][cursor_y], Item.Item):
                 player.inventory.pick(self.stuff[cursor_x][cursor_y])
                 self.stuff[cursor_x][cursor_y] = 0
                 self.blit_stuff(cursor_x, cursor_y, False)
 
-
-    def pick(self, item):
+    def pick(self, item):  # Si il reste de la place on ajoute un item
         """
 
         :param item: l'itemramassé
@@ -142,7 +143,7 @@ class inventory:
         :param isequip: si on est dans l'equipement
         :return:
         """
-        window = Global.window
+
         if isequip:  # si on est dans l'equipement
             if isinstance(self.equipement[cursor_x][cursor_y], Item.Item):
                 i, j = self.pick(self.equipement[cursor_x][cursor_y])
@@ -151,9 +152,6 @@ class inventory:
                         cursor_y]  # on deplace l'object
                     self.blit_equipement(cursor_x, cursor_y, True)
                     self.blit_stuff(i, j, False)
-                    print("item remove")
-                else:
-                    print("your stuff is full")
 
         else:  # si on est pas dans l'equipement
 
@@ -231,7 +229,7 @@ class inventory:
 
     def anim_cursor(self, cursor_x, cursor_y, dir_x, dir_y, isequip):  # animation du curseur d'inventaire
         """
-        :param window: la fenetre
+
         :param cursor_x: posx du curseur
         :param cursor_y: posy u curseur
         :param dir_x: direction du curseur
@@ -239,7 +237,7 @@ class inventory:
         :param isequip: est on dans l'equipement ou le stuff
         :return: cursor
         """
-        window = Global.window
+
         if isequip:  # si on est dans l'equipement
 
             if 0 <= cursor_x + dir_x < 4 and 0 <= cursor_y + dir_y < 4:  # est on en dehors de l'inventaire
@@ -262,14 +260,14 @@ class inventory:
             else:
                 return cursor_x, cursor_y
 
-    def use_inventory(self, player):
+    def use_inventory(self, player):  # utilisation de l'inventaire
 
         window = Global.window
         Global.ui.init_ui_inventory()
         inventory_width = 1300
         inventory_height = 500
 
-        window.blit(self.inventory_fond, (0, 0))
+        window.blit(self.inventory_fond, (0, 0))  # on affiche l'inventaire
         for i in range(0, 10):
             for j in range(0, 5):
                 self.blit_stuff(i, j, False)
@@ -373,14 +371,14 @@ class inventory:
                         cursor_x, cursor_y = self.anim_cursor(cursor_x, cursor_y, -1, 0, isequip)
                     if event.key == K_d or event.key == K_RIGHT:
                         cursor_x, cursor_y = self.anim_cursor(cursor_x, cursor_y, 1, 0, isequip)
-                    if event.key == K_e:
+                    if event.key == K_e:  # on equipe
                         self.equipe(cursor_x, cursor_y, isequip)
-                    if event.key == K_RETURN:
-                        if player.inventory!=self:
+                    if event.key == K_RETURN:  # on prend
+                        if player.inventory != self:
                             self.pick_up(player, cursor_x, cursor_y, isequip)
-                    if event.key == K_t:
+                    if event.key == K_t:  # on jette
                         self.throw(cursor_x, cursor_y, isequip)
-                    if event.key == K_TAB:
+                    if event.key == K_TAB:  # on switche de l'equipement au stuff
                         if isequip:
                             isequip = False  # on passe de l'inventaire au stuff
                             self.blit_equipement(cursor_x, cursor_y, False)

@@ -14,9 +14,9 @@ from src.Game_Object.Map.Generator.game_generator import generate_room, generate
 import random
 
 
-def game_level():
+def game_level(): #boucle qui gere les levels
     #test
-    my_inventory = inventory.inventory()
+    my_inventory = inventory.inventory()# set inventory
     imgcasque = pygame.image.load('sprite/wall.png')
     helmet = Tete.Tete("casque", imgcasque, 1, 10)
     imgepee = pygame.image.load('sprite/ble.png')
@@ -29,10 +29,10 @@ def game_level():
     continuer=1
     while continuer:
         pygame.mixer.music.load('sprite/music.mp3')
-        pygame.mixer.music.play(-1)
+        pygame.mixer.music.play(-1)#start music
         nb_room = random.randint(7,12)
         lvl=generate_level(nb_room=nb_room)
-        player=Game_room.game_room(lvl,player)
+        player=Game_room.game_room(lvl,player)#demare la premiere room"
         if not player:
             pygame.mixer.music.stop()
 
