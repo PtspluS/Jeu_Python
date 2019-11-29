@@ -114,8 +114,8 @@ def generate_fermier(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 
 
     PA_list = [2,3,4]
 
-    PO_max = 40
-    PO_min = 15
+    PO_max = 4
+    PO_min = 1
 
     courage_max = 3
     courage_min = 1
@@ -154,8 +154,8 @@ def generate_mineur(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 0
 
     PA_list = [2, 3, 4]
 
-    PO_max = 75
-    PO_min = 25
+    PO_max = 7
+    PO_min = 2
 
     courage_max = 5
     courage_min = 2
@@ -195,8 +195,8 @@ def generate_villageois(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO
 
     PA_list = [2, 3, 4]
 
-    PO_max = 100
-    PO_min = 50
+    PO_max = 10
+    PO_min = 5
 
     courage_max = 3
     courage_min = 2
@@ -236,8 +236,8 @@ def generate_bourgeois(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO 
 
     PA_list = [1, 2, 3]
 
-    PO_max = 3000
-    PO_min = 100
+    PO_max = 300
+    PO_min = 10
 
     courage_max = 2
     courage_min = 1

@@ -19,7 +19,7 @@ def generate_room(id, id_next, id_previous, type, nb_char=-1, pos_portes=[1, 0, 
     size_Y_min = 8
 
     min_char = 1
-    max_char = 7
+    max_char = 5
 
     nb_decors = 10
 
@@ -30,11 +30,11 @@ def generate_room(id, id_next, id_previous, type, nb_char=-1, pos_portes=[1, 0, 
     # on genere le nombre de personnages dans la map
     if nb_char == -1 and not marchand:
         nb_char = random.randint(min_char, max_char)
-    elif marchand:
+    elif nb_char == -1 and marchand:
         nb_char = random.randint(0,3)
         momo = generate_marchand(t='Lepreux')
         # momo = generate_marchand()
-    elif last_room:
+    elif nb_char == -1 and last_room == True:
         nb_char = random.randint(0, 2)
         boss = 1
 
@@ -96,6 +96,10 @@ def generate_room(id, id_next, id_previous, type, nb_char=-1, pos_portes=[1, 0, 
     # on regarde ou on peut mettre les persos
     x_possible = list(range(2, size_X - 2))
     y_possible = list(range(2, size_Y - 2))
+
+    while len(x_possible) < nb_char or len(y_possible) < nb_char:
+        nb_char -= 1
+
     if not marchand :
         for i in range(nb_char):
             # on donne des pos rng aux persos et on retire du tab les endroit ou ils sont
@@ -325,7 +329,7 @@ def generate_fields(brute_map):
             else:
                 tp_room = 3
 
-        r = generate_room(id, id_previous=id_previous, id_next=id_next, type=type_room[tp_room], nb_char=2,
+        r = generate_room(id, id_previous=id_previous, id_next=id_next, type=type_room[tp_room],
                           pos_portes=tab, marchand=pop_marchand)
         rooms.append(r)
 
