@@ -105,6 +105,7 @@ function which generate a farmer
 '''
 def generate_fermier(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 0):
     # def des attributs et de leurs bornes
+    att_min = 10
     att_max = 20
     vie_max = 150
     vie_min = 75
@@ -124,7 +125,7 @@ def generate_fermier(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 
     desc = random.choice(descriptions_poor)
     # on genere ds valeurs aleatoire pour les attributs du pnj
     if (attaque <= 0):
-        attaque = random.randint(1, att_max)
+        attaque = random.randint(att_min, att_max)
     if vie <= 0:
         vie = random.randint(vie_min, vie_max)
     if niveau <= 0:
@@ -144,6 +145,7 @@ function which generate a miner
 '''
 def generate_mineur(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 0):
     # def des attributs et de leurs bornes
+    att_min = 12
     att_max = 25
     vie_max = 150
     vie_min = 50
@@ -163,7 +165,7 @@ def generate_mineur(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 0
     desc = random.choice(descriptions_poor)
     # on genere ds valeurs aleatoire pour les attributs du pnj
     if (attaque <= 0):
-        attaque = random.randint(1, att_max)
+        attaque = random.randint(att_min, att_max)
     if vie <= 0:
         vie = random.randint(vie_min, vie_max)
     if niveau <= 0:
@@ -184,6 +186,7 @@ function which generate a villager
 '''
 def generate_villageois(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 0):
     # def des attributs et de leurs bornes
+    att_min = 15
     att_max = 20
     vie_max = 200
     vie_min = 100
@@ -203,7 +206,7 @@ def generate_villageois(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO
     desc = random.choice(descriptions_rich)
     # on genere ds valeurs aleatoire pour les attributs du pnj
     if (attaque <= 0):
-        attaque = random.randint(1, att_max)
+        attaque = random.randint(att_min, att_max)
     if vie <= 0:
         vie = random.randint(vie_min, vie_max)
     if niveau <= 0:
@@ -224,6 +227,7 @@ function which generate a bourgeois
 '''
 def generate_bourgeois(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO = 0):
     # def des attributs et de leurs bornes
+    att_min = 5
     att_max = 15
     vie_max = 200
     vie_min = 125
@@ -243,7 +247,7 @@ def generate_bourgeois(attaque = 0, vie = 0, niveau = 0, stuff = [], PA = 0, PO 
     desc = random.choice(descriptions_rich)
     # on genere ds valeurs aleatoire pour les attributs du pnj
     if (attaque <= 0):
-        attaque = random.randint(1, att_max)
+        attaque = random.randint(att_min, att_max)
     if vie <= 0:
         vie = random.randint(vie_min, vie_max)
     if niveau <= 0:
