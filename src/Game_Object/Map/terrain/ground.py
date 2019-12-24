@@ -8,9 +8,5 @@ class Ground(Decor.Decor):
     is_block = False
     is_walkable = True
 
-    def __init__(self, x, y):
-        if random.randint(0,10)>5:
-            image=grass1
-        else:
-            image=grass2
+    def __init__(self, x, y, image):
         super().__init__(x, y, image)

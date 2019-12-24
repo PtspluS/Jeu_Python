@@ -1,8 +1,17 @@
 from src import Global
 import pygame
-from src.Game_Object.Map.terrain import Wall,Porte,ground,Water
+from src.Game_Object.Map.terrain import Wall, Porte, ground, Water
+import src.Global as Global
 
 class Room:
+
+    # tableau qui donne les bons objets selon le type de la piece
+    translate_table = {
+        'champs': {0: Global.grass1, 1: Global.wall, 2: Global.door, 3: Global.wall},
+        'mines': {0: Global.grass1, 1: Global.wall, 2: Global.door, 3: Global.wall},
+        'faubourg': {0: Global.grass1, 1: Global.wall, 2: Global.door, 3: Global.wall},
+        'porte': {0: Global.grass1, 1: Global.wall, 2: Global.door, 3: Global.wall}
+    }
 
     def __init__(self, id, brute_map, map_pos, char_tab, doors, type):
         """
@@ -23,16 +32,15 @@ class Room:
         self.type = type
         self.convert_to_tab_map()
 
-
     def convert_to_tab_map(self):
         for i in range(0, len(self.brute_map)):
             maliste=[]
             for j in range(0, len(self.brute_map[i])):
                 if self.brute_map[i][j] == 0:
-                    myground = ground.Ground(i, j)
+                    myground = ground.Ground(i, j, image=self.translate_table[self.type][0])
                     maliste.append(myground)
                 if self.brute_map[i][j] == 1:
-                    my_wall = Wall.Wall(i, j)
+                    my_wall = Wall.Wall(i, j, image=self.translate_table[self.type][1])
                     maliste.append(my_wall)
                 if self.brute_map[i][j] == 2:
                     for k in self.doors:
@@ -41,12 +49,13 @@ class Room:
                             maliste.append(my_door)
 
                 if self.brute_map[i][j] == 3:
-                    my_wall = Wall.Wall(i, j)
+                    my_wall = Wall.Wall(i, j, image=self.translate_table[self.type][3])
                     maliste.append(my_wall)
             self.tab_map.append(maliste)
 
         return []
-    def print(self):  # fonction qui dessinala map
+
+    def print(self):  # fonction qui dessine la map
         """
 
         :param window: la feneter

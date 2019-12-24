@@ -6,6 +6,5 @@ class Wall(Decor.Decor):
     is_block = True
     is_walkable = False
 
-    def __init__(self, x, y):
-        image=ble
+    def __init__(self, x, y, image):
         super().__init__(x, y, image)
