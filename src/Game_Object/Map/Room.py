@@ -7,7 +7,7 @@ class Room:
 
     # tableau qui donne les bons objets selon le type de la piece
     translate_table = {
-        'champs': {0: Global.grass1, 1: Global.wall, 2: Global.door, 3: Global.wall},
+        'champs': {0: Global.dirt, 1: Global.ble, 2: Global.door, 3: Global.ble},
         'mines': {0: Global.grass1, 1: Global.wall, 2: Global.door, 3: Global.wall},
         'faubourg': {0: Global.grass1, 1: Global.wall, 2: Global.door, 3: Global.wall},
         'porte': {0: Global.grass1, 1: Global.wall, 2: Global.door, 3: Global.wall}

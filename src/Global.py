@@ -13,12 +13,13 @@ continue_button_picture = pygame.image.load('sprite/Continue.png')
 exit_button_picture = pygame.image.load('sprite/Exit.png')
 fleche_picture = pygame.image.load('sprite/Fleche.png').convert_alpha()
 
-
+# decor
 grass1 = pygame.image.load('sprite/Grass1.png')
 grass2 = pygame.image.load('sprite/Grass2.png')
 door = pygame.image.load('sprite/Door.png')
 ble = pygame.image.load('sprite/ble.png')
 wall = pygame.image.load('sprite/Wall.png')
+dirt = pygame.image.load('sprite/dirt.png')
 
 inventory_fond = pygame.image.load('sprite/fond_inventaire.png')
 black = pygame.image.load('sprite/black.png')
