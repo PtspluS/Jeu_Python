@@ -3,7 +3,7 @@ import pickle
 from datetime import datetime
 
 
-def save_game(level, player, path = 'local'):
+def save_game(level, player, path='local'):
     """
     save the game into the db
     :param level: current level generated

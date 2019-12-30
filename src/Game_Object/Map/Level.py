@@ -1,6 +1,7 @@
 # imports
 import numpy as np
 
+
 class Level:
 
     def __init__(self, map, type, doors, rooms):

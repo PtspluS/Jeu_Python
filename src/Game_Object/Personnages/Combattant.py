@@ -53,7 +53,7 @@ class Combattant(PNJ.PNJ):
 
 
     def is_on_target(self,room):
-        target=0
+        target = 0
         for i in range (0,self.ranges+1):
             if Global.isinrange(self.x + i, self.y, len(room.map_pos), len(room.map_pos[0])):
                 if isinstance(room.map_pos[self.x + i][self.y], Player.Player):
@@ -69,7 +69,7 @@ class Combattant(PNJ.PNJ):
             if Global.isinrange(self.x , self.y-i, len(room.map_pos), len(room.map_pos[0])):
                 if isinstance(room.map_pos[self.x][self.y-i], Player.Player):
                     target = room.map_pos[self.x ][self.y-i]
-        return  target
+        return target
 
 
 

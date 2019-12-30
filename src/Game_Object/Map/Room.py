@@ -8,7 +8,7 @@ class Room:
     # tableau qui donne les bons objets selon le type de la piece
     translate_table = {
         'champs': {0: Global.dirt, 1: Global.ble, 2: Global.door, 3: Global.ble},
-        'mines': {0: Global.grass1, 1: Global.wall, 2: Global.door, 3: Global.wall},
+        'mines': {0: Global.sol_mine, 1: Global.mur_mine, 2: Global.ladder, 3: Global.tas_roche},
         'faubourg': {0: Global.grass1, 1: Global.wall, 2: Global.door, 3: Global.wall},
         'porte': {0: Global.grass1, 1: Global.wall, 2: Global.door, 3: Global.wall}
     }
@@ -61,7 +61,7 @@ class Room:
         :param window: la feneter
         :return:
         """
-        window=Global.window
+        window = Global.window
         window.blit(Global.black, (0, 0))
         for i in range(0, len(self.tab_map)):
             for j in range(0, len(self.tab_map[i])):

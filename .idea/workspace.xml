@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="d4c7bb88-48cf-4cf3-9b49-f1340d0b219e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game_Object/Map/Level.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game_Object/Map/Level.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game_Object/Map/Room.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game_Object/Map/Room.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game_Object/Personnages/Combattant.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game_Object/Personnages/Combattant.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Global.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Global.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/save.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/save.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +53,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.main">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Jeu_Python3" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -73,9 +76,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="rng" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Jeu_Python3" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/rng.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.rng" />
       </list>
     </recent_temporary>
   </component>
@@ -101,7 +127,9 @@
       <workItem from="1575283616847" duration="6000" />
       <workItem from="1575994020561" duration="97000" />
       <workItem from="1576065199205" duration="11000" />
-      <workItem from="1577140458325" duration="6380000" />
+      <workItem from="1577140458325" duration="6512000" />
+      <workItem from="1577294526761" duration="2021000" />
+      <workItem from="1577719826630" duration="2177000" />
     </task>
     <task id="LOCAL-00001" summary="pour PE">
       <created>1574868601397</created>
@@ -278,7 +306,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577191614136</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="decors champs modifies">
+      <created>1577209061503</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1577209061503</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -322,7 +357,8 @@
     <MESSAGE value="boss add to the end" />
     <MESSAGE value="marchand lepreux" />
     <MESSAGE value="table pour les decors selon le niveau" />
-    <option name="LAST_COMMIT_MESSAGE" value="table pour les decors selon le niveau" />
+    <MESSAGE value="decors champs modifies" />
+    <option name="LAST_COMMIT_MESSAGE" value="decors champs modifies" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -331,16 +367,6 @@
           <url>file://$PROJECT_DIR$/src/Game_Object/spell/Spell.py</url>
           <line>74</line>
           <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/Game_Object/Personnages/Combattant.py</url>
-          <line>56</line>
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/Game_Object/Personnages/Combattant.py</url>
-          <line>71</line>
-          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -353,6 +379,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Jeu_Python$main.coverage" NAME="main Coverage Results" MODIFIED="1577208683345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/Jeu_Python$main.coverage" NAME="main Coverage Results" MODIFIED="1577723963731" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/Jeu_Python$rng.coverage" NAME="rng Coverage Results" MODIFIED="1577720278031" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
